@@ -1,9 +1,8 @@
 #include "Game.hpp"
-#include "ErrorHandler.hpp"
 
 namespace Elcarim {
 	bool Game::start() {
-		if (!ErrorHandler::createInstance()) {
+		if (!(m_errorHandler = ErrorHandler::createInstance())) {
 			return false;
 		}
 		return true;
@@ -15,6 +14,7 @@ namespace Elcarim {
 		return true;
 	}
 	Game::~Game() {
-		delete ErrorHandler::getInstance();
+		delete m_errorHandler;
+		m_errorHandler = nullptr;
 	}
 }
