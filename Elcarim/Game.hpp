@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ErrorHandler.hpp"
+#include "Window.hpp"
 
 namespace Elcarim {
 	class Game {
@@ -9,6 +10,7 @@ namespace Elcarim {
 		~Game();
 	private:
 		ErrorHandler* m_errorHandler = nullptr;
+		Window* m_window = nullptr;
 
 		bool start();
 	};
