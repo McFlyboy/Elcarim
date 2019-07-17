@@ -6,6 +6,7 @@
 namespace Elcarim {
 	class Game {
 	public:
+		static const char* const TITLE;
 		bool run();
 		~Game();
 	private:

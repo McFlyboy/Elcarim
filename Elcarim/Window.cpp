@@ -5,6 +5,10 @@
 #include "Window.hpp"
 
 namespace Elcarim {
+	int Window::s_newInstanceWidth = 800;
+	int Window::s_newInstanceHeight = 600;
+	const char* Window::s_newInstanceTitle = "";
+	bool Window::s_newInstanceFullscreen = false;
 	Window* Window::s_instance = nullptr;
 
 	Window::Window() {
@@ -16,23 +20,45 @@ namespace Elcarim {
 		}
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-		if (!(m_window = glfwCreateWindow(800, 600, "", nullptr, nullptr))) {
+		if (!(m_window = glfwCreateWindow(s_newInstanceWidth, s_newInstanceHeight, s_newInstanceTitle, s_newInstanceFullscreen ? m_activeMonitor : nullptr, nullptr))) {
 			throw std::runtime_error("Could not create the GLFW window\n");
 		}
 		glfwMakeContextCurrent(m_window);
 		if (!glfwGetCurrentContext) {
 			throw std::runtime_error("Failed to make context current for the window\n");
 		}
+		glfwGetWindowSize(m_window, &m_width, &m_height);
+		m_monitorVideoMode = glfwGetVideoMode(m_activeMonitor);
+		center();
 		glfwShowWindow(m_window);
+	}
+	const bool Window::shouldClose() const {
+		return glfwWindowShouldClose(m_window);
+	}
+	void Window::center() {
+		glfwSetWindowPos(
+			m_window,
+			(m_monitorVideoMode->width - m_width) / 2,
+			(m_monitorVideoMode->height - m_height) / 2
+		);
+	}
+	void Window::update() {
+		glfwSwapBuffers(m_window);
+		glfwPollEvents();
 	}
 	Window::~Window() {
 		glfwDestroyWindow(m_window);
+		m_window = nullptr;
 		glfwTerminate();
+		m_monitorVideoMode = nullptr;
 		m_activeMonitor = nullptr;
 		s_instance = nullptr;
 	}
-	void Window::setNewInstanceSettings() {
-		
+	void Window::setNewInstanceSettings(int width, int height, const char* const& title, bool fullscreen) {
+		s_newInstanceWidth = width;
+		s_newInstanceHeight = height;
+		s_newInstanceTitle = title;
+		s_newInstanceFullscreen = fullscreen;
 	}
 	Window* Window::getInstance() {
 		if (!s_instance) {

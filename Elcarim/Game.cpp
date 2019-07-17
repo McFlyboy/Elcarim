@@ -1,10 +1,11 @@
 #include "Game.hpp"
 
 namespace Elcarim {
+	const char* const Game::TITLE = "Elcarim";
+
 	bool Game::start() {
-		if (!(m_errorHandler = ErrorHandler::getInstance())) {
-			return false;
-		}
+		m_errorHandler = ErrorHandler::getInstance();
+		Window::setNewInstanceSettings(1280, 720, TITLE);
 		if (!(m_window = Window::getInstance())) {
 			return false;
 		}
@@ -14,7 +15,11 @@ namespace Elcarim {
 		if (!start()) {
 			return false;
 		}
-		return true;
+		bool exitNormally = true;
+		while (!m_window->shouldClose()) {
+			m_window->update();
+		}
+		return exitNormally;
 	}
 	Game::~Game() {
 		delete m_window;
