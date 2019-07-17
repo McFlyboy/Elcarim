@@ -42,9 +42,15 @@ namespace Elcarim {
 			(m_monitorVideoMode->height - m_height) / 2
 		);
 	}
+	void Window::setVSync(const bool vsync) {
+		glfwSwapInterval(vsync);
+	}
 	void Window::update() {
 		glfwSwapBuffers(m_window);
 		glfwPollEvents();
+	}
+	const Input::Device::Keyboard* const Window::createKeyboard() {
+		return new Input::Device::Keyboard(m_window);
 	}
 	Window::~Window() {
 		glfwDestroyWindow(m_window);
@@ -54,7 +60,7 @@ namespace Elcarim {
 		m_activeMonitor = nullptr;
 		s_instance = nullptr;
 	}
-	void Window::setNewInstanceSettings(int width, int height, const char* const& title, bool fullscreen) {
+	void Window::setNewInstanceSettings(const int width, const int height, const char* const title, const bool fullscreen) {
 		s_newInstanceWidth = width;
 		s_newInstanceHeight = height;
 		s_newInstanceTitle = title;

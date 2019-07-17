@@ -2,14 +2,18 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Keyboard.hpp"
+
 namespace Elcarim {
 	class Window {
 	public:
 		const bool shouldClose() const;
 		void center();
+		void setVSync(const bool vsync);
 		void update();
+		const Input::Device::Keyboard* const createKeyboard();
 		~Window();
-		static void setNewInstanceSettings(int width, int height, const char* const& title = "", bool fullscreen = false);
+		static void setNewInstanceSettings(const int width, const int height, const char* const title = "", const bool fullscreen = false);
 		static Window* getInstance();
 	private:
 		GLFWmonitor* m_activeMonitor = nullptr;

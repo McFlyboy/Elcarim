@@ -9,6 +9,8 @@ namespace Elcarim {
 		if (!(m_window = Window::getInstance())) {
 			return false;
 		}
+		m_window->setVSync(true);
+		m_keyboard = m_window->createKeyboard();
 		return true;
 	}
 	bool Game::run() {
@@ -22,6 +24,8 @@ namespace Elcarim {
 		return exitNormally;
 	}
 	Game::~Game() {
+		delete m_keyboard;
+		m_keyboard = nullptr;
 		delete m_window;
 		m_window = nullptr;
 		delete m_errorHandler;
