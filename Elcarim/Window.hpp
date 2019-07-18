@@ -21,6 +21,7 @@ namespace Elcarim {
 		GLFWwindow* m_window = nullptr;
 		int m_width = 0;
 		int m_height = 0;
+		const Input::Device::Keyboard* m_keyboard = nullptr;
 		static int s_newInstanceWidth;
 		static int s_newInstanceHeight;
 		static const char* s_newInstanceTitle;

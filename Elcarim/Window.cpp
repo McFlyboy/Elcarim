@@ -50,9 +50,15 @@ namespace Elcarim {
 		glfwPollEvents();
 	}
 	const Input::Device::Keyboard* const Window::createKeyboard() {
-		return new Input::Device::Keyboard(m_window);
+		if (!m_keyboard) {
+			m_keyboard = new Input::Device::Keyboard(m_window);
+			return m_keyboard;
+		}
+		return nullptr;
 	}
 	Window::~Window() {
+		delete m_keyboard;
+		m_keyboard = nullptr;
 		glfwDestroyWindow(m_window);
 		m_window = nullptr;
 		glfwTerminate();
