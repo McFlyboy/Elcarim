@@ -24,7 +24,7 @@ namespace Elcarim {
 			throw std::runtime_error("Could not create the GLFW window\n");
 		}
 		glfwMakeContextCurrent(m_window);
-		if (!glfwGetCurrentContext) {
+		if (!glfwGetCurrentContext()) {
 			throw std::runtime_error("Failed to make context current for the window\n");
 		}
 		glfwGetWindowSize(m_window, &m_width, &m_height);
@@ -49,7 +49,7 @@ namespace Elcarim {
 		glfwSwapBuffers(m_window);
 		glfwPollEvents();
 	}
-	const Input::Device::Keyboard* const Window::createKeyboard() {
+	Input::Device::Keyboard* const Window::createKeyboard() {
 		if (!m_keyboard) {
 			m_keyboard = new Input::Device::Keyboard(m_window);
 			return m_keyboard;

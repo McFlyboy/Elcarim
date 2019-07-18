@@ -14,7 +14,7 @@ namespace Elcarim {
 	private:
 		ErrorHandler* m_errorHandler = nullptr;
 		Window* m_window = nullptr;
-		const Input::Device::Keyboard* m_keyboard = nullptr;
+		Input::Device::Keyboard* m_keyboard = nullptr;
 
 		bool start();
 	};

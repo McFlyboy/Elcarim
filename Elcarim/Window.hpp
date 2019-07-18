@@ -11,7 +11,7 @@ namespace Elcarim {
 		void center();
 		void setVSync(const bool vsync);
 		void update();
-		const Input::Device::Keyboard* const createKeyboard();
+		Input::Device::Keyboard* const createKeyboard();
 		~Window();
 		static void setNewInstanceSettings(const int width, const int height, const char* const title = "", const bool fullscreen = false);
 		static Window* getInstance();
@@ -21,7 +21,7 @@ namespace Elcarim {
 		GLFWwindow* m_window = nullptr;
 		int m_width = 0;
 		int m_height = 0;
-		const Input::Device::Keyboard* m_keyboard = nullptr;
+		Input::Device::Keyboard* m_keyboard = nullptr;
 		static int s_newInstanceWidth;
 		static int s_newInstanceHeight;
 		static const char* s_newInstanceTitle;

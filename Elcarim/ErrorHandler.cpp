@@ -12,7 +12,7 @@ namespace Elcarim {
 			std::cerr << "Error " << error << ":\n" << description << "\n\n";
 		});
 	}
-	void ErrorHandler::write(const std::string& const errorMessage) {
+	void ErrorHandler::write(const std::string& errorMessage) {
 		std::cerr << errorMessage;
 	}
 	ErrorHandler::~ErrorHandler() {

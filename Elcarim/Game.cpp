@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Game.hpp"
 
 namespace Elcarim {
@@ -19,6 +21,9 @@ namespace Elcarim {
 		}
 		bool exitNormally = true;
 		while (!m_window->shouldClose()) {
+			if (m_keyboard->isKeyPressed(69)) {
+				std::cout << "E-key was pressed\n";
+			}
 			m_window->update();
 		}
 		return exitNormally;

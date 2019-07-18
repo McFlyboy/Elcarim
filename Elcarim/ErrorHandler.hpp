@@ -5,7 +5,7 @@
 namespace Elcarim {
 	class ErrorHandler {
 	public:
-		void write(const std::string& const errorMessage);
+		void write(const std::string& errorMessage);
 		~ErrorHandler();
 		static ErrorHandler* getInstance();
 	private:
