@@ -45,11 +45,32 @@ namespace Elcarim {
 			(m_monitorVideoMode->height - m_height) / 2
 		);
 	}
+	const int Window::getActiveMonitorWidth() {
+		return m_monitorVideoMode->width;
+	}
+	const int Window::getActiveMonitorHeight() {
+		return m_monitorVideoMode->height;
+	}
+	const int Window::getActiveMonitorRefreshRate() {
+		return m_monitorVideoMode->refreshRate;
+	}
 	const bool Window::isFullscreen() const {
 		return glfwGetWindowMonitor(m_window);
 	}
-	void Window::setFullscreen(bool fullscreen) {
-		glfwSetWindowMonitor(m_window, fullscreen ? m_activeMonitor : nullptr, (m_monitorVideoMode->width - m_width) / 2, (m_monitorVideoMode->height - m_height) / 2, m_width, m_height, GLFW_DONT_CARE);
+	void Window::setFullscreen(const bool fullscreen) {
+		GLFWmonitor* monitor = m_activeMonitor;
+		int xpos = 0;
+		int ypos = 0;
+		int width = m_monitorVideoMode->width;
+		int height = m_monitorVideoMode->height;
+		if (!fullscreen) {
+			monitor = nullptr;
+			xpos = (m_monitorVideoMode->width - m_width) / 2;
+			ypos = (m_monitorVideoMode->height - m_height) / 2;
+			width = m_width;
+			height = m_height;
+		}
+		glfwSetWindowMonitor(m_window, monitor, xpos, ypos, width, height, GLFW_DONT_CARE);
 	}
 	void Window::setVSync(const bool vsync) {
 		glfwSwapInterval(vsync);
@@ -64,11 +85,22 @@ namespace Elcarim {
 		}
 		return m_keyboard;
 	}
+	Input::Device::Mouse* const Window::getMouse() {
+		if (!m_mouse) {
+			m_mouse = new Input::Device::Mouse(m_window);
+		}
+		return m_mouse;
+	}
 	Window::~Window() {
 		delete m_keyboard;
 		m_keyboard = nullptr;
+
+		delete m_mouse;
+		m_mouse = nullptr;
+
 		glfwDestroyWindow(m_window);
 		m_window = nullptr;
+
 		glfwTerminate();
 		m_monitorVideoMode = nullptr;
 		m_activeMonitor = nullptr;

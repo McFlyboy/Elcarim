@@ -7,7 +7,7 @@ namespace Elcarim {
 	namespace Input {
 		namespace Device {
 			//Fix for too fast key-pressing.
-			//Does not care about change-values
+			//Overrides all other state-flags
 			const uint8_t KEY_DOUBLESTATE_PRESS_AND_RELEASE = 4u;
 
 			//Change-values
@@ -17,7 +17,7 @@ namespace Elcarim {
 			std::array<uint8_t, GLFW_KEY_LAST + 1> keyStates;
 			uint32_t lastKeyChanged = 0u;
 
-			Keyboard::Keyboard(GLFWwindow* const window) {
+			Keyboard::Keyboard(GLFWwindow* const window) : m_window(window) {
 				glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 					if (action == GLFW_REPEAT || key == GLFW_KEY_UNKNOWN) {
 						return;
@@ -59,6 +59,10 @@ namespace Elcarim {
 				std::for_each(keyStates.begin(), keyStates.end(), [](uint8_t& keyState) {
 					keyState = GLFW_RELEASE;
 				});
+			}
+			Keyboard::~Keyboard() {
+				glfwSetKeyCallback(m_window, nullptr);
+				m_window = nullptr;
 			}
 		}
 	}

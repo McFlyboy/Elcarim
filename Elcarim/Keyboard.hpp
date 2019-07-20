@@ -139,7 +139,10 @@ namespace Elcarim {
 				const bool isKeyDown(int key);
 				const int getLastKeyPressed() const;
 				void resetAllKeyStates() const;
+				~Keyboard();
 			private:
+				GLFWwindow* m_window = nullptr;
+
 				const uint8_t getKeyState(int key);
 			};
 		}

@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include "Keyboard.hpp"
+#include "Mouse.hpp"
 
 namespace Elcarim {
 	class Window {
@@ -10,11 +11,15 @@ namespace Elcarim {
 		const bool shouldClose() const;
 		void close();
 		void center();
+		const int getActiveMonitorWidth();
+		const int getActiveMonitorHeight();
+		const int getActiveMonitorRefreshRate();
 		const bool isFullscreen() const;
-		void setFullscreen(bool fullscreen);
+		void setFullscreen(const bool fullscreen);
 		void setVSync(const bool vsync);
 		void update();
 		Input::Device::Keyboard* const getKeyboard();
+		Input::Device::Mouse* const getMouse();
 		~Window();
 		static void setNewInstanceSettings(const int width, const int height, const char* const title = "", const bool fullscreen = false);
 		static Window* getInstance();
@@ -25,6 +30,7 @@ namespace Elcarim {
 		int m_width = 0;
 		int m_height = 0;
 		Input::Device::Keyboard* m_keyboard = nullptr;
+		Input::Device::Mouse* m_mouse = nullptr;
 		static int s_newInstanceWidth;
 		static int s_newInstanceHeight;
 		static const char* s_newInstanceTitle;

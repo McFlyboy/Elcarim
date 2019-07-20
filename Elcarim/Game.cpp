@@ -11,6 +11,8 @@ namespace Elcarim {
 		}
 		m_window->setVSync(true);
 		m_keyboard = m_window->getKeyboard();
+		m_mouse = m_window->getMouse();
+		m_mouse->setInvisible(true);
 		return true;
 	}
 	bool Game::run() {
@@ -33,6 +35,8 @@ namespace Elcarim {
 		delete m_window;
 		m_window = nullptr;
 		m_keyboard = nullptr;
+		m_mouse = nullptr;
+
 		delete m_errorHandler;
 		m_errorHandler = nullptr;
 	}

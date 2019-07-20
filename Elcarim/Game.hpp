@@ -3,6 +3,7 @@
 #include "ErrorHandler.hpp"
 #include "Window.hpp"
 #include "Keyboard.hpp"
+#include "Mouse.hpp"
 
 namespace Elcarim {
 	class Game {
@@ -15,6 +16,7 @@ namespace Elcarim {
 		ErrorHandler* m_errorHandler = nullptr;
 		Window* m_window = nullptr;
 		Input::Device::Keyboard* m_keyboard = nullptr;
+		Input::Device::Mouse* m_mouse = nullptr;
 
 		bool start();
 	};
