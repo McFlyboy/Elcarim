@@ -35,12 +35,21 @@ namespace Elcarim {
 	const bool Window::shouldClose() const {
 		return glfwWindowShouldClose(m_window);
 	}
+	void Window::close() {
+		glfwSetWindowShouldClose(m_window, true);
+	}
 	void Window::center() {
 		glfwSetWindowPos(
 			m_window,
 			(m_monitorVideoMode->width - m_width) / 2,
 			(m_monitorVideoMode->height - m_height) / 2
 		);
+	}
+	const bool Window::isFullscreen() const {
+		return glfwGetWindowMonitor(m_window);
+	}
+	void Window::setFullscreen(bool fullscreen) {
+		glfwSetWindowMonitor(m_window, fullscreen ? m_activeMonitor : nullptr, (m_monitorVideoMode->width - m_width) / 2, (m_monitorVideoMode->height - m_height) / 2, m_width, m_height, GLFW_DONT_CARE);
 	}
 	void Window::setVSync(const bool vsync) {
 		glfwSwapInterval(vsync);
@@ -49,12 +58,11 @@ namespace Elcarim {
 		glfwSwapBuffers(m_window);
 		glfwPollEvents();
 	}
-	Input::Device::Keyboard* const Window::createKeyboard() {
+	Input::Device::Keyboard* const Window::getKeyboard() {
 		if (!m_keyboard) {
 			m_keyboard = new Input::Device::Keyboard(m_window);
-			return m_keyboard;
 		}
-		return nullptr;
+		return m_keyboard;
 	}
 	Window::~Window() {
 		delete m_keyboard;

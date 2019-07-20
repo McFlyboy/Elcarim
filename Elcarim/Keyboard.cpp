@@ -1,13 +1,18 @@
 #include <array>
+#include <algorithm>
 
 #include "Keyboard.hpp"
 
 namespace Elcarim {
 	namespace Input {
 		namespace Device {
+			//Fix for too fast key-pressing.
+			//Does not care about change-values
+			const uint8_t KEY_DOUBLESTATE_PRESS_AND_RELEASE = 4u;
+
 			//Change-values
-			const uint8_t KEY_STATE_CHANGED   = 2;
-			const uint8_t KEY_STATE_UNCHANGED = 1;
+			const uint8_t KEY_STATE_CHANGED   = 2u;
+			const uint8_t KEY_STATE_UNCHANGED = 1u;
 
 			std::array<uint8_t, GLFW_KEY_LAST + 1> keyStates;
 			uint32_t lastKeyChanged = 0u;
@@ -17,7 +22,12 @@ namespace Elcarim {
 					if (action == GLFW_REPEAT || key == GLFW_KEY_UNKNOWN) {
 						return;
 					}
-					keyStates[key] = static_cast<uint8_t>(action) | KEY_STATE_CHANGED;
+					if (keyStates[key] == (GLFW_PRESS | KEY_STATE_CHANGED)) {
+						keyStates[key] = KEY_DOUBLESTATE_PRESS_AND_RELEASE;
+					}
+					else {
+						keyStates[key] = static_cast<uint8_t>(action) | KEY_STATE_CHANGED;
+					}
 					if (action == GLFW_PRESS) {
 						lastKeyChanged = key;
 					}
@@ -31,8 +41,24 @@ namespace Elcarim {
 			}
 			const uint8_t Keyboard::getKeyState(int key) {
 				uint8_t keyState = keyStates[key];
-				keyStates[key] &= KEY_STATE_UNCHANGED;
+				if (keyState == KEY_DOUBLESTATE_PRESS_AND_RELEASE) {
+					keyStates[key] = GLFW_RELEASE | KEY_STATE_CHANGED;
+					keyState = GLFW_PRESS | KEY_STATE_CHANGED;
+				}
+				else {
+					keyStates[key] &= KEY_STATE_UNCHANGED;
+				}
 				return keyState;
+			}
+			const int Keyboard::getLastKeyPressed() const {
+				int lastKey = static_cast<int>(lastKeyChanged);
+				lastKeyChanged = 0u;
+				return lastKey;
+			}
+			void Keyboard::resetAllKeyStates() const {
+				std::for_each(keyStates.begin(), keyStates.end(), [](uint8_t& keyState) {
+					keyState = GLFW_RELEASE;
+				});
 			}
 		}
 	}

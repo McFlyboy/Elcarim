@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "Game.hpp"
 
 namespace Elcarim {
@@ -12,7 +10,7 @@ namespace Elcarim {
 			return false;
 		}
 		m_window->setVSync(true);
-		m_keyboard = m_window->createKeyboard();
+		m_keyboard = m_window->getKeyboard();
 		return true;
 	}
 	bool Game::run() {
@@ -21,8 +19,11 @@ namespace Elcarim {
 		}
 		bool exitNormally = true;
 		while (!m_window->shouldClose()) {
-			if (m_keyboard->isKeyPressed(69)) {
-				std::cout << "E-key was pressed\n";
+			if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_ESCAPE)) {
+				m_window->close();
+			}
+			if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_F11)) {
+				m_window->setFullscreen(!m_window->isFullscreen());
 			}
 			m_window->update();
 		}

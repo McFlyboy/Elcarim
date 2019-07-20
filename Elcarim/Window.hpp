@@ -8,10 +8,13 @@ namespace Elcarim {
 	class Window {
 	public:
 		const bool shouldClose() const;
+		void close();
 		void center();
+		const bool isFullscreen() const;
+		void setFullscreen(bool fullscreen);
 		void setVSync(const bool vsync);
 		void update();
-		Input::Device::Keyboard* const createKeyboard();
+		Input::Device::Keyboard* const getKeyboard();
 		~Window();
 		static void setNewInstanceSettings(const int width, const int height, const char* const title = "", const bool fullscreen = false);
 		static Window* getInstance();
