@@ -8,7 +8,7 @@ namespace Elcarim {
 			class Mouse {
 			public:
 				Mouse(GLFWwindow* const window);
-				void setInvisible(const bool invisible);
+				void setCursorInvisible(const bool invisible);
 				~Mouse();
 			private:
 				GLFWwindow* m_window = nullptr;

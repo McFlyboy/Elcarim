@@ -19,5 +19,7 @@ namespace Elcarim {
 		Input::Device::Mouse* m_mouse = nullptr;
 
 		bool start();
+		bool update();
+		void render();
 	};
 }

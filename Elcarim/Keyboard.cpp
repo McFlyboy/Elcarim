@@ -16,6 +16,7 @@ namespace Elcarim {
 
 			std::array<uint8_t, GLFW_KEY_LAST + 1> keyStates;
 			uint32_t lastKeyChanged = 0u;
+			bool fullscreenShortcut = false;
 
 			Keyboard::Keyboard(GLFWwindow* const window) : m_window(window) {
 				glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -30,6 +31,15 @@ namespace Elcarim {
 					}
 					if (action == GLFW_PRESS) {
 						lastKeyChanged = key;
+#ifdef _WIN32
+						if (key == KEY_ENTER && mods == GLFW_MOD_ALT) {
+							fullscreenShortcut = true;
+						}
+#elif defined(__APPLE__)
+						if (key == KEY_ENTER && mods == GLFW_MOD_SUPER) {
+							fullscreenShortcut = true;
+						}
+#endif
 					}
 				});
 			}
@@ -54,6 +64,11 @@ namespace Elcarim {
 				int lastKey = static_cast<int>(lastKeyChanged);
 				lastKeyChanged = 0u;
 				return lastKey;
+			}
+			const bool Keyboard::isFullscreenShortcutPressed() {
+				bool fullscreenShortcutPressed = fullscreenShortcut;
+				fullscreenShortcut = false;
+				return fullscreenShortcutPressed;
 			}
 			void Keyboard::resetAllKeyStates() const {
 				std::for_each(keyStates.begin(), keyStates.end(), [](uint8_t& keyState) {

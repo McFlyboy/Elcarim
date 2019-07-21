@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Game.hpp"
 
 namespace Elcarim {
@@ -12,24 +14,34 @@ namespace Elcarim {
 		m_window->setVSync(true);
 		m_keyboard = m_window->getKeyboard();
 		m_mouse = m_window->getMouse();
-		m_mouse->setInvisible(true);
+		m_mouse->setCursorInvisible(true);
 		return true;
 	}
 	bool Game::run() {
 		if (!start()) {
 			return false;
 		}
-		bool exitNormally = true;
 		while (!m_window->shouldClose()) {
-			if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_ESCAPE)) {
-				m_window->close();
+			if (!update()) {
+				return false;
 			}
-			if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_F11)) {
-				m_window->setFullscreen(!m_window->isFullscreen());
-			}
+			render();
 			m_window->update();
 		}
-		return exitNormally;
+		return true;
+	}
+	bool Game::update() {
+		if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_ESCAPE)) {
+			m_window->close();
+			return true;
+		}
+		if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_F11) || m_keyboard->isFullscreenShortcutPressed()) {
+			m_window->setFullscreen(!m_window->isFullscreen());
+		}
+		return true;
+	}
+	void Game::render() {
+
 	}
 	Game::~Game() {
 		delete m_window;

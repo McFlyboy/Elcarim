@@ -138,6 +138,7 @@ namespace Elcarim {
 				const bool isKeyPressed(int key);
 				const bool isKeyDown(int key);
 				const int getLastKeyPressed() const;
+				const bool isFullscreenShortcutPressed();
 				void resetAllKeyStates() const;
 				~Keyboard();
 			private:
