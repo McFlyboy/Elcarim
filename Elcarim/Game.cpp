@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Game.hpp"
 
 namespace Elcarim {
@@ -13,7 +15,7 @@ namespace Elcarim {
 		m_keyboard = m_window->getKeyboard();
 		m_mouse = m_window->getMouse();
 		m_mouse->setCursorInvisible(true);
-		m_gamepad = new Input::Device::Gamepad(0);
+		m_gamepad = m_window->getGamepad();
 		return true;
 	}
 	bool Game::run() {
@@ -38,19 +40,22 @@ namespace Elcarim {
 			m_window->setFullscreen(!m_window->isFullscreen());
 		}
 		m_gamepad->update();
+		std::cout
+			<< m_gamepad->getAxisValue(Input::Device::Gamepad::AXIS_LEFT_X)
+			<< ", "
+			<< m_gamepad->getAxisValue(Input::Device::Gamepad::AXIS_LEFT_Y)
+			<< "\n";
 		return true;
 	}
 	void Game::render() {
 
 	}
 	Game::~Game() {
-		delete m_gamepad;
-		m_gamepad = nullptr;
-
 		delete m_window;
 		m_window = nullptr;
 		m_keyboard = nullptr;
 		m_mouse = nullptr;
+		m_gamepad = nullptr;
 
 		delete m_errorHandler;
 		m_errorHandler = nullptr;

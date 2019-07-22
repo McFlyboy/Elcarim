@@ -6,7 +6,9 @@
 namespace Elcarim {
 	namespace Input {
 		namespace Device {
-			//Fix for too fast key-pressing.
+			Gamepad* Gamepad::s_instance = nullptr;
+
+			//Fix for too fast button-pressing.
 			//Overrides all other state-flags
 			const uint8_t BUTTON_DOUBLESTATE_PRESS_AND_RELEASE = 4u;
 
@@ -18,7 +20,9 @@ namespace Elcarim {
 			const float INNER_THRESHOLD = 0.1f;
 			const float OUTER_THRESHOLD = 0.9f;
 
-			Gamepad::Gamepad(const int gamepadID) : m_gamepadID(gamepadID) {}
+			const int Gamepad::getGamepadID(){
+				return m_gamepadID;
+			}
 			const bool Gamepad::isGamepadConnected() {
 				return glfwJoystickIsGamepad(m_gamepadID);
 			}
@@ -31,7 +35,7 @@ namespace Elcarim {
 			void Gamepad::update() {
 				GLFWgamepadstate state;
 				if (glfwGetGamepadState(m_gamepadID, &state)) {
-					for (int i = 0; i < 15; i++) {
+					for (int i = 0; i < 15; ++i) {
 						if ((m_state.buttons[i] & BUTTON_STATE_UNCHANGED) != state.buttons[i]) {
 							m_state.buttons[i] = state.buttons[i] | BUTTON_STATE_CHANGED;
 						}
@@ -75,6 +79,37 @@ namespace Elcarim {
 					}
 				}
 				return m_state.axes[axis];
+			}
+			void Gamepad::resetAllButtonStates() {
+				for (int i = 0; i < 15; ++i) {
+					m_state.buttons[i] = GLFW_RELEASE;
+				}
+			}
+			void Gamepad::resetAllAxisStates() {
+				for (int i = 0; i < 6; ++i) {
+					m_state.axes[i] = 0.0f;
+				}
+			}
+			Gamepad::~Gamepad() {
+				glfwSetJoystickCallback(nullptr);
+				s_instance = nullptr;
+			}
+			Gamepad* const Gamepad::getInstance() {
+				if (!s_instance) {
+					s_instance = new Gamepad();
+					if (
+						!glfwSetJoystickCallback([](int jid, int event) {
+							if (jid == Elcarim::Input::Device::Gamepad::getInstance()->getGamepadID() && event == GLFW_DISCONNECTED) {
+								Elcarim::Input::Device::Gamepad::getInstance()->resetAllButtonStates();
+								Elcarim::Input::Device::Gamepad::getInstance()->resetAllAxisStates();
+							}
+						})
+					) {
+						delete s_instance;
+						s_instance = nullptr;
+					}
+				}
+				return s_instance;
 			}
 		}
 	}

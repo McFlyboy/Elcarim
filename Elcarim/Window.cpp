@@ -91,12 +91,21 @@ namespace Elcarim {
 		}
 		return m_mouse;
 	}
+	Input::Device::Gamepad* const Window::getGamepad() {
+		if (!m_gamepad) {
+			m_gamepad = Input::Device::Gamepad::getInstance();
+		}
+		return m_gamepad;
+	}
 	Window::~Window() {
 		delete m_keyboard;
 		m_keyboard = nullptr;
 
 		delete m_mouse;
 		m_mouse = nullptr;
+
+		delete m_gamepad;
+		m_gamepad = nullptr;
 
 		glfwDestroyWindow(m_window);
 		m_window = nullptr;

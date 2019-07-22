@@ -33,17 +33,23 @@ namespace Elcarim {
 					AXIS_LEFT_TRIGGER = 4,
 					AXIS_RIGHT_TRIGGER = 5;
 
-				Gamepad(const int gamepadID);
+				const int getGamepadID();
 				const bool isGamepadConnected();
 				const char* const getGamepadName();
 				void update();
 				const bool isButtonPressed(uint8_t button);
 				const bool isButtonDown(uint8_t button);
 				const float getAxisValue(uint8_t axis);
+				void resetAllButtonStates();
+				void resetAllAxisStates();
+				~Gamepad();
+				static Gamepad* const getInstance();
 			private:
-				const int m_gamepadID;
+				int m_gamepadID = 0;
 				GLFWgamepadstate m_state = GLFWgamepadstate();
+				static Gamepad* s_instance;
 
+				Gamepad();
 				const uint8_t getButtonState(uint8_t button);
 			};
 		}
