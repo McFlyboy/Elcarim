@@ -20,6 +20,7 @@ namespace Elcarim {
 			const float INNER_THRESHOLD = 0.1f;
 			const float OUTER_THRESHOLD = 0.9f;
 
+			Gamepad::Gamepad() {}
 			const int Gamepad::getGamepadID(){
 				return m_gamepadID;
 			}
@@ -98,12 +99,12 @@ namespace Elcarim {
 				if (!s_instance) {
 					s_instance = new Gamepad();
 					if (
-						!glfwSetJoystickCallback([](int jid, int event) {
-							if (jid == Elcarim::Input::Device::Gamepad::getInstance()->getGamepadID() && event == GLFW_DISCONNECTED) {
-								Elcarim::Input::Device::Gamepad::getInstance()->resetAllButtonStates();
-								Elcarim::Input::Device::Gamepad::getInstance()->resetAllAxisStates();
-							}
-						})
+						false//!glfwSetJoystickCallback([](int jid, int event) {
+							//if (jid == Elcarim::Input::Device::Gamepad::getInstance()->getGamepadID() && event == GLFW_DISCONNECTED) {
+								//Elcarim::Input::Device::Gamepad::getInstance()->resetAllButtonStates();
+								//Elcarim::Input::Device::Gamepad::getInstance()->resetAllAxisStates();
+							//}
+						//})
 					) {
 						delete s_instance;
 						s_instance = nullptr;
