@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="ErrorHandler.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gamepad.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Laucher.cpp" />
     <ClCompile Include="Mouse.cpp" />
@@ -136,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="ErrorHandler.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Gamepad.hpp" />
     <ClInclude Include="Keyboard.hpp" />
     <ClInclude Include="Mouse.hpp" />
     <ClInclude Include="Window.hpp" />

@@ -10,7 +10,7 @@ namespace Elcarim {
 			class Keyboard {
 			public:
 				/* Printable keys */
-				static const int
+				static const uint16_t
 					KEY_SPACE = 32,
 					KEY_APOSTROPHE = 39,  /* ' */
 					KEY_COMMA = 44,  /* , */
@@ -135,16 +135,16 @@ namespace Elcarim {
 					KEY_MENU = 348;
 
 				Keyboard(GLFWwindow* const window);
-				const bool isKeyPressed(int key);
-				const bool isKeyDown(int key);
-				const int getLastKeyPressed() const;
+				const bool isKeyPressed(uint16_t key);
+				const bool isKeyDown(uint16_t key);
+				const uint16_t getLastKeyPressed() const;
 				const bool isFullscreenShortcutPressed();
 				void resetAllKeyStates() const;
 				~Keyboard();
 			private:
 				GLFWwindow* m_window = nullptr;
 
-				const uint8_t getKeyState(int key);
+				const uint8_t getKeyState(uint16_t key);
 			};
 		}
 	}

@@ -15,7 +15,7 @@ namespace Elcarim {
 			const uint8_t KEY_STATE_UNCHANGED = 1u;
 
 			std::array<uint8_t, GLFW_KEY_LAST + 1> keyStates;
-			uint32_t lastKeyChanged = 0u;
+			uint16_t lastKeyChanged = 0u;
 			bool fullscreenShortcut = false;
 
 			Keyboard::Keyboard(GLFWwindow* const window) : m_window(window) {
@@ -27,7 +27,7 @@ namespace Elcarim {
 						keyStates[key] = KEY_DOUBLESTATE_PRESS_AND_RELEASE;
 					}
 					else {
-						keyStates[key] = static_cast<uint8_t>(action) | KEY_STATE_CHANGED;
+						keyStates[key] = action | KEY_STATE_CHANGED;
 					}
 					if (action == GLFW_PRESS) {
 						lastKeyChanged = key;
@@ -43,13 +43,13 @@ namespace Elcarim {
 					}
 				});
 			}
-			const bool Keyboard::isKeyPressed(int key) {
+			const bool Keyboard::isKeyPressed(uint16_t key) {
 				return getKeyState(key) == (GLFW_PRESS | KEY_STATE_CHANGED);
 			}
-			const bool Keyboard::isKeyDown(int key) {
+			const bool Keyboard::isKeyDown(uint16_t key) {
 				return (getKeyState(key) & KEY_STATE_UNCHANGED) == GLFW_PRESS;
 			}
-			const uint8_t Keyboard::getKeyState(int key) {
+			const uint8_t Keyboard::getKeyState(uint16_t key) {
 				uint8_t keyState = keyStates[key];
 				if (keyState == KEY_DOUBLESTATE_PRESS_AND_RELEASE) {
 					keyStates[key] = GLFW_RELEASE | KEY_STATE_CHANGED;
@@ -60,8 +60,8 @@ namespace Elcarim {
 				}
 				return keyState;
 			}
-			const int Keyboard::getLastKeyPressed() const {
-				int lastKey = static_cast<int>(lastKeyChanged);
+			const uint16_t Keyboard::getLastKeyPressed() const {
+				int lastKey = lastKeyChanged;
 				lastKeyChanged = 0u;
 				return lastKey;
 			}
