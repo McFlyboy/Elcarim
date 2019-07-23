@@ -33,6 +33,9 @@ namespace Elcarim {
 		center();
 		glfwShowWindow(m_window);
 		m_focused = true;
+		getKeyboard();
+		getMouse();
+		getGamepad();
 	}
 	const int Window::getActiveMonitorWidth() {
 		return m_monitorVideoMode->width;
@@ -98,7 +101,7 @@ namespace Elcarim {
 	}
 	Input::Device::Gamepad* const Window::getGamepad() {
 		if (!m_gamepad) {
-			m_gamepad = Input::Device::Gamepad::getInstance(this);
+			m_gamepad = Input::Device::Gamepad::getInstance();
 		}
 		return m_gamepad;
 	}
@@ -134,6 +137,12 @@ namespace Elcarim {
 				s_instance = new Window();
 				glfwSetWindowFocusCallback(s_instance->m_window, [](GLFWwindow* window, int focused) {
 					s_instance->m_focused = focused;
+					Input::Device::Gamepad* gamepad = s_instance->getGamepad();
+					gamepad->setFocued(focused);
+					if (!focused) {
+						gamepad->resetAllAxisStates();
+						gamepad->resetAllButtonStates();
+					}
 				});
 				return s_instance;
 			}

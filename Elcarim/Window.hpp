@@ -7,11 +7,6 @@
 #include "Gamepad.hpp"
 
 namespace Elcarim {
-	namespace Input {
-		namespace Device {
-			class Gamepad;
-		}
-	}
 	class Window {
 	public:
 		const int getActiveMonitorWidth();
