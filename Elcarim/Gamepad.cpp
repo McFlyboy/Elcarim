@@ -20,22 +20,24 @@ namespace Elcarim {
 			const float INNER_THRESHOLD = 0.1f;
 			const float OUTER_THRESHOLD = 0.9f;
 
-			Gamepad::Gamepad() {}
-			const int Gamepad::getGamepadID(){
-				return m_gamepadID;
-			}
+			Gamepad::Gamepad(const Window* const window) : m_window(window) {}
 			const bool Gamepad::isGamepadConnected() {
-				return glfwJoystickIsGamepad(m_gamepadID);
+				return glfwJoystickIsGamepad(GLFW_JOYSTICK_1);
 			}
 			const char* const Gamepad::getGamepadName() {
 				if (!isGamepadConnected()) {
 					return "";
 				}
-				return glfwGetGamepadName(m_gamepadID);
+				return glfwGetGamepadName(GLFW_JOYSTICK_1);
 			}
 			void Gamepad::update() {
+				if (!m_window->isFocused()) {
+					s_instance->resetAllButtonStates();
+					s_instance->resetAllAxisStates();
+					return;
+				}
 				GLFWgamepadstate state;
-				if (glfwGetGamepadState(m_gamepadID, &state)) {
+				if (glfwGetGamepadState(GLFW_JOYSTICK_1, &state)) {
 					for (int i = 0; i < 15; ++i) {
 						if ((m_state.buttons[i] & BUTTON_STATE_UNCHANGED) != state.buttons[i]) {
 							m_state.buttons[i] = state.buttons[i] | BUTTON_STATE_CHANGED;
@@ -95,20 +97,16 @@ namespace Elcarim {
 				glfwSetJoystickCallback(nullptr);
 				s_instance = nullptr;
 			}
-			Gamepad* const Gamepad::getInstance() {
+			Gamepad* const Gamepad::getInstance(const Window* const window) {
 				if (!s_instance) {
-					s_instance = new Gamepad();
-					if (
-						false//!glfwSetJoystickCallback([](int jid, int event) {
-							//if (jid == Elcarim::Input::Device::Gamepad::getInstance()->getGamepadID() && event == GLFW_DISCONNECTED) {
-								//Elcarim::Input::Device::Gamepad::getInstance()->resetAllButtonStates();
-								//Elcarim::Input::Device::Gamepad::getInstance()->resetAllAxisStates();
-							//}
-						//})
-					) {
-						delete s_instance;
-						s_instance = nullptr;
-					}
+					s_instance = new Gamepad(window);
+					glfwSetJoystickCallback([](int jid, int event) {
+						if (jid == GLFW_JOYSTICK_1 && event == GLFW_DISCONNECTED) {
+							s_instance->resetAllButtonStates();
+							s_instance->resetAllAxisStates();
+							s_instance->m_state.axes[0] = 0.0f;
+						}
+					});
 				}
 				return s_instance;
 			}

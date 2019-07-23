@@ -18,8 +18,9 @@ namespace Elcarim {
 		if (!(m_activeMonitor = glfwGetPrimaryMonitor())) {
 			throw std::runtime_error("Could not find the primary monitor\n");
 		}
-		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+		glfwWindowHint(GLFW_VISIBLE, false);
+		glfwWindowHint(GLFW_RESIZABLE, false);
+		glfwWindowHint(GLFW_FOCUS_ON_SHOW, true);
 		if (!(m_window = glfwCreateWindow(s_newInstanceWidth, s_newInstanceHeight, s_newInstanceTitle, s_newInstanceFullscreen ? m_activeMonitor : nullptr, nullptr))) {
 			throw std::runtime_error("Could not create the GLFW window\n");
 		}
@@ -31,6 +32,16 @@ namespace Elcarim {
 		m_monitorVideoMode = glfwGetVideoMode(m_activeMonitor);
 		center();
 		glfwShowWindow(m_window);
+		m_focused = true;
+	}
+	const int Window::getActiveMonitorWidth() {
+		return m_monitorVideoMode->width;
+	}
+	const int Window::getActiveMonitorHeight() {
+		return m_monitorVideoMode->height;
+	}
+	const int Window::getActiveMonitorRefreshRate() {
+		return m_monitorVideoMode->refreshRate;
 	}
 	const bool Window::shouldClose() const {
 		return glfwWindowShouldClose(m_window);
@@ -45,14 +56,8 @@ namespace Elcarim {
 			(m_monitorVideoMode->height - m_height) / 2
 		);
 	}
-	const int Window::getActiveMonitorWidth() {
-		return m_monitorVideoMode->width;
-	}
-	const int Window::getActiveMonitorHeight() {
-		return m_monitorVideoMode->height;
-	}
-	const int Window::getActiveMonitorRefreshRate() {
-		return m_monitorVideoMode->refreshRate;
+	const bool Window::isFocused() const {
+		return m_focused;
 	}
 	const bool Window::isFullscreen() const {
 		return glfwGetWindowMonitor(m_window);
@@ -93,7 +98,7 @@ namespace Elcarim {
 	}
 	Input::Device::Gamepad* const Window::getGamepad() {
 		if (!m_gamepad) {
-			m_gamepad = Input::Device::Gamepad::getInstance();
+			m_gamepad = Input::Device::Gamepad::getInstance(this);
 		}
 		return m_gamepad;
 	}
@@ -106,6 +111,8 @@ namespace Elcarim {
 
 		delete m_gamepad;
 		m_gamepad = nullptr;
+
+		glfwSetWindowFocusCallback(m_window, nullptr);
 
 		glfwDestroyWindow(m_window);
 		m_window = nullptr;
@@ -121,10 +128,13 @@ namespace Elcarim {
 		s_newInstanceTitle = title;
 		s_newInstanceFullscreen = fullscreen;
 	}
-	Window* Window::getInstance() {
+	Window* const Window::getInstance() {
 		if (!s_instance) {
 			try {
 				s_instance = new Window();
+				glfwSetWindowFocusCallback(s_instance->m_window, [](GLFWwindow* window, int focused) {
+					s_instance->m_focused = focused;
+				});
 				return s_instance;
 			}
 			catch (std::exception& e) {

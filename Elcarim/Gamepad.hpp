@@ -4,7 +4,10 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Window.hpp"
+
 namespace Elcarim {
+	class Window;
 	namespace Input {
 		namespace Device {
 			class Gamepad {
@@ -33,7 +36,6 @@ namespace Elcarim {
 					AXIS_LEFT_TRIGGER = 4,
 					AXIS_RIGHT_TRIGGER = 5;
 
-				const int getGamepadID();
 				const bool isGamepadConnected();
 				const char* const getGamepadName();
 				void update();
@@ -43,13 +45,13 @@ namespace Elcarim {
 				void resetAllButtonStates();
 				void resetAllAxisStates();
 				~Gamepad();
-				static Gamepad* const getInstance();
+				static Gamepad* const getInstance(const Window* const window);
 			private:
-				int m_gamepadID = 0;
+				const Window* const m_window = nullptr;
 				GLFWgamepadstate m_state = GLFWgamepadstate();
 				static Gamepad* s_instance;
 
-				Gamepad();
+				Gamepad(const Window* const window);
 				const uint8_t getButtonState(uint8_t button);
 			};
 		}

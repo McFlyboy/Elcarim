@@ -7,14 +7,20 @@
 #include "Gamepad.hpp"
 
 namespace Elcarim {
+	namespace Input {
+		namespace Device {
+			class Gamepad;
+		}
+	}
 	class Window {
 	public:
-		const bool shouldClose() const;
-		void close();
-		void center();
 		const int getActiveMonitorWidth();
 		const int getActiveMonitorHeight();
 		const int getActiveMonitorRefreshRate();
+		const bool shouldClose() const;
+		void close();
+		void center();
+		const bool isFocused() const;
 		const bool isFullscreen() const;
 		void setFullscreen(const bool fullscreen);
 		void setVSync(const bool vsync);
@@ -24,13 +30,14 @@ namespace Elcarim {
 		Input::Device::Gamepad* const getGamepad();
 		~Window();
 		static void setNewInstanceSettings(const int width, const int height, const char* const title = "", const bool fullscreen = false);
-		static Window* getInstance();
+		static Window* const getInstance();
 	private:
 		GLFWmonitor* m_activeMonitor = nullptr;
 		const GLFWvidmode* m_monitorVideoMode = nullptr;
 		GLFWwindow* m_window = nullptr;
 		int m_width = 0;
 		int m_height = 0;
+		bool m_focused = false;
 		Input::Device::Keyboard* m_keyboard = nullptr;
 		Input::Device::Mouse* m_mouse = nullptr;
 		Input::Device::Gamepad* m_gamepad = nullptr;
