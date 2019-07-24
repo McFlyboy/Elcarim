@@ -11,7 +11,9 @@ namespace Elcarim {
 		if (!(m_window = Window::getInstance())) {
 			return false;
 		}
+		m_window->setIconImages("ball_16x16.png", "ball_32x32.png", "ball_48x48.png");
 		m_window->setVSync(true);
+		m_window->show();
 		m_keyboard = m_window->getKeyboard();
 		m_mouse = m_window->getMouse();
 		m_mouse->setCursorInvisible(true);

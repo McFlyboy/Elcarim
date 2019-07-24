@@ -1,7 +1,9 @@
 #include <exception>
 #include <stdexcept>
+#include <string>
 
 #include "ErrorHandler.hpp"
+#include "ResourceLoader.hpp"
 #include "Window.hpp"
 
 namespace Elcarim {
@@ -31,8 +33,6 @@ namespace Elcarim {
 		glfwGetWindowSize(m_window, &m_width, &m_height);
 		m_monitorVideoMode = glfwGetVideoMode(m_activeMonitor);
 		center();
-		glfwShowWindow(m_window);
-		m_focused = true;
 		getKeyboard();
 		getMouse();
 		getGamepad();
@@ -58,6 +58,23 @@ namespace Elcarim {
 			(m_monitorVideoMode->width - m_width) / 2,
 			(m_monitorVideoMode->height - m_height) / 2
 		);
+	}
+	void Window::show() {
+		glfwShowWindow(m_window);
+		m_focused = true;
+	}
+	void Window::setIconImages(const char* const smallx16, const char* const mediumx32, const char* const largex48) {
+		const char* const filenames[3] = { smallx16, mediumx32, largex48 };
+		std::string path = "window_icons/";
+		GLFWimage icons[3];
+		for (int i = 0; i < 3; ++i) {
+			int colorComp = 0;
+			icons[i].pixels = Util::ResourceLoader::loadImage(path + filenames[i], icons[i].width, icons[i].height, colorComp);
+		}
+		glfwSetWindowIcon(m_window, 3, icons);
+		for (GLFWimage& icon : icons) {
+			Util::ResourceLoader::freeImage(icon.pixels);
+		}
 	}
 	const bool Window::isFocused() const {
 		return m_focused;

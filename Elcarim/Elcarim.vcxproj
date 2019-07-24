@@ -80,6 +80,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -127,21 +129,24 @@
     <ClCompile Include="ErrorHandler.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gamepad.cpp" />
+    <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Laucher.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="ErrorHandler.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Gamepad.hpp" />
+    <ClInclude Include="ResourceLoader.hpp" />
     <ClInclude Include="Keyboard.hpp" />
     <ClInclude Include="Mouse.hpp" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="Window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
