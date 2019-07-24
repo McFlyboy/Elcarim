@@ -14,7 +14,7 @@ namespace Elcarim {
 		bool run();
 		~Game();
 	private:
-		ErrorHandler* m_errorHandler = nullptr;
+		Util::ErrorHandler* m_errorHandler = nullptr;
 		Window* m_window = nullptr;
 		Input::Device::Keyboard* m_keyboard = nullptr;
 		Input::Device::Mouse* m_mouse = nullptr;

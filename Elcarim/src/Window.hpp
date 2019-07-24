@@ -21,7 +21,8 @@ namespace Elcarim {
 		const bool isFullscreen() const;
 		void setFullscreen(const bool fullscreen);
 		void setVSync(const bool vsync);
-		void update();
+		void updateEvents();
+		void swapBuffers();
 		Input::Device::Keyboard* const getKeyboard();
 		Input::Device::Mouse* const getMouse();
 		Input::Device::Gamepad* const getGamepad();

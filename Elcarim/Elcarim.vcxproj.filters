@@ -1,69 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Elcarim">
+      <UniqueIdentifier>{006e9a33-c06e-4f8c-a7ec-617163b4e708}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsdcpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Elcarim\Util">
+      <UniqueIdentifier>{63423842-1ee8-41a5-81e0-36db3d15852e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Input">
+      <UniqueIdentifier>{ecfaee70-319f-40cd-b751-b96b9017ab04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Input\Device">
+      <UniqueIdentifier>{27efa6a7-5641-404f-9039-86d052eb1b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\images">
+      <UniqueIdentifier>{d906dcda-26df-4f40-964c-d0c95211013a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\images\window_icons">
+      <UniqueIdentifier>{d777728d-7045-42c5-b55f-81f273d21c9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\VS icon">
+      <UniqueIdentifier>{1de4f72f-235f-42ec-a37e-133c24c5496f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Laucher.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Elcarim</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Laucher.cpp">
+      <Filter>Elcarim</Filter>
     </ClCompile>
-    <ClCompile Include="ErrorHandler.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Window.cpp">
+      <Filter>Elcarim</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\ResourceLoader.cpp">
+      <Filter>Elcarim\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Keyboard.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Gamepad.cpp">
+      <Filter>Elcarim\Input\Device</Filter>
     </ClCompile>
-    <ClCompile Include="Mouse.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Keyboard.cpp">
+      <Filter>Elcarim\Input\Device</Filter>
     </ClCompile>
-    <ClCompile Include="Gamepad.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Mouse.cpp">
+      <Filter>Elcarim\Input\Device</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceLoader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\ErrorHandler.cpp">
+      <Filter>Elcarim\Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Game.hpp">
+      <Filter>Elcarim</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorHandler.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Window.hpp">
+      <Filter>Elcarim</Filter>
     </ClInclude>
-    <ClInclude Include="Window.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\ResourceLoader.hpp">
+      <Filter>Elcarim\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Gamepad.hpp">
+      <Filter>Elcarim\Input\Device</Filter>
     </ClInclude>
-    <ClInclude Include="Mouse.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Keyboard.hpp">
+      <Filter>Elcarim\Input\Device</Filter>
     </ClInclude>
-    <ClInclude Include="Gamepad.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Mouse.hpp">
+      <Filter>Elcarim\Input\Device</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceLoader.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\ErrorHandler.hpp">
+      <Filter>Elcarim\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Elcarim</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\images\window_icons\ball_16x16.png">
+      <Filter>Resource Files\images\window_icons</Filter>
+    </Image>
+    <Image Include="assets\images\window_icons\ball_32x32.png">
+      <Filter>Resource Files\images\window_icons</Filter>
+    </Image>
+    <Image Include="assets\images\window_icons\ball_48x48.png">
+      <Filter>Resource Files\images\window_icons</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_16x16.ico">
+      <Filter>Resource Files\VS icon</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_32x32.ico">
+      <Filter>Resource Files\VS icon</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_48x48.ico">
+      <Filter>Resource Files\VS icon</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Elcarim.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

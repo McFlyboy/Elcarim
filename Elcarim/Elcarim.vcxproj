@@ -130,26 +130,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ErrorHandler.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Gamepad.cpp" />
-    <ClCompile Include="ResourceLoader.cpp" />
-    <ClCompile Include="Keyboard.cpp" />
-    <ClCompile Include="Laucher.cpp" />
-    <ClCompile Include="Mouse.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="src\ErrorHandler.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Gamepad.cpp" />
+    <ClCompile Include="src\ResourceLoader.cpp" />
+    <ClCompile Include="src\Keyboard.cpp" />
+    <ClCompile Include="src\Laucher.cpp" />
+    <ClCompile Include="src\Mouse.cpp" />
+    <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ErrorHandler.hpp" />
-    <ClInclude Include="Game.hpp" />
-    <ClInclude Include="Gamepad.hpp" />
-    <ClInclude Include="ResourceLoader.hpp" />
-    <ClInclude Include="Keyboard.hpp" />
-    <ClInclude Include="Mouse.hpp" />
-    <ClInclude Include="Window.hpp" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\ErrorHandler.hpp" />
+    <ClInclude Include="src\Game.hpp" />
+    <ClInclude Include="src\Gamepad.hpp" />
+    <ClInclude Include="src\ResourceLoader.hpp" />
+    <ClInclude Include="src\Keyboard.hpp" />
+    <ClInclude Include="src\Mouse.hpp" />
+    <ClInclude Include="src\Window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_16x16.ico" />
+    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_32x32.ico" />
+    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_48x48.ico" />
+    <Image Include="assets\images\window_icons\ball_16x16.png" />
+    <Image Include="assets\images\window_icons\ball_32x32.png" />
+    <Image Include="assets\images\window_icons\ball_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Elcarim.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

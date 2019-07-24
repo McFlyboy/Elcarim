@@ -100,9 +100,11 @@ namespace Elcarim {
 	void Window::setVSync(const bool vsync) {
 		glfwSwapInterval(vsync);
 	}
-	void Window::update() {
-		glfwSwapBuffers(m_window);
+	void Window::updateEvents() {
 		glfwPollEvents();
+	}
+	void Window::swapBuffers() {
+		glfwSwapBuffers(m_window);
 	}
 	Input::Device::Keyboard* const Window::getKeyboard() {
 		if (!m_keyboard) {
@@ -164,7 +166,7 @@ namespace Elcarim {
 				return s_instance;
 			}
 			catch (std::exception& e) {
-				ErrorHandler::getInstance()->write(e.what());
+				Util::ErrorHandler::getInstance()->write(e.what());
 				delete s_instance;
 				s_instance = nullptr;
 			}
