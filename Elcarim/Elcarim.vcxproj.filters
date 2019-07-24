@@ -24,8 +24,8 @@
     <Filter Include="Resource Files\images\window_icons">
       <UniqueIdentifier>{d777728d-7045-42c5-b55f-81f273d21c9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\VS icon">
-      <UniqueIdentifier>{1de4f72f-235f-42ec-a37e-133c24c5496f}</UniqueIdentifier>
+    <Filter Include="Resource Files\images\executable_icons">
+      <UniqueIdentifier>{ae0c85b6-1423-40a6-99b5-b07320fe7360}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,9 +81,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="assets\images\window_icons\ball_16x16.png">
       <Filter>Resource Files\images\window_icons</Filter>
     </Image>
@@ -93,19 +90,22 @@
     <Image Include="assets\images\window_icons\ball_48x48.png">
       <Filter>Resource Files\images\window_icons</Filter>
     </Image>
-    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_16x16.ico">
-      <Filter>Resource Files\VS icon</Filter>
+    <Image Include="assets\images\executable_icons\ball_48x48.ico">
+      <Filter>Resource Files\images\executable_icons</Filter>
     </Image>
-    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_32x32.ico">
-      <Filter>Resource Files\VS icon</Filter>
+    <Image Include="assets\images\executable_icons\ball_16x16.ico">
+      <Filter>Resource Files\images\executable_icons</Filter>
     </Image>
-    <Image Include="..\..\..\..\Pictures\Dev\Project1996\ico\ball_48x48.ico">
-      <Filter>Resource Files\VS icon</Filter>
+    <Image Include="assets\images\executable_icons\ball_32x32.ico">
+      <Filter>Resource Files\images\executable_icons</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Elcarim.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
