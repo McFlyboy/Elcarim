@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "Game.hpp"
 
 namespace Elcarim {
@@ -12,7 +10,7 @@ namespace Elcarim {
 			return false;
 		}
 		m_window->setIconImages("ball_16x16.png", "ball_32x32.png", "ball_48x48.png");
-		m_window->setVSync(true);
+		m_window->setVSync(false);
 		m_window->show();
 		m_keyboard = m_window->getKeyboard();
 		m_mouse = m_window->getMouse();
@@ -24,16 +22,27 @@ namespace Elcarim {
 		if (!start()) {
 			return false;
 		}
+		double targetFrameTime = 1.0 / m_window->getActiveMonitorRefreshRate();
+		double renderTimeRemaining = 0.0;
+		m_window->getDeltaTime();
 		while (!m_window->shouldClose()) {
+			bool renderReady = false;
 			if (!update()) {
 				return false;
 			}
-			render();
+			if (renderTimeRemaining <= 0.0) {
+				renderReady = true;
+				renderTimeRemaining += targetFrameTime;
+			}
+			renderTimeRemaining -= m_window->getDeltaTime();
+			if (renderReady) {
+				render();
+			}
 		}
 		return true;
 	}
 	bool Game::update() {
-		m_window->updateEvents();
+		m_window->update();
 		if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_ESCAPE)) {
 			m_window->close();
 			return true;
@@ -42,11 +51,10 @@ namespace Elcarim {
 			m_window->setFullscreen(!m_window->isFullscreen());
 		}
 		m_gamepad->update();
-		std::cout << m_window->getTime()->getCurrentTime() << "\n";
 		return true;
 	}
 	void Game::render() {
-		m_window->swapBuffers();
+		m_window->updateFrame();
 	}
 	Game::~Game() {
 		delete m_window;

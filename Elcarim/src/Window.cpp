@@ -1,6 +1,7 @@
 #include <exception>
 #include <stdexcept>
 #include <string>
+#include <iostream>
 
 #include "ErrorHandler.hpp"
 #include "ResourceLoader.hpp"
@@ -36,7 +37,6 @@ namespace Elcarim {
 		getKeyboard();
 		getMouse();
 		getGamepad();
-		getTime();
 	}
 	const int Window::getActiveMonitorWidth() {
 		return m_monitorVideoMode->width;
@@ -101,11 +101,14 @@ namespace Elcarim {
 	void Window::setVSync(const bool vsync) {
 		glfwSwapInterval(vsync);
 	}
-	void Window::updateEvents() {
+	void Window::update() {
+		m_timer.updatePerSecCounters();
 		glfwPollEvents();
+		++m_timer.updateCount;
 	}
-	void Window::swapBuffers() {
+	void Window::updateFrame() {
 		glfwSwapBuffers(m_window);
+		++m_timer.frameCount;
 	}
 	Input::Device::Keyboard* const Window::getKeyboard() {
 		if (!m_keyboard) {
@@ -125,11 +128,11 @@ namespace Elcarim {
 		}
 		return m_gamepad;
 	}
-	Timing::Time* const Window::getTime() {
-		if (!m_time) {
-			m_time = Timing::Time::getInstance();
-		}
-		return m_time;
+	const double Window::getTime() const {
+		return m_timer.getTime();
+	}
+	const double Window::getDeltaTime() {
+		return m_timer.getDeltaTime();
 	}
 	Window::~Window() {
 		delete m_keyboard;
@@ -140,9 +143,6 @@ namespace Elcarim {
 
 		delete m_gamepad;
 		m_gamepad = nullptr;
-
-		delete m_time;
-		m_time = nullptr;
 
 		glfwSetWindowFocusCallback(m_window, nullptr);
 
@@ -182,5 +182,24 @@ namespace Elcarim {
 			}
 		}
 		return s_instance;
+	}
+	const double Window::InternalTimer::getTime() const {
+		return glfwGetTime();
+	}
+	const double Window::InternalTimer::getDeltaTime() {
+		double currentTime = getTime();
+		double deltaTime = currentTime - previousTime;
+		previousTime = currentTime;
+		return deltaTime;
+	}
+	void Window::InternalTimer::updatePerSecCounters() {
+		if (getTime() - lastSecondTime >= 1.0) {
+			++lastSecondTime;
+			fps = frameCount;
+			frameCount = 0;
+			ups = updateCount;
+			updateCount = 0;
+			std::cout << "FPS: " << fps << " - UPS: " << ups << std::endl;
+		}
 	}
 }

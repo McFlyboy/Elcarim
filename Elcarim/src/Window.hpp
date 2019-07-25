@@ -5,7 +5,6 @@
 #include "Keyboard.hpp"
 #include "Mouse.hpp"
 #include "Gamepad.hpp"
-#include "Time.hpp"
 
 namespace Elcarim {
 	class Window {
@@ -22,12 +21,13 @@ namespace Elcarim {
 		const bool isFullscreen() const;
 		void setFullscreen(const bool fullscreen);
 		void setVSync(const bool vsync);
-		void updateEvents();
-		void swapBuffers();
+		void update();
+		void updateFrame();
 		Input::Device::Keyboard* const getKeyboard();
 		Input::Device::Mouse* const getMouse();
 		Input::Device::Gamepad* const getGamepad();
-		Timing::Time* const getTime();
+		const double getTime() const;
+		const double getDeltaTime();
 		~Window();
 		static void setNewInstanceSettings(const int width, const int height, const char* const title = "", const bool fullscreen = false);
 		static Window* const getInstance();
@@ -41,7 +41,6 @@ namespace Elcarim {
 		Input::Device::Keyboard* m_keyboard = nullptr;
 		Input::Device::Mouse* m_mouse = nullptr;
 		Input::Device::Gamepad* m_gamepad = nullptr;
-		Timing::Time* m_time = nullptr;
 		static int s_newInstanceWidth;
 		static int s_newInstanceHeight;
 		static const char* s_newInstanceTitle;
@@ -49,5 +48,19 @@ namespace Elcarim {
 		static Window* s_instance;
 
 		Window();
+
+		struct InternalTimer {
+			int frameCount = 0;
+			int updateCount = 0;
+			int fps = 0;
+			int ups = 0;
+			double lastSecondTime = 0.0;
+			double previousTime = 0.0;
+
+			const double getTime() const;
+			const double getDeltaTime();
+			void updatePerSecCounters();
+		};
+		InternalTimer m_timer = InternalTimer();
 	};
 }

@@ -27,9 +27,6 @@
     <Filter Include="Resource Files\images\executable_icons">
       <UniqueIdentifier>{ae0c85b6-1423-40a6-99b5-b07320fe7360}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Elcarim\Timing">
-      <UniqueIdentifier>{c14cde44-9b10-4675-875e-4265f8cb3101}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -56,9 +53,6 @@
     <ClCompile Include="src\ErrorHandler.cpp">
       <Filter>Elcarim\Util</Filter>
     </ClCompile>
-    <ClCompile Include="src\Time.cpp">
-      <Filter>Elcarim\Timing</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -84,9 +78,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Time.hpp">
-      <Filter>Elcarim\Timing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
