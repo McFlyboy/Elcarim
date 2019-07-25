@@ -7,7 +7,7 @@
     </Filter>
     <Filter Include="Elcarim">
       <UniqueIdentifier>{006e9a33-c06e-4f8c-a7ec-617163b4e708}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsdcpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Elcarim\Util">
       <UniqueIdentifier>{63423842-1ee8-41a5-81e0-36db3d15852e}</UniqueIdentifier>
@@ -26,6 +26,9 @@
     </Filter>
     <Filter Include="Resource Files\images\executable_icons">
       <UniqueIdentifier>{ae0c85b6-1423-40a6-99b5-b07320fe7360}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Timing">
+      <UniqueIdentifier>{c14cde44-9b10-4675-875e-4265f8cb3101}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +56,9 @@
     <ClCompile Include="src\ErrorHandler.cpp">
       <Filter>Elcarim\Util</Filter>
     </ClCompile>
+    <ClCompile Include="src\Time.cpp">
+      <Filter>Elcarim\Timing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -77,7 +83,10 @@
       <Filter>Elcarim\Util</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Elcarim</Filter>
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Time.hpp">
+      <Filter>Elcarim\Timing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

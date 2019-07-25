@@ -5,6 +5,7 @@
 #include "Keyboard.hpp"
 #include "Mouse.hpp"
 #include "Gamepad.hpp"
+#include "Time.hpp"
 
 namespace Elcarim {
 	class Window {
@@ -26,6 +27,7 @@ namespace Elcarim {
 		Input::Device::Keyboard* const getKeyboard();
 		Input::Device::Mouse* const getMouse();
 		Input::Device::Gamepad* const getGamepad();
+		Timing::Time* const getTime();
 		~Window();
 		static void setNewInstanceSettings(const int width, const int height, const char* const title = "", const bool fullscreen = false);
 		static Window* const getInstance();
@@ -39,6 +41,7 @@ namespace Elcarim {
 		Input::Device::Keyboard* m_keyboard = nullptr;
 		Input::Device::Mouse* m_mouse = nullptr;
 		Input::Device::Gamepad* m_gamepad = nullptr;
+		Timing::Time* m_time = nullptr;
 		static int s_newInstanceWidth;
 		static int s_newInstanceHeight;
 		static const char* s_newInstanceTitle;

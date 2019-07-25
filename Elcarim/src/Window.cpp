@@ -36,6 +36,7 @@ namespace Elcarim {
 		getKeyboard();
 		getMouse();
 		getGamepad();
+		getTime();
 	}
 	const int Window::getActiveMonitorWidth() {
 		return m_monitorVideoMode->width;
@@ -124,6 +125,12 @@ namespace Elcarim {
 		}
 		return m_gamepad;
 	}
+	Timing::Time* const Window::getTime() {
+		if (!m_time) {
+			m_time = Timing::Time::getInstance();
+		}
+		return m_time;
+	}
 	Window::~Window() {
 		delete m_keyboard;
 		m_keyboard = nullptr;
@@ -133,6 +140,9 @@ namespace Elcarim {
 
 		delete m_gamepad;
 		m_gamepad = nullptr;
+
+		delete m_time;
+		m_time = nullptr;
 
 		glfwSetWindowFocusCallback(m_window, nullptr);
 

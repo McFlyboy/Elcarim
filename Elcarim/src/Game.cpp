@@ -42,11 +42,7 @@ namespace Elcarim {
 			m_window->setFullscreen(!m_window->isFullscreen());
 		}
 		m_gamepad->update();
-		std::cout
-			<< m_gamepad->getAxisValue(Input::Device::Gamepad::AXIS_LEFT_X)
-			<< ", "
-			<< m_gamepad->getAxisValue(Input::Device::Gamepad::AXIS_LEFT_Y)
-			<< "\n";
+		std::cout << m_window->getTime()->getCurrentTime() << "\n";
 		return true;
 	}
 	void Game::render() {
