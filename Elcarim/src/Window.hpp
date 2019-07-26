@@ -1,7 +1,9 @@
 #pragma once
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "Renderer.hpp"
 #include "Keyboard.hpp"
 #include "Mouse.hpp"
 #include "Gamepad.hpp"
@@ -9,9 +11,9 @@
 namespace Elcarim {
 	class Window {
 	public:
-		const int getActiveMonitorWidth();
-		const int getActiveMonitorHeight();
-		const int getActiveMonitorRefreshRate();
+		const int getActiveMonitorWidth() const;
+		const int getActiveMonitorHeight() const;
+		const int getActiveMonitorRefreshRate() const;
 		const bool shouldClose() const;
 		void close();
 		void center();
@@ -20,9 +22,9 @@ namespace Elcarim {
 		const bool isFocused() const;
 		const bool isFullscreen() const;
 		void setFullscreen(const bool fullscreen);
-		void setVSync(const bool vsync);
 		void update();
 		void updateFrame();
+		Graphics::Renderer* const getRenderer();
 		Input::Device::Keyboard* const getKeyboard();
 		Input::Device::Mouse* const getMouse();
 		Input::Device::Gamepad* const getGamepad();
@@ -38,6 +40,7 @@ namespace Elcarim {
 		int m_width = 0;
 		int m_height = 0;
 		bool m_focused = false;
+		Graphics::Renderer* m_renderer = nullptr;
 		Input::Device::Keyboard* m_keyboard = nullptr;
 		Input::Device::Mouse* m_mouse = nullptr;
 		Input::Device::Gamepad* m_gamepad = nullptr;

@@ -27,24 +27,21 @@ namespace Elcarim {
 		if (!(m_window = glfwCreateWindow(s_newInstanceWidth, s_newInstanceHeight, s_newInstanceTitle, s_newInstanceFullscreen ? m_activeMonitor : nullptr, nullptr))) {
 			throw std::runtime_error("Could not create the GLFW window\n");
 		}
-		glfwMakeContextCurrent(m_window);
-		if (!glfwGetCurrentContext()) {
-			throw std::runtime_error("Failed to make context current for the window\n");
-		}
 		glfwGetWindowSize(m_window, &m_width, &m_height);
 		m_monitorVideoMode = glfwGetVideoMode(m_activeMonitor);
 		center();
+		getRenderer();
 		getKeyboard();
 		getMouse();
 		getGamepad();
 	}
-	const int Window::getActiveMonitorWidth() {
+	const int Window::getActiveMonitorWidth() const {
 		return m_monitorVideoMode->width;
 	}
-	const int Window::getActiveMonitorHeight() {
+	const int Window::getActiveMonitorHeight() const {
 		return m_monitorVideoMode->height;
 	}
-	const int Window::getActiveMonitorRefreshRate() {
+	const int Window::getActiveMonitorRefreshRate() const {
 		return m_monitorVideoMode->refreshRate;
 	}
 	const bool Window::shouldClose() const {
@@ -98,9 +95,6 @@ namespace Elcarim {
 		}
 		glfwSetWindowMonitor(m_window, monitor, xpos, ypos, width, height, GLFW_DONT_CARE);
 	}
-	void Window::setVSync(const bool vsync) {
-		glfwSwapInterval(vsync);
-	}
 	void Window::update() {
 		m_timer.updatePerSecCounters();
 		glfwPollEvents();
@@ -109,6 +103,19 @@ namespace Elcarim {
 	void Window::updateFrame() {
 		glfwSwapBuffers(m_window);
 		++m_timer.frameCount;
+	}
+	Graphics::Renderer* const Window::getRenderer() {
+		if (!m_renderer) {
+			try {
+				m_renderer = new Graphics::Renderer(m_window);
+			}
+			catch (std::exception& e) {
+				Util::ErrorHandler::getInstance()->write(e.what());
+				delete m_renderer;
+				m_renderer = nullptr;
+			}
+		}
+		return m_renderer;
 	}
 	Input::Device::Keyboard* const Window::getKeyboard() {
 		if (!m_keyboard) {
@@ -143,6 +150,9 @@ namespace Elcarim {
 
 		delete m_gamepad;
 		m_gamepad = nullptr;
+
+		delete m_renderer;
+		m_renderer = nullptr;
 
 		glfwSetWindowFocusCallback(m_window, nullptr);
 

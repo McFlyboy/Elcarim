@@ -10,7 +10,9 @@ namespace Elcarim {
 			return false;
 		}
 		m_window->setIconImages("ball_16x16.png", "ball_32x32.png", "ball_48x48.png");
-		m_window->setVSync(false);
+		m_renderer = m_window->getRenderer();
+		m_renderer->setVSync(false);
+		m_renderer->setClearColor(1.0f, 0.0f, 0.5f);
 		m_window->show();
 		m_keyboard = m_window->getKeyboard();
 		m_mouse = m_window->getMouse();
@@ -54,11 +56,13 @@ namespace Elcarim {
 		return true;
 	}
 	void Game::render() {
+		m_renderer->clear();
 		m_window->updateFrame();
 	}
 	Game::~Game() {
 		delete m_window;
 		m_window = nullptr;
+		m_renderer = nullptr;
 		m_keyboard = nullptr;
 		m_mouse = nullptr;
 		m_gamepad = nullptr;
