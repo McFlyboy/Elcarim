@@ -2,7 +2,7 @@
 #pragma comment(linker, "/subsystem:WINDOWS")
 #pragma comment(linker, "/entry:mainCRTStartup")
 #endif
-//#pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "opengl32.lib")
 
 #include "Game.hpp"
 
