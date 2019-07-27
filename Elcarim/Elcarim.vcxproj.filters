@@ -62,8 +62,8 @@
     <ClCompile Include="src\Renderer.cpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\glad.c">
-      <Filter>Elcarim\External</Filter>
+    <ClCompile Include="src\external\glad.c">
+      <Filter>Elcarim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
