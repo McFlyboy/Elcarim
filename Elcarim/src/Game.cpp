@@ -12,7 +12,8 @@ namespace Elcarim {
 		m_window->setIconImages("ball_16x16.png", "ball_32x32.png", "ball_48x48.png");
 		m_renderer = m_window->getRenderer();
 		m_renderer->setVSync(false);
-		m_renderer->setClearColor(1.0f, 0.0f, 0.5f);
+		//Testing-color
+		m_renderer->setClearColor(0.2f, 0.15f, 0.4f);
 		m_window->show();
 		m_keyboard = m_window->getKeyboard();
 		m_mouse = m_window->getMouse();

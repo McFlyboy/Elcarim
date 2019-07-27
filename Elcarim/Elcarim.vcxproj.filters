@@ -30,6 +30,9 @@
     <Filter Include="Elcarim\Graphics">
       <UniqueIdentifier>{19c17839-b4b5-4909-816d-0f627389aeb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Elcarim\External">
+      <UniqueIdentifier>{776c92e2-7392-4b1e-9293-5034f914a5d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -58,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="src\Renderer.cpp">
       <Filter>Elcarim\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
+      <Filter>Elcarim\External</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

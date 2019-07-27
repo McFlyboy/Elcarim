@@ -20,7 +20,16 @@ namespace Elcarim {
 			const float INNER_THRESHOLD = 0.1f;
 			const float OUTER_THRESHOLD = 0.9f;
 
-			Gamepad::Gamepad() {}
+			Gamepad::Gamepad() {
+				glfwSetJoystickUserPointer(GLFW_JOYSTICK_1, this);
+				glfwSetJoystickCallback([](int jid, int event) {
+					Gamepad* instance = (Gamepad*)glfwGetJoystickUserPointer(GLFW_JOYSTICK_1);
+					if (jid == GLFW_JOYSTICK_1 && event == GLFW_DISCONNECTED) {
+						instance->resetAllButtonStates();
+						instance->resetAllAxisStates();
+					}
+				});
+			}
 			const bool Gamepad::isGamepadConnected() {
 				return glfwJoystickIsGamepad(GLFW_JOYSTICK_1);
 			}
@@ -101,12 +110,6 @@ namespace Elcarim {
 			Gamepad* const Gamepad::getInstance() {
 				if (!s_instance) {
 					s_instance = new Gamepad();
-					glfwSetJoystickCallback([](int jid, int event) {
-						if (jid == GLFW_JOYSTICK_1 && event == GLFW_DISCONNECTED) {
-							s_instance->resetAllButtonStates();
-							s_instance->resetAllAxisStates();
-						}
-					});
 				}
 				return s_instance;
 			}

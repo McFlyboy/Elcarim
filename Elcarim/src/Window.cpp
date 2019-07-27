@@ -21,12 +21,29 @@ namespace Elcarim {
 		if (!(m_activeMonitor = glfwGetPrimaryMonitor())) {
 			throw std::runtime_error("Could not find the primary monitor\n");
 		}
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#ifdef __APPLE__
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, true);
+#endif
 		glfwWindowHint(GLFW_VISIBLE, false);
 		glfwWindowHint(GLFW_RESIZABLE, false);
 		glfwWindowHint(GLFW_FOCUS_ON_SHOW, true);
 		if (!(m_window = glfwCreateWindow(s_newInstanceWidth, s_newInstanceHeight, s_newInstanceTitle, s_newInstanceFullscreen ? m_activeMonitor : nullptr, nullptr))) {
 			throw std::runtime_error("Could not create the GLFW window\n");
 		}
+		glfwSetWindowUserPointer(m_window, this);
+		glfwSetWindowFocusCallback(m_window, [](GLFWwindow* window, int focused) {
+			Window* instance = (Window*)glfwGetWindowUserPointer(window);
+			instance->m_focused = focused;
+			Input::Device::Gamepad* gamepad = instance->getGamepad();
+			gamepad->setFocued(focused);
+			if (!focused) {
+				gamepad->resetAllAxisStates();
+				gamepad->resetAllButtonStates();
+			}
+		});
 		glfwGetWindowSize(m_window, &m_width, &m_height);
 		m_monitorVideoMode = glfwGetVideoMode(m_activeMonitor);
 		center();
@@ -106,14 +123,7 @@ namespace Elcarim {
 	}
 	Graphics::Renderer* const Window::getRenderer() {
 		if (!m_renderer) {
-			try {
-				m_renderer = new Graphics::Renderer(m_window);
-			}
-			catch (std::exception& e) {
-				Util::ErrorHandler::getInstance()->write(e.what());
-				delete m_renderer;
-				m_renderer = nullptr;
-			}
+			m_renderer = new Graphics::Renderer(m_window, m_width, m_height);
 		}
 		return m_renderer;
 	}
@@ -174,16 +184,6 @@ namespace Elcarim {
 		if (!s_instance) {
 			try {
 				s_instance = new Window();
-				glfwSetWindowFocusCallback(s_instance->m_window, [](GLFWwindow* window, int focused) {
-					s_instance->m_focused = focused;
-					Input::Device::Gamepad* gamepad = s_instance->getGamepad();
-					gamepad->setFocued(focused);
-					if (!focused) {
-						gamepad->resetAllAxisStates();
-						gamepad->resetAllButtonStates();
-					}
-				});
-				return s_instance;
 			}
 			catch (std::exception& e) {
 				Util::ErrorHandler::getInstance()->write(e.what());
