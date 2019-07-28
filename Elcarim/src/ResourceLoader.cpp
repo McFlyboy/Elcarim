@@ -8,8 +8,9 @@
 
 namespace Elcarim {
 	namespace Util {
-		uint8_t* ResourceLoader::loadImage(std::string filename, int& width, int& height, int& colorComp) {
+		uint8_t* ResourceLoader::loadImage(std::string filename, int& width, int& height, int& colorComp, bool flip) {
 			filename.insert(0, "assets/images/");
+			stbi_set_flip_vertically_on_load(flip);
 			uint8_t* imgData = stbi_load(filename.c_str(), &width, &height, &colorComp, STBI_rgb_alpha);
 			if (!imgData) {
 				ErrorHandler::getInstance()->write("Failed to load image: " + filename + "\n");

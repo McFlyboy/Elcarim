@@ -63,7 +63,10 @@
       <Filter>Elcarim\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\external\glad.c">
-      <Filter>Elcarim</Filter>
+      <Filter>Elcarim\External</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model.cpp">
+      <Filter>Elcarim\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +95,9 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer.hpp">
+      <Filter>Elcarim\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Model.hpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

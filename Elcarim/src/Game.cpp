@@ -12,6 +12,7 @@ namespace Elcarim {
 		m_window->setIconImages("ball_16x16.png", "ball_32x32.png", "ball_48x48.png");
 		m_renderer = m_window->getRenderer();
 		m_renderer->setVSync(false);
+		m_renderer->setWireframe(false);
 		//Testing-color
 		m_renderer->setClearColor(0.2f, 0.15f, 0.4f);
 		m_window->show();
@@ -19,6 +20,14 @@ namespace Elcarim {
 		m_mouse = m_window->getMouse();
 		m_mouse->setCursorInvisible(true);
 		m_gamepad = m_window->getGamepad();
+		float data[8] = {
+			-0.5f, -0.5f,
+			0.5f, -0.5f,
+			0.5f, 0.5f,
+			-0.5f, 0.5f
+		};
+		m_model = new Graphics::Model();
+		m_model->addAttrib(0, 2, 8, data);
 		return true;
 	}
 	bool Game::run() {
@@ -58,9 +67,13 @@ namespace Elcarim {
 	}
 	void Game::render() {
 		m_renderer->clear();
+		m_renderer->render(m_model);
 		m_window->updateFrame();
 	}
 	Game::~Game() {
+		delete m_model;
+		m_model = nullptr;
+
 		delete m_window;
 		m_window = nullptr;
 		m_renderer = nullptr;

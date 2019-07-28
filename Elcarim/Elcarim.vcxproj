@@ -181,6 +181,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\external\glad.c" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\ErrorHandler.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Model.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\ErrorHandler.hpp" />

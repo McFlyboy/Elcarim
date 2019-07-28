@@ -6,6 +6,7 @@
 #include "Keyboard.hpp"
 #include "Mouse.hpp"
 #include "Gamepad.hpp"
+#include "Model.hpp"
 
 namespace Elcarim {
 	class Game {
@@ -21,6 +22,7 @@ namespace Elcarim {
 		Input::Device::Keyboard* m_keyboard = nullptr;
 		Input::Device::Mouse* m_mouse = nullptr;
 		Input::Device::Gamepad* m_gamepad = nullptr;
+		Graphics::Model* m_model = nullptr;
 
 		bool start();
 		bool update();

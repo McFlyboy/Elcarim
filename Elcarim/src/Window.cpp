@@ -21,9 +21,9 @@ namespace Elcarim {
 		if (!(m_activeMonitor = glfwGetPrimaryMonitor())) {
 			throw std::runtime_error("Could not find the primary monitor\n");
 		}
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		//glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		//glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #ifdef __APPLE__
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, true);
 #endif
@@ -47,10 +47,10 @@ namespace Elcarim {
 		glfwGetWindowSize(m_window, &m_width, &m_height);
 		m_monitorVideoMode = glfwGetVideoMode(m_activeMonitor);
 		center();
-		getRenderer();
-		getKeyboard();
-		getMouse();
-		getGamepad();
+		m_renderer = new Graphics::Renderer(m_window, m_width, m_height);
+		m_keyboard = new Input::Device::Keyboard(m_window);
+		m_mouse = new Input::Device::Mouse(m_window);
+		m_gamepad = Input::Device::Gamepad::getInstance();
 	}
 	const int Window::getActiveMonitorWidth() const {
 		return m_monitorVideoMode->width;
@@ -84,7 +84,7 @@ namespace Elcarim {
 		GLFWimage icons[3];
 		for (int i = 0; i < 3; ++i) {
 			int colorComp = 0;
-			icons[i].pixels = Util::ResourceLoader::loadImage(path + filenames[i], icons[i].width, icons[i].height, colorComp);
+			icons[i].pixels = Util::ResourceLoader::loadImage(path + filenames[i], icons[i].width, icons[i].height, colorComp, false);
 		}
 		glfwSetWindowIcon(m_window, 3, icons);
 		for (GLFWimage& icon : icons) {
@@ -118,31 +118,19 @@ namespace Elcarim {
 		++m_timer.updateCount;
 	}
 	void Window::updateFrame() {
-		glfwSwapBuffers(m_window);
+		m_renderer->swapBuffers();
 		++m_timer.frameCount;
 	}
-	Graphics::Renderer* const Window::getRenderer() {
-		if (!m_renderer) {
-			m_renderer = new Graphics::Renderer(m_window, m_width, m_height);
-		}
+	Graphics::Renderer* const Window::getRenderer() const {
 		return m_renderer;
 	}
-	Input::Device::Keyboard* const Window::getKeyboard() {
-		if (!m_keyboard) {
-			m_keyboard = new Input::Device::Keyboard(m_window);
-		}
+	Input::Device::Keyboard* const Window::getKeyboard() const {
 		return m_keyboard;
 	}
-	Input::Device::Mouse* const Window::getMouse() {
-		if (!m_mouse) {
-			m_mouse = new Input::Device::Mouse(m_window);
-		}
+	Input::Device::Mouse* const Window::getMouse() const {
 		return m_mouse;
 	}
-	Input::Device::Gamepad* const Window::getGamepad() {
-		if (!m_gamepad) {
-			m_gamepad = Input::Device::Gamepad::getInstance();
-		}
+	Input::Device::Gamepad* const Window::getGamepad() const {
 		return m_gamepad;
 	}
 	const double Window::getTime() const {

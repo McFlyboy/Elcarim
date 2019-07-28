@@ -24,10 +24,10 @@ namespace Elcarim {
 		void setFullscreen(const bool fullscreen);
 		void update();
 		void updateFrame();
-		Graphics::Renderer* const getRenderer();
-		Input::Device::Keyboard* const getKeyboard();
-		Input::Device::Mouse* const getMouse();
-		Input::Device::Gamepad* const getGamepad();
+		Graphics::Renderer* const getRenderer() const;
+		Input::Device::Keyboard* const getKeyboard() const;
+		Input::Device::Mouse* const getMouse() const;
+		Input::Device::Gamepad* const getGamepad() const;
 		const double getTime() const;
 		const double getDeltaTime();
 		~Window();
