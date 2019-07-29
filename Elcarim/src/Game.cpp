@@ -4,7 +4,7 @@ namespace Elcarim {
 	const char* const Game::TITLE = "Elcarim (Project 1996)";
 
 	bool Game::start() {
-		m_errorHandler = Util::ErrorHandler::getInstance();
+		m_errorHandler = ErrorHandler::getInstance();
 		Window::setNewInstanceSettings(1280, 720, TITLE);
 		if (!(m_window = Window::getInstance())) {
 			return false;
@@ -23,6 +23,8 @@ namespace Elcarim {
 		float data[] = {
 			-0.5f, -0.5f,
 			 0.5f, -0.5f,
+			 0.5f,  0.5f,
+			-0.5f, -0.5f,
 			 0.5f,  0.5f,
 			-0.5f,  0.5f
 		};

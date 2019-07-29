@@ -25,7 +25,7 @@ namespace Elcarim {
 				glUseProgram(0);
 			}
 			const unsigned int ShaderProgram::compileShader(const std::string& filename, const unsigned int shaderType) const {
-				std::string filepath = "src/shaders/" + filename;
+				std::string filepath = "assets/shaders/" + filename;
 				std::ifstream file(filepath);
 				if (!file) {
 					throw std::runtime_error("Could not open the file: " + filepath);

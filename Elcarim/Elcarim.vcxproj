@@ -220,8 +220,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="src\shaders\FragmentShader.frag" />
-    <None Include="src\shaders\VertexShader.vert" />
+    <None Include="assets\shaders\FragmentShader.frag" />
+    <None Include="assets\shaders\VertexShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -22,8 +22,8 @@ namespace Elcarim {
 			throw std::runtime_error("Could not find the primary monitor\n");
 		}
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-		//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #ifdef __APPLE__
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, true);
 #endif
@@ -174,7 +174,7 @@ namespace Elcarim {
 				s_instance = new Window();
 			}
 			catch (std::exception& e) {
-				Util::ErrorHandler::getInstance()->write(e.what());
+				ErrorHandler::getInstance()->write(e.what());
 				delete s_instance;
 				s_instance = nullptr;
 			}

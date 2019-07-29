@@ -43,7 +43,7 @@ namespace Elcarim {
 		}
 		void Renderer::render(Model* model){
 			model->bind();
-			glDrawArrays(GL_QUADS, 0, model->getVertexCount());
+			glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
 			Model::unbind();
 		}
 		Renderer::~Renderer() {
