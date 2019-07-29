@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -181,6 +181,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ShaderProgram.cpp" />
     <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\external\glad.c" />
     <ClCompile Include="src\Renderer.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ShaderProgram.hpp" />
     <ClInclude Include="src\Model.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="resource.h" />
@@ -218,6 +220,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="src\shaders\FragmentShader.frag" />
+    <None Include="src\shaders\VertexShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

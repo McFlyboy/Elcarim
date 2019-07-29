@@ -33,6 +33,9 @@
     <Filter Include="Elcarim\External">
       <UniqueIdentifier>{776c92e2-7392-4b1e-9293-5034f914a5d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Elcarim\Graphics\Shading">
+      <UniqueIdentifier>{4f831996-3424-42e4-8859-852d524eaa98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -68,6 +71,9 @@
     <ClCompile Include="src\Model.cpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\ShaderProgram.cpp">
+      <Filter>Elcarim\Graphics\Shading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -100,6 +106,9 @@
     <ClInclude Include="src\Model.hpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="src\ShaderProgram.hpp">
+      <Filter>Elcarim\Graphics\Shading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\window_icons\ball_16x16.png">
@@ -128,5 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="src\shaders\FragmentShader.frag" />
+    <None Include="src\shaders\VertexShader.vert" />
   </ItemGroup>
 </Project>

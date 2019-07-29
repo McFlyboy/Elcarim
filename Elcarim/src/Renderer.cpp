@@ -13,6 +13,8 @@ namespace Elcarim {
 				throw std::runtime_error("Failed to load GLAD\n");
 			}
 			setViewPort(width, height);
+			m_shader = new Shading::ShaderProgram("VertexShader.vert", "FragmentShader.frag");
+			m_shader->startProgram();
 		}
 		void Renderer::swapBuffers() {
 			glfwSwapBuffers(m_window);
@@ -41,10 +43,12 @@ namespace Elcarim {
 		}
 		void Renderer::render(Model* model){
 			model->bind();
-			glEnableVertexAttribArray(0);
 			glDrawArrays(GL_QUADS, 0, model->getVertexCount());
-			glDisableVertexAttribArray(0);
 			Model::unbind();
+		}
+		Renderer::~Renderer() {
+			delete m_shader;
+			m_shader = nullptr;
 		}
 	}
 }

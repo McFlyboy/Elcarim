@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "ShaderProgram.hpp"
 #include "Model.hpp"
 
 namespace Elcarim {
@@ -18,8 +19,10 @@ namespace Elcarim {
 			void setClearColor(const float red, const float green, const float blue);
 			void setClearColor(const unsigned int color);
 			void render(Model* model);
+			~Renderer();
 		private:
 			GLFWwindow* const m_window = nullptr;
+			Shading::ShaderProgram* m_shader = nullptr;
 		};
 	}
 }

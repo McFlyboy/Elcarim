@@ -20,14 +20,14 @@ namespace Elcarim {
 		m_mouse = m_window->getMouse();
 		m_mouse->setCursorInvisible(true);
 		m_gamepad = m_window->getGamepad();
-		float data[8] = {
+		float data[] = {
 			-0.5f, -0.5f,
-			0.5f, -0.5f,
-			0.5f, 0.5f,
-			-0.5f, 0.5f
+			 0.5f, -0.5f,
+			 0.5f,  0.5f,
+			-0.5f,  0.5f
 		};
 		m_model = new Graphics::Model();
-		m_model->addAttrib(0, 2, 8, data);
+		m_model->set2DVertices(sizeof(data) / sizeof(float), data);
 		return true;
 	}
 	bool Game::run() {
