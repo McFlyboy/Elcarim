@@ -15,21 +15,14 @@ namespace Elcarim {
 		m_renderer->setWireframe(false);
 		//Testing-color
 		m_renderer->setClearColor(0.2f, 0.15f, 0.4f);
+		m_renderer->setAlphaBlend(true);
 		m_window->show();
 		m_keyboard = m_window->getKeyboard();
 		m_mouse = m_window->getMouse();
 		m_mouse->setCursorInvisible(true);
 		m_gamepad = m_window->getGamepad();
-		float data[] = {
-			-0.5f, -0.5f,
-			 0.5f, -0.5f,
-			 0.5f,  0.5f,
-			-0.5f, -0.5f,
-			 0.5f,  0.5f,
-			-0.5f,  0.5f
-		};
-		m_model = new Graphics::Model();
-		m_model->set2DVertices(sizeof(data) / sizeof(float), data);
+		m_square = Util::Models::createSquareModel();
+		m_texture = new Graphics::Texture("niam.png");
 		return true;
 	}
 	bool Game::run() {
@@ -69,12 +62,15 @@ namespace Elcarim {
 	}
 	void Game::render() {
 		m_renderer->clear();
-		m_renderer->render(m_model);
+		m_renderer->render(m_square, m_texture);
 		m_window->updateFrame();
 	}
 	Game::~Game() {
-		delete m_model;
-		m_model = nullptr;
+		delete m_texture;
+		m_texture = nullptr;
+
+		delete m_square;
+		m_square = nullptr;
 
 		delete m_window;
 		m_window = nullptr;

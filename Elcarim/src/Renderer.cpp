@@ -28,6 +28,15 @@ namespace Elcarim {
 		void Renderer::setWireframe(const bool wireframe) {
 			glPolygonMode(GL_FRONT_AND_BACK, wireframe ? GL_LINE : GL_FILL);
 		}
+		void Renderer::setAlphaBlend(const bool alphablend) {
+			if (alphablend) {
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			}
+			else {
+				glDisable(GL_BLEND);
+			}
+		}
 		void Renderer::clear() {
 			glClear(GL_COLOR_BUFFER_BIT);
 		}
@@ -41,9 +50,12 @@ namespace Elcarim {
 				static_cast<float>(color & 0xFF) / 255.0f
 			);
 		}
-		void Renderer::render(Model* model){
+		void Renderer::render(Model* model, Texture* texture){
 			model->bind();
+			glActiveTexture(GL_TEXTURE0);
+			texture->bind();
 			glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
+			Texture::unbind();
 			Model::unbind();
 		}
 		Renderer::~Renderer() {

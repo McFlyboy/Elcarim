@@ -11,6 +11,7 @@ namespace Elcarim {
 			const int getVertexCount() const;
 			void set2DVertices(const int dataLength, float* const data);
 			void set3DVertices(const int dataLength, float* const data);
+			void setTextureCoords(const int dataLength, float* const data);
 			~Model();
 			static void unbind();
 		private:

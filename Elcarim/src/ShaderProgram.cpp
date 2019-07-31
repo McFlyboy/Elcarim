@@ -10,12 +10,14 @@ namespace Elcarim {
 	namespace Graphics {
 		namespace Shading {
 			ShaderProgram::ShaderProgram(const std::string& vertexShaderFilename, const std::string& fragmentShaderFilename) {
-				m_vertexShader = compileShader(vertexShaderFilename, GL_VERTEX_SHADER);
-				m_fragmentShader = compileShader(fragmentShaderFilename, GL_FRAGMENT_SHADER);
+				const unsigned int vertexShader = compileShader(vertexShaderFilename, GL_VERTEX_SHADER);
+				const unsigned int fragmentShader = compileShader(fragmentShaderFilename, GL_FRAGMENT_SHADER);
 				m_program = glCreateProgram();
-				glAttachShader(m_program, m_vertexShader);
-				glAttachShader(m_program, m_fragmentShader);
+				glAttachShader(m_program, vertexShader);
+				glAttachShader(m_program, fragmentShader);
 				glLinkProgram(m_program);
+				glDeleteShader(vertexShader);
+				glDeleteShader(fragmentShader);
 				checkStatus(m_program, GL_LINK_STATUS, "Failed to link shader-program");
 			}
 			void ShaderProgram::startProgram() const {
@@ -53,10 +55,6 @@ namespace Elcarim {
 			}
 			ShaderProgram::~ShaderProgram() {
 				stopProgram();
-				glDetachShader(m_program, m_vertexShader);
-				glDetachShader(m_program, m_fragmentShader);
-				glDeleteShader(m_vertexShader);
-				glDeleteShader(m_fragmentShader);
 				glDeleteProgram(m_program);
 			}
 		}

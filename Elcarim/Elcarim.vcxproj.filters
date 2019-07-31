@@ -79,6 +79,12 @@
     <ClCompile Include="src\ErrorHandler.cpp">
       <Filter>Elcarim</Filter>
     </ClCompile>
+    <ClCompile Include="src\Models.cpp">
+      <Filter>Elcarim\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>Elcarim\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -113,6 +119,12 @@
     </ClInclude>
     <ClInclude Include="src\ErrorHandler.hpp">
       <Filter>Elcarim</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Models.hpp">
+      <Filter>Elcarim\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture.hpp">
+      <Filter>Elcarim\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

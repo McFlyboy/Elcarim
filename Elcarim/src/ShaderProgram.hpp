@@ -10,8 +10,6 @@ namespace Elcarim {
 				~ShaderProgram();
 				static void stopProgram();
 			private:
-				unsigned int m_vertexShader = 0;
-				unsigned int m_fragmentShader = 0;
 				unsigned int m_program = 0;
 
 				const unsigned int compileShader(const std::string& filename, const unsigned int shaderType) const;

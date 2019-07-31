@@ -20,6 +20,9 @@ namespace Elcarim {
 		void Model::set3DVertices(const int dataLength, float* const data) {
 			setVertices(3, dataLength, data);
 		}
+		void Model::setTextureCoords(const int dataLength, float* const data) {
+			addAttrib(1, 2, dataLength, data);
+		}
 		void Model::setVertices(const int size, const int dataLength, float* const data) {
 			addAttrib(0, size, dataLength, data);
 			vertexCount = dataLength / size;
