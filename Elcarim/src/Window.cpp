@@ -111,6 +111,7 @@ namespace Elcarim {
 			height = m_height;
 		}
 		glfwSetWindowMonitor(m_window, monitor, xpos, ypos, width, height, GLFW_DONT_CARE);
+		m_renderer->setViewPort(width, height);
 	}
 	void Window::update() {
 		m_timer.updatePerSecCounters();

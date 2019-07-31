@@ -13,7 +13,7 @@ namespace Elcarim {
 				throw std::runtime_error("Failed to load GLAD\n");
 			}
 			setViewPort(width, height);
-			m_shader = new Shading::ShaderProgram("VertexShader.vert", "FragmentShader.frag");
+			m_shader = new Shading::ShaderProgram("Shader");
 			m_shader->startProgram();
 		}
 		void Renderer::swapBuffers() {

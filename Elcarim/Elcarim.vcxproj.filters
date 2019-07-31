@@ -41,6 +41,12 @@
       <UniqueIdentifier>{ebcfe1c3-7e02-4ee9-980c-e799a4ab5cde}</UniqueIdentifier>
       <Extensions>vert;frag;geom;comp;glsl</Extensions>
     </Filter>
+    <Filter Include="Resource Files\images\textures">
+      <UniqueIdentifier>{9eb4be76-9d72-4b94-a4aa-4e0e01075b68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Math">
+      <UniqueIdentifier>{28b65455-e26c-4685-b094-f2970c27da9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -85,6 +91,9 @@
     <ClCompile Include="src\Texture.cpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\Vector2f.cpp">
+      <Filter>Elcarim\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -126,6 +135,9 @@
     <ClInclude Include="src\Texture.hpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="src\Vector2f.hpp">
+      <Filter>Elcarim\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\window_icons\ball_16x16.png">
@@ -146,6 +158,9 @@
     <Image Include="assets\images\executable_icons\ball_32x32.ico">
       <Filter>Resource Files\images\executable_icons</Filter>
     </Image>
+    <Image Include="assets\images\textures\niam.png">
+      <Filter>Resource Files\images\textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Elcarim.rc">
@@ -154,10 +169,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="assets\shaders\VertexShader.vert">
+    <None Include="assets\shaders\Shader.frag">
       <Filter>Resource Files\shaders</Filter>
     </None>
-    <None Include="assets\shaders\FragmentShader.frag">
+    <None Include="assets\shaders\Shader.vert">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>

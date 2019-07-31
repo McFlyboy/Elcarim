@@ -195,6 +195,7 @@
     <ClCompile Include="src\Mouse.cpp" />
     <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Vector2f.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Models.hpp" />
@@ -210,11 +211,13 @@
     <ClInclude Include="src\Mouse.hpp" />
     <ClInclude Include="src\Window.hpp" />
     <ClInclude Include="src\Texture.hpp" />
+    <ClInclude Include="src\Vector2f.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\executable_icons\ball_16x16.ico" />
     <Image Include="assets\images\executable_icons\ball_32x32.ico" />
     <Image Include="assets\images\executable_icons\ball_48x48.ico" />
+    <Image Include="assets\images\textures\niam.png" />
     <Image Include="assets\images\window_icons\ball_16x16.png" />
     <Image Include="assets\images\window_icons\ball_32x32.png" />
     <Image Include="assets\images\window_icons\ball_48x48.png" />
@@ -224,8 +227,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="assets\shaders\FragmentShader.frag" />
-    <None Include="assets\shaders\VertexShader.vert" />
+    <None Include="assets\shaders\Shader.frag" />
+    <None Include="assets\shaders\Shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,7 +5,7 @@ namespace Elcarim {
 		namespace Shading {
 			class ShaderProgram {
 			public:
-				ShaderProgram(const std::string& vertexShaderFilename, const std::string& fragmentShaderFilename);
+				ShaderProgram(const std::string& ShaderName);
 				void startProgram() const;
 				~ShaderProgram();
 				static void stopProgram();

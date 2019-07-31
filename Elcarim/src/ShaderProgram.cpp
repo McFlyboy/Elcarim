@@ -9,9 +9,9 @@
 namespace Elcarim {
 	namespace Graphics {
 		namespace Shading {
-			ShaderProgram::ShaderProgram(const std::string& vertexShaderFilename, const std::string& fragmentShaderFilename) {
-				const unsigned int vertexShader = compileShader(vertexShaderFilename, GL_VERTEX_SHADER);
-				const unsigned int fragmentShader = compileShader(fragmentShaderFilename, GL_FRAGMENT_SHADER);
+			ShaderProgram::ShaderProgram(const std::string& ShaderName) {
+				const unsigned int vertexShader = compileShader(ShaderName + ".vert", GL_VERTEX_SHADER);
+				const unsigned int fragmentShader = compileShader(ShaderName + ".frag", GL_FRAGMENT_SHADER);
 				m_program = glCreateProgram();
 				glAttachShader(m_program, vertexShader);
 				glAttachShader(m_program, fragmentShader);
