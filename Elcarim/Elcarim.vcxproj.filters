@@ -44,9 +44,6 @@
     <Filter Include="Resource Files\images\textures">
       <UniqueIdentifier>{9eb4be76-9d72-4b94-a4aa-4e0e01075b68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Elcarim\Math">
-      <UniqueIdentifier>{28b65455-e26c-4685-b094-f2970c27da9b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -91,8 +88,8 @@
     <ClCompile Include="src\Texture.cpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\Vector2f.cpp">
-      <Filter>Elcarim\Math</Filter>
+    <ClCompile Include="src\Shader.cpp">
+      <Filter>Elcarim\Graphics\Shading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,8 +132,8 @@
     <ClInclude Include="src\Texture.hpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vector2f.hpp">
-      <Filter>Elcarim\Math</Filter>
+    <ClInclude Include="src\Shader.hpp">
+      <Filter>Elcarim\Graphics\Shading</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

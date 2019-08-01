@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "ShaderProgram.hpp"
+#include "Shader.hpp"
 #include "Model.hpp"
 #include "Texture.hpp"
 
@@ -24,7 +24,7 @@ namespace Elcarim {
 			~Renderer();
 		private:
 			GLFWwindow* const m_window = nullptr;
-			Shading::ShaderProgram* m_shader = nullptr;
+			Shading::Shader* m_shader = nullptr;
 		};
 	}
 }

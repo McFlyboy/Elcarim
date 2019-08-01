@@ -1,5 +1,7 @@
 #include <stdexcept>
 
+#include <glm/glm.hpp>
+
 #include "Renderer.hpp"
 
 namespace Elcarim {
@@ -13,7 +15,7 @@ namespace Elcarim {
 				throw std::runtime_error("Failed to load GLAD\n");
 			}
 			setViewPort(width, height);
-			m_shader = new Shading::ShaderProgram("Shader");
+			m_shader = new Shading::Shader("Shader");
 			m_shader->startProgram();
 		}
 		void Renderer::swapBuffers() {
@@ -54,6 +56,7 @@ namespace Elcarim {
 			model->bind();
 			glActiveTexture(GL_TEXTURE0);
 			texture->bind();
+			m_shader->set2DTransformation(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), 0.0f);
 			glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
 			Texture::unbind();
 			Model::unbind();

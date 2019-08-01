@@ -2,6 +2,7 @@
 #include <stdexcept>
 
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "ErrorHandler.hpp"
 #include "ShaderProgram.hpp"
@@ -9,9 +10,9 @@
 namespace Elcarim {
 	namespace Graphics {
 		namespace Shading {
-			ShaderProgram::ShaderProgram(const std::string& ShaderName) {
-				const unsigned int vertexShader = compileShader(ShaderName + ".vert", GL_VERTEX_SHADER);
-				const unsigned int fragmentShader = compileShader(ShaderName + ".frag", GL_FRAGMENT_SHADER);
+			ShaderProgram::ShaderProgram(const std::string& shaderName) {
+				const unsigned int vertexShader = compileShader(shaderName + ".vert", GL_VERTEX_SHADER);
+				const unsigned int fragmentShader = compileShader(shaderName + ".frag", GL_FRAGMENT_SHADER);
 				m_program = glCreateProgram();
 				glAttachShader(m_program, vertexShader);
 				glAttachShader(m_program, fragmentShader);
@@ -25,6 +26,27 @@ namespace Elcarim {
 			}
 			void ShaderProgram::stopProgram() {
 				glUseProgram(0);
+			}
+			int ShaderProgram::registerUniformLocation(const char* const name) {
+				return glGetUniformLocation(m_program, name);
+			}
+			void ShaderProgram::loadInt(int location, int i) {
+				glUniform1i(location, i);
+			}
+			void ShaderProgram::loadFloat(int location, float f) {
+				glUniform1f(location, f);
+			}
+			void ShaderProgram::loadVec2(int location, glm::vec2 vec) {
+				glUniform2f(location, vec.x, vec.y);
+			}
+			void ShaderProgram::loadVec3(int location, glm::vec3 vec) {
+				glUniform3f(location, vec.x, vec.y, vec.z);
+			}
+			void ShaderProgram::loadMat3(int location, glm::mat3 mat) {
+				glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(mat));
+			}
+			void ShaderProgram::loadMat4(int location, glm::mat4 mat) {
+				glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat));
 			}
 			const unsigned int ShaderProgram::compileShader(const std::string& filename, const unsigned int shaderType) const {
 				std::string filepath = "assets/shaders/" + filename;
