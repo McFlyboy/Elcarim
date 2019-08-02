@@ -17,9 +17,12 @@ namespace Elcarim {
 				glAttachShader(m_program, vertexShader);
 				glAttachShader(m_program, fragmentShader);
 				glLinkProgram(m_program);
+				glValidateProgram(m_program);
+				glDetachShader(m_program, vertexShader);
+				glDetachShader(m_program, fragmentShader);
 				glDeleteShader(vertexShader);
 				glDeleteShader(fragmentShader);
-				checkStatus(m_program, GL_LINK_STATUS, "Failed to link shader-program");
+				checkStatus(m_program, GL_LINK_STATUS, "Failed to link shader-program: " + shaderName);
 			}
 			void ShaderProgram::startProgram() const {
 				glUseProgram(m_program);

@@ -52,11 +52,11 @@ namespace Elcarim {
 				static_cast<float>(color & 0xFF) / 255.0f
 			);
 		}
-		void Renderer::render(Model* model, Texture* texture){
+		void Renderer::render(Model* model, Texture* texture, const float time){
 			model->bind();
 			glActiveTexture(GL_TEXTURE0);
 			texture->bind();
-			m_shader->set2DTransformation(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), 0.0f);
+			m_shader->set2DTransformation(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), time * 2.0f);
 			glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
 			Texture::unbind();
 			Model::unbind();

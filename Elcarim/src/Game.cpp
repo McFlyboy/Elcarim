@@ -62,7 +62,7 @@ namespace Elcarim {
 	}
 	void Game::render() {
 		m_renderer->clear();
-		m_renderer->render(m_square, m_texture);
+		m_renderer->render(m_square, m_texture, static_cast<float>(m_window->getTime()));
 		m_window->updateFrame();
 	}
 	Game::~Game() {
