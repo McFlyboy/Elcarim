@@ -17,6 +17,7 @@ namespace Elcarim {
 			setViewPort(width, height);
 			m_shader = new Shading::Shader("Shader");
 			m_shader->startProgram();
+			m_shader->setOrthographicProjection(16.0f, 9.0f, 0.1f, 100.0f);
 		}
 		void Renderer::swapBuffers() {
 			glfwSwapBuffers(m_window);
@@ -52,11 +53,11 @@ namespace Elcarim {
 				static_cast<float>(color & 0xFF) / 255.0f
 			);
 		}
-		void Renderer::render(Model* model, Texture* texture, const float time){
+		void Renderer::render(Model* model, Texture* texture, Objects::GameObject& object){
 			model->bind();
 			glActiveTexture(GL_TEXTURE0);
 			texture->bind();
-			m_shader->set2DTransformation(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), time * 2.0f);
+			m_shader->set2DTransformation(object.getPosition(), object.getScale(), object.getAngle());
 			glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
 			Texture::unbind();
 			Model::unbind();

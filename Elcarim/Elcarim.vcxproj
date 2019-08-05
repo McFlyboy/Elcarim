@@ -187,6 +187,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Models.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />
@@ -204,6 +205,7 @@
     <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\Shader.hpp" />
     <ClInclude Include="src\Models.hpp" />
     <ClInclude Include="src\ShaderProgram.hpp" />

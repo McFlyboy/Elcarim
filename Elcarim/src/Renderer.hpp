@@ -6,6 +6,7 @@
 #include "Shader.hpp"
 #include "Model.hpp"
 #include "Texture.hpp"
+#include "GameObject.hpp"
 
 namespace Elcarim {
 	namespace Graphics {
@@ -20,7 +21,7 @@ namespace Elcarim {
 			void clear();
 			void setClearColor(const float red, const float green, const float blue);
 			void setClearColor(const unsigned int color);
-			void render(Model* model, Texture* texture, const float time);
+			void render(Model* model, Texture* texture, Objects::GameObject& object);
 			~Renderer();
 		private:
 			GLFWwindow* const m_window = nullptr;

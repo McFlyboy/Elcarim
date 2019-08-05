@@ -39,16 +39,16 @@ namespace Elcarim {
 			void ShaderProgram::loadFloat(int location, float f) {
 				glUniform1f(location, f);
 			}
-			void ShaderProgram::loadVec2(int location, glm::vec2 vec) {
+			void ShaderProgram::loadVec2(int location, const glm::vec2& vec) {
 				glUniform2f(location, vec.x, vec.y);
 			}
-			void ShaderProgram::loadVec3(int location, glm::vec3 vec) {
+			void ShaderProgram::loadVec3(int location, const glm::vec3& vec) {
 				glUniform3f(location, vec.x, vec.y, vec.z);
 			}
-			void ShaderProgram::loadMat3(int location, glm::mat3 mat) {
+			void ShaderProgram::loadMat3(int location, const glm::mat3& mat) {
 				glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(mat));
 			}
-			void ShaderProgram::loadMat4(int location, glm::mat4 mat) {
+			void ShaderProgram::loadMat4(int location, const glm::mat4& mat) {
 				glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat));
 			}
 			const unsigned int ShaderProgram::compileShader(const std::string& filename, const unsigned int shaderType) const {
