@@ -57,7 +57,7 @@ namespace Elcarim {
 			model->bind();
 			glActiveTexture(GL_TEXTURE0);
 			texture->bind();
-			m_shader->set2DTransformation(object.getPosition(), object.getScale(), object.getAngle());
+			m_shader->set2DTransformation(object.getTransformation().getPosition(), object.getTransformation().getScale(), object.getTransformation().getAngle());
 			glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
 			Texture::unbind();
 			Model::unbind();

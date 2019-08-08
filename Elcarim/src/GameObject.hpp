@@ -1,18 +1,21 @@
 #pragma once
 
+#include <vector>
+
 #include <glm/glm.hpp>
+
+#include "Component.hpp"
+#include "TransformationComponent.hpp"
 
 namespace Elcarim {
 	namespace Objects {
 		class GameObject {
 		public:
-			glm::vec2& getPosition();
-			glm::vec2& getScale();
-			float& getAngle();
+			Components::TransformationComponent& getTransformation();
+			void addComponent(const Components::Component& component);
 		private:
-			glm::vec2 position;
-			glm::vec2 scale = glm::vec2(1.0f, 1.0f);
-			float angle;
+			Components::TransformationComponent m_transformation;
+			std::vector<Components::Component> m_components;
 		};
 	}
 }

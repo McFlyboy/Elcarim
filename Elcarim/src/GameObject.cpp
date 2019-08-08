@@ -2,14 +2,11 @@
 
 namespace Elcarim {
 	namespace Objects {
-		glm::vec2& GameObject::getPosition() {
-			return position;
+		Components::TransformationComponent& GameObject::getTransformation() {
+			return m_transformation;
 		}
-		glm::vec2& GameObject::getScale() {
-			return scale;
-		}
-		float& GameObject::getAngle(){
-			return angle;
+		void GameObject::addComponent(const Components::Component& component) {
+			m_components.push_back(component);
 		}
 	}
 }

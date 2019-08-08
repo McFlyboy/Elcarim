@@ -23,8 +23,8 @@ namespace Elcarim {
 		m_gamepad = m_window->getGamepad();
 		m_square = Util::Models::createSquareModel();
 		m_texture = new Graphics::Texture("niam.png");
-		m_niam.getPosition().x = 8.0f;
-		m_niam.getPosition().y = 4.5f;
+		m_niam.getTransformation().getPosition().x = 8.0f;
+		m_niam.getTransformation().getPosition().y = 4.5f;
 		return true;
 	}
 	bool Game::run() {

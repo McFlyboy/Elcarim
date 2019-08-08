@@ -47,6 +47,9 @@
     <Filter Include="Elcarim\Objects">
       <UniqueIdentifier>{85431a49-e058-4b26-8ce7-7e04e15e74db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Elcarim\Objects\Components">
+      <UniqueIdentifier>{f2d9f4f7-a86d-4662-b29d-f1d7ece0cc32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -97,6 +100,12 @@
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Elcarim\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\Component.cpp">
+      <Filter>Elcarim\Objects\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransformationComponent.cpp">
+      <Filter>Elcarim\Objects\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -143,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="src\GameObject.hpp">
       <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component.hpp">
+      <Filter>Elcarim\Objects\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TransformationComponent.hpp">
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
