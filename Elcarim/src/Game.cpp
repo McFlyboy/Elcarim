@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include "TexturedModelComponent.hpp"
+
 namespace Elcarim {
 	const char* const Game::TITLE = "Elcarim (Project 1996)";
 
@@ -25,6 +27,7 @@ namespace Elcarim {
 		m_texture = new Graphics::Texture("niam.png");
 		m_niam.getTransformation().getPosition().x = 8.0f;
 		m_niam.getTransformation().getPosition().y = 4.5f;
+		m_niam.addComponent(new Objects::Components::TexturedModelComponent(m_square, m_texture));
 		return true;
 	}
 	bool Game::run() {
@@ -64,7 +67,7 @@ namespace Elcarim {
 	}
 	void Game::render() {
 		m_renderer->clear();
-		m_renderer->render(m_square, m_texture, m_niam);
+		m_renderer->render(m_niam);
 		m_window->updateFrame();
 	}
 	Game::~Game() {

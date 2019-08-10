@@ -1,7 +1,7 @@
+#include "Keyboard.hpp"
+
 #include <array>
 #include <algorithm>
-
-#include "Keyboard.hpp"
 
 namespace Elcarim {
 	namespace Input {

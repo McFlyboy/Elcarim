@@ -1,8 +1,8 @@
+#include "ErrorHandler.hpp"
+
 #include <iostream>
 
 #include <GLFW/glfw3.h>
-
-#include "ErrorHandler.hpp"
 
 namespace Elcarim {
 	ErrorHandler* ErrorHandler::s_instance = nullptr;

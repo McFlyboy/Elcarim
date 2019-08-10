@@ -1,6 +1,6 @@
-#include <glad/glad.h>
-
 #include "Model.hpp"
+
+#include <glad/glad.h>
 
 namespace Elcarim {
 	namespace Graphics {

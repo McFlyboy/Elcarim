@@ -1,9 +1,10 @@
+#include "Texture.hpp"
+
 #include <cstdint>
 
 #include <glad/glad.h>
 
 #include "ResourceLoader.hpp"
-#include "Texture.hpp"
 
 namespace Elcarim {
 	namespace Graphics {

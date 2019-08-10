@@ -1,7 +1,7 @@
+#include "Gamepad.hpp"
+
 #include <memory>
 #include <cstdlib>
-
-#include "Gamepad.hpp"
 
 namespace Elcarim {
 	namespace Input {

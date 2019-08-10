@@ -21,7 +21,7 @@ namespace Elcarim {
 			void clear();
 			void setClearColor(const float red, const float green, const float blue);
 			void setClearColor(const unsigned int color);
-			void render(Model* model, Texture* texture, Objects::GameObject& object);
+			void render(Objects::GameObject& object);
 			~Renderer();
 		private:
 			GLFWwindow* const m_window = nullptr;

@@ -1,3 +1,5 @@
+#include "ShaderProgram.hpp"
+
 #include <fstream>
 #include <stdexcept>
 
@@ -5,7 +7,6 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "ErrorHandler.hpp"
-#include "ShaderProgram.hpp"
 
 namespace Elcarim {
 	namespace Graphics {

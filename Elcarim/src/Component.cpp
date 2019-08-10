@@ -4,6 +4,7 @@ namespace Elcarim {
 	namespace Objects {
 		namespace Components {
 			Component::Component() {}
+			Component::~Component() {}
 		}
 	}
 }

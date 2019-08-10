@@ -1,8 +1,10 @@
+#include "Renderer.hpp"
+
 #include <stdexcept>
 
 #include <glm/glm.hpp>
 
-#include "Renderer.hpp"
+#include "TexturedModelComponent.hpp"
 
 namespace Elcarim {
 	namespace Graphics {
@@ -53,7 +55,13 @@ namespace Elcarim {
 				static_cast<float>(color & 0xFF) / 255.0f
 			);
 		}
-		void Renderer::render(Model* model, Texture* texture, Objects::GameObject& object){
+		void Renderer::render(Objects::GameObject& object){
+			auto texturedModel = object.getFirstComponentOfType<Objects::Components::TexturedModelComponent>();
+			if (!texturedModel) {
+				return;
+			}
+			Model* model = texturedModel->getModel();
+			Texture* texture = texturedModel->getTexture();
 			model->bind();
 			glActiveTexture(GL_TEXTURE0);
 			texture->bind();

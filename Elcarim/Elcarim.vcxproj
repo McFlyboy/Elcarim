@@ -205,6 +205,7 @@
     <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\TransformationComponent.cpp" />
+    <ClCompile Include="src\TexturedModelComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Component.hpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="src\Window.hpp" />
     <ClInclude Include="src\Texture.hpp" />
     <ClInclude Include="src\TransformationComponent.hpp" />
+    <ClInclude Include="src\TexturedModelComponent.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\executable_icons\ball_16x16.ico" />

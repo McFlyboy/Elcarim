@@ -1,3 +1,5 @@
+#include "Window.hpp"
+
 #include <exception>
 #include <stdexcept>
 #include <string>
@@ -5,7 +7,6 @@
 
 #include "ErrorHandler.hpp"
 #include "ResourceLoader.hpp"
-#include "Window.hpp"
 
 namespace Elcarim {
 	int Window::s_newInstanceWidth = 800;
