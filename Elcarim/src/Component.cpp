@@ -1,10 +1,6 @@
 #include "Component.hpp"
 
-namespace Elcarim {
-	namespace Objects {
-		namespace Components {
-			Component::Component() {}
-			Component::~Component() {}
-		}
-	}
+namespace Elcarim::Objects::Components {
+	Component::Component() {}
+	Component::~Component() {}
 }

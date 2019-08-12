@@ -13,7 +13,7 @@ namespace Elcarim {
 		if (!(m_window = Window::getInstance())) {
 			return false;
 		}
-		m_window->setIconImages("ball_16x16.png", "ball_32x32.png", "ball_48x48.png");
+		m_window->setIconImages("icon_16x16.png", "icon_32x32.png", "icon_48x48.png");
 		m_renderer = m_window->getRenderer();
 		m_renderer->setVSync(false);
 		m_renderer->setWireframe(false);
@@ -59,7 +59,12 @@ namespace Elcarim {
 			m_window->close();
 			return true;
 		}
-		if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_F11) || m_keyboard->isFullscreenShortcutPressed()) {
+		if (
+			m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_F11)
+#if defined(_WIN32) || defined(__APPLE__)
+			|| m_keyboard->isFullscreenShortcutPressed()
+#endif
+		) {
 			m_window->setFullscreen(!m_window->isFullscreen());
 		}
 		m_gamepad->update();

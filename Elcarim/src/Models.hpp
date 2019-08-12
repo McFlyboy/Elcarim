@@ -2,10 +2,8 @@
 
 #include "Model.hpp"
 
-namespace Elcarim {
-	namespace Util {
-		namespace Models {
-			Graphics::Model* const createSquareModel();
-		}
+namespace Elcarim::Util {
+	namespace Models {
+		Graphics::Model* const createSquareModel();
 	}
 }

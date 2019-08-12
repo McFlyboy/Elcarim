@@ -179,29 +179,29 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\images\window_icons\ball_16x16.png">
-      <Filter>Resource Files\images\window_icons</Filter>
-    </Image>
-    <Image Include="assets\images\window_icons\ball_32x32.png">
-      <Filter>Resource Files\images\window_icons</Filter>
-    </Image>
-    <Image Include="assets\images\window_icons\ball_48x48.png">
-      <Filter>Resource Files\images\window_icons</Filter>
-    </Image>
-    <Image Include="assets\images\executable_icons\ball_48x48.ico">
-      <Filter>Resource Files\images\executable_icons</Filter>
-    </Image>
-    <Image Include="assets\images\executable_icons\ball_16x16.ico">
-      <Filter>Resource Files\images\executable_icons</Filter>
-    </Image>
-    <Image Include="assets\images\executable_icons\ball_32x32.ico">
-      <Filter>Resource Files\images\executable_icons</Filter>
-    </Image>
     <Image Include="assets\images\textures\niam.png">
       <Filter>Resource Files\images\textures</Filter>
     </Image>
     <Image Include="assets\images\textures\background.png">
       <Filter>Resource Files\images\textures</Filter>
+    </Image>
+    <Image Include="assets\images\window_icons\icon_16x16.png">
+      <Filter>Resource Files\images\window_icons</Filter>
+    </Image>
+    <Image Include="assets\images\window_icons\icon_32x32.png">
+      <Filter>Resource Files\images\window_icons</Filter>
+    </Image>
+    <Image Include="assets\images\window_icons\icon_48x48.png">
+      <Filter>Resource Files\images\window_icons</Filter>
+    </Image>
+    <Image Include="assets\images\executable_icons\icon_16x16.ico">
+      <Filter>Resource Files\images\executable_icons</Filter>
+    </Image>
+    <Image Include="assets\images\executable_icons\icon_32x32.ico">
+      <Filter>Resource Files\images\executable_icons</Filter>
+    </Image>
+    <Image Include="assets\images\executable_icons\icon_48x48.ico">
+      <Filter>Resource Files\images\executable_icons</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
