@@ -12,6 +12,10 @@ namespace Elcarim {
 	namespace Graphics {
 		class Renderer {
 		public:
+			static const float ASPECT_RATION;
+			static const float PROJECTION_RESOLUTION_WIDTH;
+			static const float PROJECTION_RESOLUTION_HEIGHT;
+
 			Renderer(GLFWwindow* const window, const int width, const int height);
 			void swapBuffers();
 			void setVSync(const bool vsync);
@@ -21,7 +25,7 @@ namespace Elcarim {
 			void clear();
 			void setClearColor(const float red, const float green, const float blue);
 			void setClearColor(const unsigned int color);
-			void render(Objects::GameObject& object);
+			void render(Objects::GameObject* object);
 			~Renderer();
 		private:
 			GLFWwindow* const m_window = nullptr;

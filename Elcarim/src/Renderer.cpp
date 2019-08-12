@@ -8,6 +8,10 @@
 
 namespace Elcarim {
 	namespace Graphics {
+		const float Renderer::ASPECT_RATION = 16.0f / 9.0f;
+		const float Renderer::PROJECTION_RESOLUTION_WIDTH = 512.0f;
+		const float Renderer::PROJECTION_RESOLUTION_HEIGHT = 288.0f;
+
 		Renderer::Renderer(GLFWwindow* const window, const int width, const int height) : m_window(window) {
 			glfwMakeContextCurrent(window);
 			if (!glfwGetCurrentContext()) {
@@ -19,7 +23,7 @@ namespace Elcarim {
 			setViewPort(width, height);
 			m_shader = new Shading::Shader("Shader");
 			m_shader->startProgram();
-			m_shader->setOrthographicProjection(16.0f, 9.0f, 0.1f, 100.0f);
+			m_shader->setOrthographicProjection(PROJECTION_RESOLUTION_WIDTH, PROJECTION_RESOLUTION_HEIGHT, -1.0f, 1.0f);
 		}
 		void Renderer::swapBuffers() {
 			glfwSwapBuffers(m_window);
@@ -28,7 +32,32 @@ namespace Elcarim {
 			glfwSwapInterval(vsync);
 		}
 		void Renderer::setViewPort(const int width, const int height) {
-			glViewport(0, 0, width, height);
+			float aspectRatio = static_cast<float>(width) / static_cast<float>(height);
+			int aspectFixX = 0;
+			int aspectFixY = 0;
+			int aspectFixWidth = 0;
+			int aspectFixHeight = 0;
+			if (aspectRatio == ASPECT_RATION) {
+				aspectFixX = 0;
+				aspectFixY = 0;
+				aspectFixWidth = width;
+				aspectFixHeight = height;
+			}
+			else if (aspectRatio < ASPECT_RATION) {
+				int heightOffset = height / 2 - 9 * width / 32;
+				aspectFixX = 0;
+				aspectFixY = heightOffset;
+				aspectFixWidth = width;
+				aspectFixHeight = height - heightOffset * 2;
+			}
+			else {
+				int widthOffset = width / 2 - 8 * height / 9;
+				aspectFixX = widthOffset;
+				aspectFixY = 0;
+				aspectFixWidth = width - widthOffset * 2;
+				aspectFixHeight = height;
+			}
+			glViewport(aspectFixX, aspectFixY, aspectFixWidth, aspectFixHeight);
 		}
 		void Renderer::setWireframe(const bool wireframe) {
 			glPolygonMode(GL_FRONT_AND_BACK, wireframe ? GL_LINE : GL_FILL);
@@ -55,8 +84,8 @@ namespace Elcarim {
 				static_cast<float>(color & 0xFF) / 255.0f
 			);
 		}
-		void Renderer::render(Objects::GameObject& object){
-			auto texturedModel = object.getFirstComponentOfType<Objects::Components::TexturedModelComponent>();
+		void Renderer::render(Objects::GameObject* object){
+			auto texturedModel = object->getFirstComponentOfType<Objects::Components::TexturedModelComponent>();
 			if (!texturedModel) {
 				return;
 			}
@@ -65,7 +94,7 @@ namespace Elcarim {
 			model->bind();
 			glActiveTexture(GL_TEXTURE0);
 			texture->bind();
-			m_shader->set2DTransformation(object.getTransformation().getPosition(), object.getTransformation().getScale(), object.getTransformation().getAngle());
+			m_shader->set2DTransformation(object->getTransformation().getPosition(), object->getTransformation().getScale(), object->getTransformation().getAngle());
 			glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
 			Texture::unbind();
 			Model::unbind();

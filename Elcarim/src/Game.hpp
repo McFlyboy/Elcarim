@@ -11,7 +11,8 @@
 #include "Model.hpp"
 #include "Models.hpp"
 #include "Texture.hpp"
-#include "GameObject.hpp"
+#include "Niam.hpp"
+#include "Background.hpp"
 
 namespace Elcarim {
 	class Game {
@@ -28,8 +29,10 @@ namespace Elcarim {
 		Input::Device::Mouse* m_mouse = nullptr;
 		Input::Device::Gamepad* m_gamepad = nullptr;
 		Graphics::Model* m_square = nullptr;
-		Graphics::Texture* m_texture = nullptr;
-		Objects::GameObject m_niam;
+		Graphics::Texture* m_niamTex = nullptr;
+		Graphics::Texture* m_bgTex = nullptr;
+		Objects::Niam* m_niam = nullptr;
+		Objects::Background* m_background = nullptr;
 
 		bool start();
 		bool update();

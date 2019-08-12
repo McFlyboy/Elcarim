@@ -23,7 +23,7 @@ namespace Elcarim {
 				return nullptr;
 			}
 			template<typename T>
-			void const getAllComponentsOfType(std::vector<T*> components) const {
+			void const getAllComponentsOfType(std::vector<T*>& components) const {
 				for (Components::Component* component : m_components) {
 					if (T* t = dynamic_cast<T*>(component)) {
 						components.push_back(t);

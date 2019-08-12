@@ -109,6 +109,12 @@
     <ClCompile Include="src\TexturedModelComponent.cpp">
       <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\Niam.cpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Background.cpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -165,6 +171,12 @@
     <ClInclude Include="src\TexturedModelComponent.hpp">
       <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\Niam.hpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Background.hpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\window_icons\ball_16x16.png">
@@ -186,6 +198,9 @@
       <Filter>Resource Files\images\executable_icons</Filter>
     </Image>
     <Image Include="assets\images\textures\niam.png">
+      <Filter>Resource Files\images\textures</Filter>
+    </Image>
+    <Image Include="assets\images\textures\background.png">
       <Filter>Resource Files\images\textures</Filter>
     </Image>
   </ItemGroup>

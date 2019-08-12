@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include <glm/glm.hpp>
+
 #include "TexturedModelComponent.hpp"
 
 namespace Elcarim {
@@ -15,8 +17,6 @@ namespace Elcarim {
 		m_renderer = m_window->getRenderer();
 		m_renderer->setVSync(false);
 		m_renderer->setWireframe(false);
-		//Testing-color
-		m_renderer->setClearColor(0.2f, 0.15f, 0.4f);
 		m_renderer->setAlphaBlend(true);
 		m_window->show();
 		m_keyboard = m_window->getKeyboard();
@@ -24,10 +24,10 @@ namespace Elcarim {
 		m_mouse->setCursorInvisible(true);
 		m_gamepad = m_window->getGamepad();
 		m_square = Util::Models::createSquareModel();
-		m_texture = new Graphics::Texture("niam.png");
-		m_niam.getTransformation().getPosition().x = 8.0f;
-		m_niam.getTransformation().getPosition().y = 4.5f;
-		m_niam.addComponent(new Objects::Components::TexturedModelComponent(m_square, m_texture));
+		m_niamTex = new Graphics::Texture("niam.png");
+		m_bgTex = new Graphics::Texture("background.png");
+		m_niam = new Objects::Niam(glm::vec2(8.0f, 8.0f), m_square, m_niamTex);
+		m_background = new Objects::Background(m_square, m_bgTex);
 		return true;
 	}
 	bool Game::run() {
@@ -67,12 +67,22 @@ namespace Elcarim {
 	}
 	void Game::render() {
 		m_renderer->clear();
+		m_renderer->render(m_background);
 		m_renderer->render(m_niam);
 		m_window->updateFrame();
 	}
 	Game::~Game() {
-		delete m_texture;
-		m_texture = nullptr;
+		delete m_background;
+		m_background = nullptr;
+
+		delete m_niam;
+		m_niam = nullptr;
+
+		delete m_niamTex;
+		m_niamTex = nullptr;
+
+		delete m_bgTex;
+		m_bgTex = nullptr;
 
 		delete m_square;
 		m_square = nullptr;

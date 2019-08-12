@@ -187,6 +187,8 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Background.cpp" />
+    <ClCompile Include="src\Niam.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Shader.cpp" />
@@ -208,6 +210,8 @@
     <ClCompile Include="src\TexturedModelComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Background.hpp" />
+    <ClInclude Include="src\Niam.hpp" />
     <ClInclude Include="src\Component.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\Shader.hpp" />
@@ -231,6 +235,7 @@
     <Image Include="assets\images\executable_icons\ball_16x16.ico" />
     <Image Include="assets\images\executable_icons\ball_32x32.ico" />
     <Image Include="assets\images\executable_icons\ball_48x48.ico" />
+    <Image Include="assets\images\textures\background.png" />
     <Image Include="assets\images\textures\niam.png" />
     <Image Include="assets\images\window_icons\ball_16x16.png" />
     <Image Include="assets\images\window_icons\ball_32x32.png" />

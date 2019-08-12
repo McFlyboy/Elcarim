@@ -19,7 +19,7 @@ namespace Elcarim {
 				loadMat3(m_transformationLocation, transformation);
 			}
 			void Shader::setOrthographicProjection(const float width, const float height, const float nearPlane, const float farPlane) {
-				loadMat4(m_projectionLocation, glm::ortho(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f));
+				loadMat4(m_projectionLocation, glm::ortho(0.0f, width, 0.0f, height, nearPlane, farPlane));
 			}
 		}
 	}
