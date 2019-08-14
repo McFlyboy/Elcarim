@@ -50,6 +50,15 @@
     <Filter Include="Elcarim\Objects\Components">
       <UniqueIdentifier>{f2d9f4f7-a86d-4662-b29d-f1d7ece0cc32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Elcarim\Timing">
+      <UniqueIdentifier>{6cbc6561-e6d2-455b-9cd8-8bf3ef085ee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Scene">
+      <UniqueIdentifier>{26d22bf9-52bf-40e7-bfde-69f54523455a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Scene\Scenes">
+      <UniqueIdentifier>{605c44b9-6781-41e7-9e0c-0b59d644fd63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -115,6 +124,21 @@
     <ClCompile Include="src\Background.cpp">
       <Filter>Elcarim\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\Timer.cpp">
+      <Filter>Elcarim\Timing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeltaTimer.cpp">
+      <Filter>Elcarim\Timing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>Elcarim\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameScene.cpp">
+      <Filter>Elcarim\Scene\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneManager.cpp">
+      <Filter>Elcarim\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -176,6 +200,21 @@
     </ClInclude>
     <ClInclude Include="src\Background.hpp">
       <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Timer.hpp">
+      <Filter>Elcarim\Timing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DeltaTimer.hpp">
+      <Filter>Elcarim\Timing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene.hpp">
+      <Filter>Elcarim\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameScene.hpp">
+      <Filter>Elcarim\Scene\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneManager.hpp">
+      <Filter>Elcarim\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

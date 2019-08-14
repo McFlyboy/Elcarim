@@ -23,11 +23,7 @@ namespace Elcarim {
 		m_mouse = m_window->getMouse();
 		m_mouse->setCursorInvisible(true);
 		m_gamepad = m_window->getGamepad();
-		m_square = Util::Models::createSquareModel();
-		m_niamTex = new Graphics::Texture("niam.png");
-		m_bgTex = new Graphics::Texture("background.png");
-		m_niam = new Objects::Niam(glm::vec2(8.0f, 8.0f), m_square, m_niamTex);
-		m_background = new Objects::Background(m_square, m_bgTex);
+		m_sceneManager = new Scene::SceneManager(m_renderer);
 		return true;
 	}
 	bool Game::run() {
@@ -72,25 +68,12 @@ namespace Elcarim {
 	}
 	void Game::render() {
 		m_renderer->clear();
-		m_renderer->render(m_background);
-		m_renderer->render(m_niam);
+		m_sceneManager->renderActiveScene();
 		m_window->updateFrame();
 	}
 	Game::~Game() {
-		delete m_background;
-		m_background = nullptr;
-
-		delete m_niam;
-		m_niam = nullptr;
-
-		delete m_niamTex;
-		m_niamTex = nullptr;
-
-		delete m_bgTex;
-		m_bgTex = nullptr;
-
-		delete m_square;
-		m_square = nullptr;
+		delete m_sceneManager;
+		m_sceneManager = nullptr;
 
 		delete m_window;
 		m_window = nullptr;

@@ -190,6 +190,10 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\SceneManager.cpp" />
+    <ClCompile Include="src\GameScene.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\DeltaTimer.cpp" />
     <ClCompile Include="src\Background.cpp" />
     <ClCompile Include="src\Niam.cpp" />
     <ClCompile Include="src\Component.cpp" />
@@ -211,8 +215,13 @@
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\TransformationComponent.cpp" />
     <ClCompile Include="src\TexturedModelComponent.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\SceneManager.hpp" />
+    <ClInclude Include="src\GameScene.hpp" />
+    <ClInclude Include="src\Scene.hpp" />
+    <ClInclude Include="src\DeltaTimer.hpp" />
     <ClInclude Include="src\Background.hpp" />
     <ClInclude Include="src\Niam.hpp" />
     <ClInclude Include="src\Component.hpp" />
@@ -233,6 +242,7 @@
     <ClInclude Include="src\Texture.hpp" />
     <ClInclude Include="src\TransformationComponent.hpp" />
     <ClInclude Include="src\TexturedModelComponent.hpp" />
+    <ClInclude Include="src\Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\executable_icons\icon_16x16.ico" />
