@@ -10,7 +10,7 @@ namespace Elcarim::Scene {
 			GameScene
 		};
 
-		SceneManager(Graphics::Renderer* const renderer);
+		SceneManager(Graphics::Renderer* const renderer, Input::Device::Keyboard* const keyboard, Input::Device::Gamepad* const gamepad);
 		Graphics::Renderer* const getRenderer() const;
 		void loadNewScene(const SceneID sceneID);
 		void updateActiveScene();
@@ -19,6 +19,8 @@ namespace Elcarim::Scene {
 		~SceneManager();
 	private:
 		Graphics::Renderer* m_renderer = nullptr;
+		Input::Device::Keyboard* m_keyboard = nullptr;
+		Input::Device::Gamepad* m_gamepad = nullptr;
 		Scene* m_activeScene = nullptr;
 	};
 }

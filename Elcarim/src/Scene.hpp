@@ -3,6 +3,8 @@
 #include "Timer.hpp"
 #include "DeltaTimer.hpp"
 #include "Renderer.hpp"
+#include "Keyboard.hpp"
+#include "Gamepad.hpp"
 
 namespace Elcarim::Scene {
 	class Scene {

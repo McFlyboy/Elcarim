@@ -3,8 +3,12 @@
 #include "GameScene.hpp"
 
 namespace Elcarim::Scene {
-	SceneManager::SceneManager(Graphics::Renderer* const renderer) : m_renderer(renderer) {
-		m_activeScene = new Scenes::GameScene();
+	SceneManager::SceneManager(Graphics::Renderer* const renderer, Input::Device::Keyboard* const keyboard, Input::Device::Gamepad* const gamepad) :
+		m_renderer(renderer),
+		m_keyboard(keyboard),
+		m_gamepad(gamepad)
+	{
+		loadNewScene(SceneID::GameScene);
 	}
 	Graphics::Renderer* const SceneManager::getRenderer() const {
 		return m_renderer;
@@ -13,9 +17,10 @@ namespace Elcarim::Scene {
 		unloadActiveScene();
 		switch (sceneID) {
 		case SceneID::GameScene:
-			m_activeScene = new Scenes::GameScene();
+			m_activeScene = new Scenes::GameScene(m_keyboard, m_gamepad);
 			break;
 		}
+		m_activeScene->start();
 	}
 	void SceneManager::updateActiveScene() {
 		m_activeScene->update();

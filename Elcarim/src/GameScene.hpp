@@ -2,6 +2,7 @@
 
 #include "Scene.hpp"
 
+#include "GameControls.hpp"
 #include "Model.hpp"
 #include "Models.hpp"
 #include "Texture.hpp"
@@ -11,12 +12,13 @@
 namespace Elcarim::Scene::Scenes {
 	class GameScene : public Scene {
 	public:
-		GameScene();
+		GameScene(Input::Device::Keyboard* const keyboard, Input::Device::Gamepad* const gamepad);
 		virtual void render(Graphics::Renderer* const renderer) override;
 		virtual ~GameScene() override;
 	protected:
 		virtual void update(const float deltaTime) override;
 	private:
+		Input::GameControls* m_controls = nullptr;
 		Graphics::Model* m_square = nullptr;
 		Graphics::Texture* m_niamTex = nullptr;
 		Graphics::Texture* m_bgTex = nullptr;

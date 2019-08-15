@@ -9,13 +9,9 @@
 #include "ResourceLoader.hpp"
 
 namespace Elcarim {
-	int Window::s_newInstanceWidth = 800;
-	int Window::s_newInstanceHeight = 600;
-	const char* Window::s_newInstanceTitle = "";
-	bool Window::s_newInstanceFullscreen = false;
 	Window* Window::s_instance = nullptr;
 
-	Window::Window() {
+	Window::Window(const int width, const int height, const char* const title, const bool fullscreen) {
 		if (!glfwInit()) {
 			throw std::runtime_error("Failed to initialize GLFW\n");
 		}
@@ -31,7 +27,7 @@ namespace Elcarim {
 		glfwWindowHint(GLFW_VISIBLE, false);
 		glfwWindowHint(GLFW_RESIZABLE, false);
 		glfwWindowHint(GLFW_FOCUS_ON_SHOW, true);
-		if (!(m_window = glfwCreateWindow(s_newInstanceWidth, s_newInstanceHeight, s_newInstanceTitle, s_newInstanceFullscreen ? m_activeMonitor : nullptr, nullptr))) {
+		if (!(m_window = glfwCreateWindow(width, height, title, fullscreen ? m_activeMonitor : nullptr, nullptr))) {
 			throw std::runtime_error("Could not create the GLFW window\n");
 		}
 		glfwSetWindowUserPointer(m_window, this);
@@ -51,7 +47,7 @@ namespace Elcarim {
 		m_renderer = new Graphics::Renderer(m_window, m_width, m_height);
 		m_keyboard = new Input::Device::Keyboard(m_window);
 		m_mouse = new Input::Device::Mouse(m_window);
-		m_gamepad = Input::Device::Gamepad::getInstance();
+		m_gamepad = Input::Device::Gamepad::createInstance();
 	}
 	const int Window::getActiveMonitorWidth() const {
 		return m_monitorVideoMode->width;
@@ -164,24 +160,19 @@ namespace Elcarim {
 		m_activeMonitor = nullptr;
 		s_instance = nullptr;
 	}
-	void Window::setNewInstanceSettings(const int width, const int height, const char* const title, const bool fullscreen) {
-		s_newInstanceWidth = width;
-		s_newInstanceHeight = height;
-		s_newInstanceTitle = title;
-		s_newInstanceFullscreen = fullscreen;
-	}
-	Window* const Window::getInstance() {
+	Window* const Window::createInstance(const int width, const int height, const char* const title, const bool fullscreen) {
 		if (!s_instance) {
 			try {
-				s_instance = new Window();
+				s_instance = new Window(width, height, title, fullscreen);
 			}
 			catch (std::exception& e) {
 				ErrorHandler::getInstance()->write(e.what());
 				delete s_instance;
 				s_instance = nullptr;
 			}
+			return s_instance;
 		}
-		return s_instance;
+		return nullptr;
 	}
 	const double Window::InternalTimer::getTime() const {
 		return glfwGetTime();

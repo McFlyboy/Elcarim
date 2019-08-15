@@ -31,8 +31,7 @@ namespace Elcarim {
 		const double getTime() const;
 		const double getDeltaTime();
 		~Window();
-		static void setNewInstanceSettings(const int width, const int height, const char* const title = "", const bool fullscreen = false);
-		static Window* const getInstance();
+		static Window* const createInstance(const int width, const int height, const char* const title, const bool fullscreen);
 	private:
 		GLFWmonitor* m_activeMonitor = nullptr;
 		const GLFWvidmode* m_monitorVideoMode = nullptr;
@@ -44,13 +43,9 @@ namespace Elcarim {
 		Input::Device::Keyboard* m_keyboard = nullptr;
 		Input::Device::Mouse* m_mouse = nullptr;
 		Input::Device::Gamepad* m_gamepad = nullptr;
-		static int s_newInstanceWidth;
-		static int s_newInstanceHeight;
-		static const char* s_newInstanceTitle;
-		static bool s_newInstanceFullscreen;
 		static Window* s_instance;
 
-		Window();
+		Window(const int width, const int height, const char* const title, const bool fullscreen);
 
 		struct InternalTimer {
 			int frameCount = 0;

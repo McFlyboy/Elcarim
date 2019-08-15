@@ -1,7 +1,8 @@
 #include "GameScene.hpp"
 
 namespace Elcarim::Scene::Scenes {
-	GameScene::GameScene() {
+	GameScene::GameScene(Input::Device::Keyboard* const keyboard, Input::Device::Gamepad* const gamepad) {
+		m_controls = new Input::GameControls(keyboard, gamepad);
 		m_square = Util::Models::createSquareModel();
 		m_niamTex = new Graphics::Texture("niam.png");
 		m_bgTex = new Graphics::Texture("background.png");
@@ -9,7 +10,7 @@ namespace Elcarim::Scene::Scenes {
 		m_background = new Objects::Background(m_square, m_bgTex);
 	}
 	void GameScene::update(const float deltaTime) {
-
+		m_niam->getTransformation().getPosition().x += m_controls->getHorizontalMovement() * deltaTime * 100.0f;
 	}
 	void GameScene::render(Graphics::Renderer* const renderer) {
 		renderer->render(m_background);
@@ -30,5 +31,8 @@ namespace Elcarim::Scene::Scenes {
 
 		delete m_square;
 		m_square = nullptr;
+
+		delete m_controls;
+		m_controls = nullptr;
 	}
 }

@@ -1,16 +1,11 @@
 #include "Game.hpp"
 
-#include <glm/glm.hpp>
-
-#include "TexturedModelComponent.hpp"
-
 namespace Elcarim {
 	const char* const Game::TITLE = "Elcarim (Project 1996)";
 
 	bool Game::start() {
 		m_errorHandler = ErrorHandler::getInstance();
-		Window::setNewInstanceSettings(1280, 720, TITLE);
-		if (!(m_window = Window::getInstance())) {
+		if (!(m_window = Window::createInstance(1280, 720, TITLE, false))) {
 			return false;
 		}
 		m_window->setIconImages("icon_16x16.png", "icon_32x32.png", "icon_48x48.png");
@@ -20,10 +15,9 @@ namespace Elcarim {
 		m_renderer->setAlphaBlend(true);
 		m_window->show();
 		m_keyboard = m_window->getKeyboard();
-		m_mouse = m_window->getMouse();
-		m_mouse->setCursorInvisible(true);
+		m_window->getMouse()->setCursorInvisible(true);
 		m_gamepad = m_window->getGamepad();
-		m_sceneManager = new Scene::SceneManager(m_renderer);
+		m_sceneManager = new Scene::SceneManager(m_renderer, m_keyboard, m_gamepad);
 		return true;
 	}
 	bool Game::run() {
@@ -64,6 +58,7 @@ namespace Elcarim {
 			m_window->setFullscreen(!m_window->isFullscreen());
 		}
 		m_gamepad->update();
+		m_sceneManager->updateActiveScene();
 		return true;
 	}
 	void Game::render() {
@@ -79,7 +74,6 @@ namespace Elcarim {
 		m_window = nullptr;
 		m_renderer = nullptr;
 		m_keyboard = nullptr;
-		m_mouse = nullptr;
 		m_gamepad = nullptr;
 
 		delete m_errorHandler;

@@ -1,6 +1,6 @@
 #include "DeltaTimer.hpp"
 
-#include "Window.hpp"
+#include <GLFW/glfw3.h>
 
 namespace Elcarim::Timing {
 	DeltaTimer::DeltaTimer(Timer* const baseTimer) : m_baseTimer(baseTimer) {
@@ -19,6 +19,6 @@ namespace Elcarim::Timing {
 		return deltaTime;
 	}
 	const double DeltaTimer::getBaseTime() const {
-		return m_baseTimer ? m_baseTimer->getTime() : Window::getInstance()->getTime();
+		return m_baseTimer ? m_baseTimer->getTime() : glfwGetTime();
 	}
 }

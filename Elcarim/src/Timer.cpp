@@ -1,6 +1,6 @@
 #include "Timer.hpp"
 
-#include "Window.hpp"
+#include <GLFW/glfw3.h>
 
 namespace Elcarim::Timing {
 	Timer::Timer(Timer* const baseTimer, const bool running) : m_baseTimer(baseTimer), m_running(running) {
@@ -50,6 +50,6 @@ namespace Elcarim::Timing {
 		m_startTime = getBaseTime();
 	}
 	const double Timer::getBaseTime() const {
-		return m_baseTimer ? m_baseTimer->getTime() : Window::getInstance()->getTime();
+		return m_baseTimer ? m_baseTimer->getTime() : glfwGetTime();
 	}
 }

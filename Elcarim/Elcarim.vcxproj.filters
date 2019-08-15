@@ -139,6 +139,12 @@
     <ClCompile Include="src\SceneManager.cpp">
       <Filter>Elcarim\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\Controls.cpp">
+      <Filter>Elcarim\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameControls.cpp">
+      <Filter>Elcarim\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -215,6 +221,12 @@
     </ClInclude>
     <ClInclude Include="src\SceneManager.hpp">
       <Filter>Elcarim\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Controls.hpp">
+      <Filter>Elcarim\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameControls.hpp">
+      <Filter>Elcarim\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

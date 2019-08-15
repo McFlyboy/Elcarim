@@ -7,6 +7,12 @@
 namespace Elcarim::Input::Device {
 	class Gamepad {
 	public:
+		struct State {
+			unsigned char buttons[15];
+			float axes[4];
+			float triggers[2];
+		};
+
 		static const uint8_t
 			BUTTON_A = 0,
 			BUTTON_B = 1,
@@ -28,8 +34,9 @@ namespace Elcarim::Input::Device {
 			AXIS_LEFT_Y = 1,
 			AXIS_RIGHT_X = 2,
 			AXIS_RIGHT_Y = 3,
-			AXIS_LEFT_TRIGGER = 4,
-			AXIS_RIGHT_TRIGGER = 5;
+
+			TRIGGER_LEFT = 0,
+			TRIGGER_RIGHT = 1;
 
 		const bool isGamepadConnected();
 		const char* const getGamepadName();
@@ -38,12 +45,14 @@ namespace Elcarim::Input::Device {
 		const bool isButtonPressed(uint8_t button);
 		const bool isButtonDown(uint8_t button);
 		const float getAxisValue(uint8_t axis);
+		const float getTriggerValue(uint8_t trigger);
 		void resetAllButtonStates();
 		void resetAllAxisStates();
+		void resetAllTriggerStates();
 		~Gamepad();
-		static Gamepad* const getInstance();
+		static Gamepad* const createInstance();
 	private:
-		GLFWgamepadstate m_state = GLFWgamepadstate();
+		State m_state = State();
 		bool focused = true;
 		static Gamepad* s_instance;
 
