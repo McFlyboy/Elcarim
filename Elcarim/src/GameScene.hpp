@@ -3,6 +3,7 @@
 #include "Scene.hpp"
 
 #include "GameControls.hpp"
+#include "Camera.hpp"
 #include "Model.hpp"
 #include "Models.hpp"
 #include "Texture.hpp"
@@ -19,6 +20,7 @@ namespace Elcarim::Scene::Scenes {
 		virtual void update(const float deltaTime) override;
 	private:
 		Input::GameControls* m_controls = nullptr;
+		Objects::Camera* m_camera = nullptr;
 		Graphics::Model* m_square = nullptr;
 		Graphics::Texture* m_niamTex = nullptr;
 		Graphics::Texture* m_bgTex = nullptr;

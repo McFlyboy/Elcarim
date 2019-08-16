@@ -7,6 +7,7 @@
 #include "Model.hpp"
 #include "Texture.hpp"
 #include "GameObject.hpp"
+#include "Camera.hpp"
 
 namespace Elcarim::Graphics {
 	class Renderer {
@@ -24,6 +25,7 @@ namespace Elcarim::Graphics {
 		void clear();
 		void setClearColor(const float red, const float green, const float blue);
 		void setClearColor(const unsigned int color);
+		void setCameraView(Objects::Camera* camera);
 		void render(Objects::GameObject* object);
 		~Renderer();
 	private:

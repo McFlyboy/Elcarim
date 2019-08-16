@@ -3,6 +3,7 @@
 namespace Elcarim::Scene::Scenes {
 	GameScene::GameScene(Input::Device::Keyboard* const keyboard, Input::Device::Gamepad* const gamepad) {
 		m_controls = new Input::GameControls(keyboard, gamepad);
+		m_camera = new Objects::Camera();
 		m_square = Util::Models::createSquareModel();
 		m_niamTex = new Graphics::Texture("niam.png");
 		m_bgTex = new Graphics::Texture("background.png");
@@ -11,8 +12,12 @@ namespace Elcarim::Scene::Scenes {
 	}
 	void GameScene::update(const float deltaTime) {
 		m_niam->getTransformation().getPosition().x += m_controls->getHorizontalMovement() * deltaTime * 100.0f;
+		m_camera->getTransformation().getAngle() += deltaTime * 100.0f;
+		m_camera->getTransformation().getScale().x = 2.0f;
 	}
 	void GameScene::render(Graphics::Renderer* const renderer) {
+		renderer->setCameraView(m_camera);
+
 		renderer->render(m_background);
 		renderer->render(m_niam);
 	}
@@ -31,6 +36,9 @@ namespace Elcarim::Scene::Scenes {
 
 		delete m_square;
 		m_square = nullptr;
+
+		delete m_camera;
+		m_camera = nullptr;
 
 		delete m_controls;
 		m_controls = nullptr;

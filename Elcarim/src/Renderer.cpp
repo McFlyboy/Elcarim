@@ -83,6 +83,10 @@ namespace Elcarim::Graphics {
 			static_cast<float>(color & 0xFF) / 255.0f
 		);
 	}
+	void Renderer::setCameraView(Objects::Camera* camera) {
+		auto transformation = camera->getTransformation();
+		m_shader->set2DView(transformation.getPosition(), transformation.getScale(), transformation.getAngle());
+	}
 	void Renderer::render(Objects::GameObject* object) {
 		auto texturedModel = object->getFirstComponentOfType<Objects::Components::TexturedModelComponent>();
 		if (!texturedModel) {
@@ -93,7 +97,8 @@ namespace Elcarim::Graphics {
 		model->bind();
 		glActiveTexture(GL_TEXTURE0);
 		texture->bind();
-		m_shader->set2DTransformation(object->getTransformation().getPosition(), object->getTransformation().getScale(), object->getTransformation().getAngle());
+		auto transformation = object->getTransformation();
+		m_shader->set2DTransformation(transformation.getPosition(), transformation.getScale(), transformation.getAngle());
 		glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
 		Texture::unbind();
 		Model::unbind();
