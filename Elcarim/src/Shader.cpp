@@ -20,10 +20,14 @@ namespace Elcarim::Graphics::Shading {
 		loadMat3(m_transformationLocation, transformation);
 	}
 	void Shader::set2DView(glm::vec2 position, glm::vec2 scale, float angle) {
+		float radians = glm::radians(-angle);
+		glm::mat3 positioningMatrix = glm::mat3(1.0f);
+		positioningMatrix = glm::scale(positioningMatrix, scale);
+		positioningMatrix = glm::rotate(positioningMatrix, radians);
 		glm::mat3 view = glm::mat3(1.0f);
-		view = glm::translate(view, /*glm::vec2(Renderer::PROJECTION_RESOLUTION_WIDTH / 2.0f, Renderer::PROJECTION_RESOLUTION_HEIGHT / 2.0f)*/ - position);
+		view = glm::translate(view, (glm::vec2(positioningMatrix * glm::vec3(-position, 1.0f))));
 		view = glm::scale(view, scale);
-		view = glm::rotate(view, glm::radians(-angle));
+		view = glm::rotate(view, radians);
 		loadMat3(m_viewLocation, view);
 	}
 	void Shader::setOrthographicProjection(const float width, const float height, const float nearPlane, const float farPlane) {

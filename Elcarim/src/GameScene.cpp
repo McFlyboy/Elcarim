@@ -7,13 +7,11 @@ namespace Elcarim::Scene::Scenes {
 		m_square = Util::Models::createSquareModel();
 		m_niamTex = new Graphics::Texture("niam.png");
 		m_bgTex = new Graphics::Texture("background.png");
-		m_niam = new Objects::Niam(glm::vec2(8.0f, 8.0f), m_square, m_niamTex);
+		m_niam = new Objects::Niam(Objects::Camera::getLowerEdge() + glm::vec2(0.0f, 8.0f), m_square, m_niamTex);
 		m_background = new Objects::Background(m_square, m_bgTex);
 	}
 	void GameScene::update(const float deltaTime) {
 		m_niam->getTransformation().getPosition().x += m_controls->getHorizontalMovement() * deltaTime * 100.0f;
-		m_camera->getTransformation().getAngle() += deltaTime * 100.0f;
-		m_camera->getTransformation().getScale().x = 2.0f;
 	}
 	void GameScene::render(Graphics::Renderer* const renderer) {
 		renderer->setCameraView(m_camera);

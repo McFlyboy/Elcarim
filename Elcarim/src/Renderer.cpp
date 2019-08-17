@@ -2,14 +2,11 @@
 
 #include <stdexcept>
 
-#include <glm/glm.hpp>
-
+#include "Camera.hpp"
 #include "TexturedModelComponent.hpp"
 
 namespace Elcarim::Graphics {
 	const float Renderer::ASPECT_RATION = 16.0f / 9.0f;
-	const float Renderer::PROJECTION_RESOLUTION_WIDTH = 512.0f;
-	const float Renderer::PROJECTION_RESOLUTION_HEIGHT = 288.0f;
 
 	Renderer::Renderer(GLFWwindow* const window, const int width, const int height) : m_window(window) {
 		glfwMakeContextCurrent(window);
@@ -22,7 +19,7 @@ namespace Elcarim::Graphics {
 		setViewPort(width, height);
 		m_shader = new Shading::Shader("Shader");
 		m_shader->startProgram();
-		m_shader->setOrthographicProjection(PROJECTION_RESOLUTION_WIDTH, PROJECTION_RESOLUTION_HEIGHT, -1.0f, 1.0f);
+		m_shader->setOrthographicProjection(Objects::Camera::PROJECTION_RESOLUTION_WIDTH, Objects::Camera::PROJECTION_RESOLUTION_HEIGHT, 1.0f, -1.0f);
 	}
 	void Renderer::swapBuffers() {
 		glfwSwapBuffers(m_window);

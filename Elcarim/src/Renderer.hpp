@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 
 #include "Shader.hpp"
 #include "Model.hpp"
@@ -13,8 +14,6 @@ namespace Elcarim::Graphics {
 	class Renderer {
 	public:
 		static const float ASPECT_RATION;
-		static const float PROJECTION_RESOLUTION_WIDTH;
-		static const float PROJECTION_RESOLUTION_HEIGHT;
 
 		Renderer(GLFWwindow* const window, const int width, const int height);
 		void swapBuffers();
