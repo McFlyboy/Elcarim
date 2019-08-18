@@ -3,7 +3,7 @@
 #include "GameScene.hpp"
 
 namespace Elcarim::Scene {
-	SceneManager::SceneManager(Graphics::Renderer* const renderer, Input::Device::Keyboard* const keyboard, Input::Device::Gamepad* const gamepad) :
+	SceneManager::SceneManager(Graphics::Renderer* const renderer, Input::Devices::Keyboard* const keyboard, Input::Devices::Gamepad* const gamepad) :
 		m_renderer(renderer),
 		m_keyboard(keyboard),
 		m_gamepad(gamepad)

@@ -1,7 +1,7 @@
 #include "Controls.hpp"
 
 namespace Elcarim::Input {
-	Controls::Controls(Device::Keyboard* const keyboard, Device::Gamepad* const gamepad) : m_keyboard(keyboard), m_gamepad(gamepad) {}
+	Controls::Controls(Devices::Keyboard* const keyboard, Devices::Gamepad* const gamepad) : m_keyboard(keyboard), m_gamepad(gamepad) {}
 	const bool Controls::isPressed(const unsigned int index) {
 		auto mapping = keyButtonMapping[index];
 		return m_keyboard->isKeyPressed(mapping.first) || m_gamepad->isButtonPressed(mapping.second);

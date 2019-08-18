@@ -29,6 +29,6 @@ namespace Elcarim::Graphics {
 		~Renderer();
 	private:
 		GLFWwindow* const m_window = nullptr;
-		Shading::Shader* m_shader = nullptr;
+		Shading::Shaders::Shader* m_shader = nullptr;
 	};
 }

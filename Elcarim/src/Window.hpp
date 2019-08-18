@@ -25,9 +25,9 @@ namespace Elcarim {
 		void update();
 		void updateFrame();
 		Graphics::Renderer* const getRenderer() const;
-		Input::Device::Keyboard* const getKeyboard() const;
-		Input::Device::Mouse* const getMouse() const;
-		Input::Device::Gamepad* const getGamepad() const;
+		Input::Devices::Keyboard* const getKeyboard() const;
+		Input::Devices::Mouse* const getMouse() const;
+		Input::Devices::Gamepad* const getGamepad() const;
 		const double getTime() const;
 		const double getDeltaTime();
 		~Window();
@@ -40,9 +40,9 @@ namespace Elcarim {
 		int m_height = 0;
 		bool m_focused = false;
 		Graphics::Renderer* m_renderer = nullptr;
-		Input::Device::Keyboard* m_keyboard = nullptr;
-		Input::Device::Mouse* m_mouse = nullptr;
-		Input::Device::Gamepad* m_gamepad = nullptr;
+		Input::Devices::Keyboard* m_keyboard = nullptr;
+		Input::Devices::Mouse* m_mouse = nullptr;
+		Input::Devices::Gamepad* m_gamepad = nullptr;
 		static Window* s_instance;
 
 		Window(const int width, const int height, const char* const title, const bool fullscreen);

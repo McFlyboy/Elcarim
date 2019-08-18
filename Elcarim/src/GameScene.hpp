@@ -13,7 +13,7 @@
 namespace Elcarim::Scene::Scenes {
 	class GameScene : public Scene {
 	public:
-		GameScene(Input::Device::Keyboard* const keyboard, Input::Device::Gamepad* const gamepad);
+		GameScene(Input::Devices::Keyboard* const keyboard, Input::Devices::Gamepad* const gamepad);
 		virtual void render(Graphics::Renderer* const renderer) override;
 		virtual ~GameScene() override;
 	protected:

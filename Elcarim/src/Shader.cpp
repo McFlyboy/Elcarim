@@ -5,21 +5,21 @@
 
 #include "Renderer.hpp"
 
-namespace Elcarim::Graphics::Shading {
+namespace Elcarim::Graphics::Shading::Shaders {
 	Shader::Shader(const std::string& shaderName) :
 		ShaderProgram(shaderName),
 		m_transformationLocation(registerUniformLocation("transformation")),
 		m_viewLocation(registerUniformLocation("view")),
 		m_projectionLocation(registerUniformLocation("projection"))
 	{}
-	void Shader::set2DTransformation(glm::vec2 position, glm::vec2 scale, float angle) {
+	void Shader::set2DTransformation(glm::vec2& position, glm::vec2& scale, float& angle) {
 		glm::mat3 transformation = glm::mat3(1.0f);
 		transformation = glm::translate(transformation, position);
 		transformation = glm::scale(transformation, scale);
 		transformation = glm::rotate(transformation, glm::radians(angle));
 		loadMat3(m_transformationLocation, transformation);
 	}
-	void Shader::set2DView(glm::vec2 position, glm::vec2 scale, float angle) {
+	void Shader::set2DView(glm::vec2& position, glm::vec2& scale, float& angle) {
 		float radians = glm::radians(-angle);
 		glm::mat3 positioningMatrix = glm::mat3(1.0f);
 		positioningMatrix = glm::scale(positioningMatrix, scale);

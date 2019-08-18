@@ -18,8 +18,8 @@ namespace Elcarim {
 		ErrorHandler* m_errorHandler = nullptr;
 		Window* m_window = nullptr;
 		Graphics::Renderer* m_renderer = nullptr;
-		Input::Device::Keyboard* m_keyboard = nullptr;
-		Input::Device::Gamepad* m_gamepad = nullptr;
+		Input::Devices::Keyboard* m_keyboard = nullptr;
+		Input::Devices::Gamepad* m_gamepad = nullptr;
 		Scene::SceneManager* m_sceneManager = nullptr;
 
 		bool start();

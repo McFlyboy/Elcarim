@@ -34,7 +34,7 @@ namespace Elcarim {
 		glfwSetWindowFocusCallback(m_window, [](GLFWwindow* window, int focused) {
 			Window* instance = (Window*)glfwGetWindowUserPointer(window);
 			instance->m_focused = focused;
-			Input::Device::Gamepad* gamepad = instance->getGamepad();
+			Input::Devices::Gamepad* gamepad = instance->getGamepad();
 			gamepad->setFocued(focused);
 			if (!focused) {
 				gamepad->resetAllAxisStates();
@@ -45,9 +45,9 @@ namespace Elcarim {
 		m_monitorVideoMode = glfwGetVideoMode(m_activeMonitor);
 		center();
 		m_renderer = new Graphics::Renderer(m_window, m_width, m_height);
-		m_keyboard = new Input::Device::Keyboard(m_window);
-		m_mouse = new Input::Device::Mouse(m_window);
-		m_gamepad = Input::Device::Gamepad::createInstance();
+		m_keyboard = new Input::Devices::Keyboard(m_window);
+		m_mouse = new Input::Devices::Mouse(m_window);
+		m_gamepad = Input::Devices::Gamepad::createInstance();
 	}
 	const int Window::getActiveMonitorWidth() const {
 		return m_monitorVideoMode->width;
@@ -122,13 +122,13 @@ namespace Elcarim {
 	Graphics::Renderer* const Window::getRenderer() const {
 		return m_renderer;
 	}
-	Input::Device::Keyboard* const Window::getKeyboard() const {
+	Input::Devices::Keyboard* const Window::getKeyboard() const {
 		return m_keyboard;
 	}
-	Input::Device::Mouse* const Window::getMouse() const {
+	Input::Devices::Mouse* const Window::getMouse() const {
 		return m_mouse;
 	}
-	Input::Device::Gamepad* const Window::getGamepad() const {
+	Input::Devices::Gamepad* const Window::getGamepad() const {
 		return m_gamepad;
 	}
 	const double Window::getTime() const {

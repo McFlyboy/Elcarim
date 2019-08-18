@@ -3,7 +3,7 @@
 #include <array>
 #include <algorithm>
 
-namespace Elcarim::Input::Device {
+namespace Elcarim::Input::Devices {
 	//Fix for too fast key-pressing.
 	//Overrides all other state-flags
 	const uint8_t KEY_DOUBLESTATE_PRESS_AND_RELEASE = 4u;

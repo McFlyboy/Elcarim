@@ -4,7 +4,7 @@
 
 #include <GLFW/glfw3.h>
 
-namespace Elcarim::Input::Device {
+namespace Elcarim::Input::Devices {
 	class Keyboard {
 	public:
 		/* Printable keys */

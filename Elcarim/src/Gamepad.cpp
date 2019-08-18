@@ -3,7 +3,7 @@
 #include <memory>
 #include <cstdlib>
 
-namespace Elcarim::Input::Device {
+namespace Elcarim::Input::Devices {
 	Gamepad* Gamepad::s_instance = nullptr;
 
 	//Fix for too fast button-pressing.

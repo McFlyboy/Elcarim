@@ -15,9 +15,6 @@
     <Filter Include="Elcarim\Input">
       <UniqueIdentifier>{ecfaee70-319f-40cd-b751-b96b9017ab04}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Elcarim\Input\Device">
-      <UniqueIdentifier>{27efa6a7-5641-404f-9039-86d052eb1b51}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\images">
       <UniqueIdentifier>{d906dcda-26df-4f40-964c-d0c95211013a}</UniqueIdentifier>
       <Extensions>png;ico</Extensions>
@@ -44,12 +41,6 @@
     <Filter Include="Resource Files\images\textures">
       <UniqueIdentifier>{9eb4be76-9d72-4b94-a4aa-4e0e01075b68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Elcarim\Objects">
-      <UniqueIdentifier>{85431a49-e058-4b26-8ce7-7e04e15e74db}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Elcarim\Objects\Components">
-      <UniqueIdentifier>{f2d9f4f7-a86d-4662-b29d-f1d7ece0cc32}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Elcarim\Timing">
       <UniqueIdentifier>{6cbc6561-e6d2-455b-9cd8-8bf3ef085ee2}</UniqueIdentifier>
     </Filter>
@@ -58,6 +49,18 @@
     </Filter>
     <Filter Include="Elcarim\Scene\Scenes">
       <UniqueIdentifier>{605c44b9-6781-41e7-9e0c-0b59d644fd63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Graphics\Shading\Shaders">
+      <UniqueIdentifier>{4bfcc021-0c7c-4482-bb13-c8851e63e093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Objects">
+      <UniqueIdentifier>{85431a49-e058-4b26-8ce7-7e04e15e74db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Objects\Components">
+      <UniqueIdentifier>{f2d9f4f7-a86d-4662-b29d-f1d7ece0cc32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elcarim\Input\Devices">
+      <UniqueIdentifier>{27efa6a7-5641-404f-9039-86d052eb1b51}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -74,13 +77,13 @@
       <Filter>Elcarim\Util</Filter>
     </ClCompile>
     <ClCompile Include="src\Gamepad.cpp">
-      <Filter>Elcarim\Input\Device</Filter>
+      <Filter>Elcarim\Input\Devices</Filter>
     </ClCompile>
     <ClCompile Include="src\Keyboard.cpp">
-      <Filter>Elcarim\Input\Device</Filter>
+      <Filter>Elcarim\Input\Devices</Filter>
     </ClCompile>
     <ClCompile Include="src\Mouse.cpp">
-      <Filter>Elcarim\Input\Device</Filter>
+      <Filter>Elcarim\Input\Devices</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer.cpp">
       <Filter>Elcarim\Graphics</Filter>
@@ -103,9 +106,6 @@
     <ClCompile Include="src\Texture.cpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\Shader.cpp">
-      <Filter>Elcarim\Graphics\Shading</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Elcarim\Objects</Filter>
     </ClCompile>
@@ -117,12 +117,6 @@
     </ClCompile>
     <ClCompile Include="src\TexturedModelComponent.cpp">
       <Filter>Elcarim\Objects\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Niam.cpp">
-      <Filter>Elcarim\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Background.cpp">
-      <Filter>Elcarim\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\Timer.cpp">
       <Filter>Elcarim\Timing</Filter>
@@ -145,7 +139,16 @@
     <ClCompile Include="src\GameControls.cpp">
       <Filter>Elcarim\Input</Filter>
     </ClCompile>
+    <ClCompile Include="src\Shader.cpp">
+      <Filter>Elcarim\Graphics\Shading\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Background.cpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClCompile>
     <ClCompile Include="src\Camera.cpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Niam.cpp">
       <Filter>Elcarim\Objects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -160,13 +163,13 @@
       <Filter>Elcarim\Util</Filter>
     </ClInclude>
     <ClInclude Include="src\Gamepad.hpp">
-      <Filter>Elcarim\Input\Device</Filter>
+      <Filter>Elcarim\Input\Devices</Filter>
     </ClInclude>
     <ClInclude Include="src\Keyboard.hpp">
-      <Filter>Elcarim\Input\Device</Filter>
+      <Filter>Elcarim\Input\Devices</Filter>
     </ClInclude>
     <ClInclude Include="src\Mouse.hpp">
-      <Filter>Elcarim\Input\Device</Filter>
+      <Filter>Elcarim\Input\Devices</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
@@ -189,9 +192,6 @@
     <ClInclude Include="src\Texture.hpp">
       <Filter>Elcarim\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\Shader.hpp">
-      <Filter>Elcarim\Graphics\Shading</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameObject.hpp">
       <Filter>Elcarim\Objects</Filter>
     </ClInclude>
@@ -203,12 +203,6 @@
     </ClInclude>
     <ClInclude Include="src\TexturedModelComponent.hpp">
       <Filter>Elcarim\Objects\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Niam.hpp">
-      <Filter>Elcarim\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Background.hpp">
-      <Filter>Elcarim\Objects</Filter>
     </ClInclude>
     <ClInclude Include="src\Timer.hpp">
       <Filter>Elcarim\Timing</Filter>
@@ -231,7 +225,16 @@
     <ClInclude Include="src\GameControls.hpp">
       <Filter>Elcarim\Input</Filter>
     </ClInclude>
+    <ClInclude Include="src\Shader.hpp">
+      <Filter>Elcarim\Graphics\Shading\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Background.hpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
     <ClInclude Include="src\Camera.hpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Niam.hpp">
       <Filter>Elcarim\Objects</Filter>
     </ClInclude>
   </ItemGroup>

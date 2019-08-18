@@ -45,19 +45,20 @@ namespace Elcarim {
 	}
 	bool Game::update() {
 		m_window->update();
-		if (m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_ESCAPE)) {
+		m_gamepad->update();
+		if (m_keyboard->isKeyPressed(Input::Devices::Keyboard::KEY_ESCAPE) || m_gamepad->isButtonPressed(Input::Devices::Gamepad::BUTTON_START)) {
 			m_window->close();
 			return true;
 		}
 		if (
-			m_keyboard->isKeyPressed(Input::Device::Keyboard::KEY_F11)
+			m_keyboard->isKeyPressed(Input::Devices::Keyboard::KEY_F11)
+			|| m_gamepad->isButtonPressed(Input::Devices::Gamepad::BUTTON_BACK)
 #if defined(_WIN32) || defined(__APPLE__)
 			|| m_keyboard->isFullscreenShortcutPressed()
 #endif
 		) {
 			m_window->setFullscreen(!m_window->isFullscreen());
 		}
-		m_gamepad->update();
 		m_sceneManager->updateActiveScene();
 		return true;
 	}

@@ -1,6 +1,7 @@
 #include "Renderer.hpp"
 
 #include <stdexcept>
+#include <cmath>
 
 #include "Camera.hpp"
 #include "TexturedModelComponent.hpp"
@@ -17,7 +18,7 @@ namespace Elcarim::Graphics {
 			throw std::runtime_error("Failed to load GLAD\n");
 		}
 		setViewPort(width, height);
-		m_shader = new Shading::Shader("Shader");
+		m_shader = new Shading::Shaders::Shader("Shader");
 		m_shader->startProgram();
 		m_shader->setOrthographicProjection(Objects::Camera::PROJECTION_RESOLUTION_WIDTH, Objects::Camera::PROJECTION_RESOLUTION_HEIGHT, 1.0f, -1.0f);
 	}
@@ -94,7 +95,7 @@ namespace Elcarim::Graphics {
 		model->bind();
 		glActiveTexture(GL_TEXTURE0);
 		texture->bind();
-		auto transformation = object->getTransformation();
+		auto& transformation = object->getTransformation();
 		m_shader->set2DTransformation(transformation.getPosition(), transformation.getScale(), transformation.getAngle());
 		glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
 		Texture::unbind();
