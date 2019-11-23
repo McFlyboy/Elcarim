@@ -71,7 +71,7 @@ namespace Elcarim::Input::Devices {
 	void Keyboard::resetAllKeyStates() const {
 		std::for_each(keyStates.begin(), keyStates.end(), [](uint8_t& keyState) {
 			keyState = GLFW_RELEASE;
-			});
+		});
 	}
 	Keyboard::~Keyboard() {
 		glfwSetKeyCallback(m_window, nullptr);

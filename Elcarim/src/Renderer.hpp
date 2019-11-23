@@ -7,13 +7,15 @@
 #include "Shader.hpp"
 #include "Model.hpp"
 #include "Texture.hpp"
+#include "Color3.hpp"
+#include "Color4.hpp"
 #include "GameObject.hpp"
 #include "Camera.hpp"
 
 namespace Elcarim::Graphics {
 	class Renderer {
 	public:
-		static const float ASPECT_RATION;
+		static const float ASPECT_RATIO;
 
 		Renderer(GLFWwindow* const window, const int width, const int height);
 		void swapBuffers();
@@ -22,8 +24,8 @@ namespace Elcarim::Graphics {
 		void setWireframe(const bool wireframe);
 		void setAlphaBlend(const bool alphablend);
 		void clear();
-		void setClearColor(const float red, const float green, const float blue);
-		void setClearColor(const unsigned int color);
+		void setClearColor(const Color3& color);
+		void setClearColor(const Color4& color);
 		void setCameraView(Objects::Camera* camera);
 		void render(Objects::GameObject* object);
 		~Renderer();

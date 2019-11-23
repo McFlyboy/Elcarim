@@ -151,6 +151,12 @@
     <ClCompile Include="src\Niam.cpp">
       <Filter>Elcarim\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\Color3.cpp">
+      <Filter>Elcarim\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Color4.cpp">
+      <Filter>Elcarim\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -236,6 +242,15 @@
     </ClInclude>
     <ClInclude Include="src\Niam.hpp">
       <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Color3.hpp">
+      <Filter>Elcarim\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Color.hpp">
+      <Filter>Elcarim\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Color4.hpp">
+      <Filter>Elcarim\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

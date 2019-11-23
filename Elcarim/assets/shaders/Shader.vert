@@ -9,7 +9,7 @@ uniform mat4 projection;
 uniform mat3 view;
 uniform mat3 transformation;
 
-void main(){
+void main() {
 	gl_Position = projection * vec4((view * transformation * vec3(vertex, 1.0)).xy, 0.0, 1.0);
 	passTextureCoord = textureCoord;
 }

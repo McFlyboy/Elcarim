@@ -7,7 +7,7 @@
 #include "TexturedModelComponent.hpp"
 
 namespace Elcarim::Graphics {
-	const float Renderer::ASPECT_RATION = 16.0f / 9.0f;
+	const float Renderer::ASPECT_RATIO = 16.0f / 9.0f;
 
 	Renderer::Renderer(GLFWwindow* const window, const int width, const int height) : m_window(window) {
 		glfwMakeContextCurrent(window);
@@ -34,13 +34,13 @@ namespace Elcarim::Graphics {
 		int aspectFixY = 0;
 		int aspectFixWidth = 0;
 		int aspectFixHeight = 0;
-		if (aspectRatio == ASPECT_RATION) {
+		if (aspectRatio == ASPECT_RATIO) {
 			aspectFixX = 0;
 			aspectFixY = 0;
 			aspectFixWidth = width;
 			aspectFixHeight = height;
 		}
-		else if (aspectRatio < ASPECT_RATION) {
+		else if (aspectRatio < ASPECT_RATIO) {
 			int heightOffset = height / 2 - 9 * width / 32;
 			aspectFixX = 0;
 			aspectFixY = heightOffset;
@@ -71,15 +71,11 @@ namespace Elcarim::Graphics {
 	void Renderer::clear() {
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
-	void Renderer::setClearColor(const float red, const float green, const float blue) {
-		glClearColor(red, green, blue, 1.0f);
+	void Renderer::setClearColor(const Color3& color) {
+		glClearColor(color.r, color.g, color.b, 1.0f);
 	}
-	void Renderer::setClearColor(const unsigned int color) {
-		setClearColor(
-			static_cast<float>((color & 0xFF0000) >> 16) / 255.0f,
-			static_cast<float>((color & 0xFF00) >> 8) / 255.0f,
-			static_cast<float>(color & 0xFF) / 255.0f
-		);
+	void Renderer::setClearColor(const Color4& color) {
+		glClearColor(color.r, color.g, color.b, color.a);
 	}
 	void Renderer::setCameraView(Objects::Camera* camera) {
 		auto transformation = camera->getTransformation();
