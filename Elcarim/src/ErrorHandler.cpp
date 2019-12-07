@@ -10,7 +10,7 @@ namespace Elcarim {
 	ErrorHandler::ErrorHandler() {
 		glfwSetErrorCallback([](int error, const char* description) {
 			std::cerr << "Error " << error << ":\n" << description << "\n\n";
-			});
+		});
 	}
 	void ErrorHandler::write(const std::string& errorMessage) {
 		std::cerr << errorMessage;

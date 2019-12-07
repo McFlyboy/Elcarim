@@ -7,8 +7,6 @@
 #include "TexturedModelComponent.hpp"
 
 namespace Elcarim::Graphics {
-	const float Renderer::ASPECT_RATIO = 16.0f / 9.0f;
-
 	Renderer::Renderer(GLFWwindow* const window, const int width, const int height) : m_window(window) {
 		glfwMakeContextCurrent(window);
 		if (!glfwGetCurrentContext()) {

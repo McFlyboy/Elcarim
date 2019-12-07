@@ -15,7 +15,7 @@
 namespace Elcarim::Graphics {
 	class Renderer {
 	public:
-		static const float ASPECT_RATIO;
+		static constexpr float ASPECT_RATIO = 16.0f / 9.0f;
 
 		Renderer(GLFWwindow* const window, const int width, const int height);
 		void swapBuffers();
