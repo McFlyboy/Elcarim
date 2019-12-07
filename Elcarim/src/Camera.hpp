@@ -8,6 +8,9 @@ namespace Elcarim::Objects {
 		static const float PROJECTION_RESOLUTION_WIDTH;
 		static const float PROJECTION_RESOLUTION_HEIGHT;
 
+		static constexpr glm::vec2 getCenter() {
+			return glm::vec2();
+		}
 		static constexpr glm::vec2 getUpperLeftCorner() {
 			return glm::vec2(-PROJECTION_RESOLUTION_WIDTH, PROJECTION_RESOLUTION_HEIGHT) / 2.0f;
 		}

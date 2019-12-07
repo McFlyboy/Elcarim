@@ -67,9 +67,6 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Elcarim</Filter>
     </ClCompile>
-    <ClCompile Include="src\Laucher.cpp">
-      <Filter>Elcarim</Filter>
-    </ClCompile>
     <ClCompile Include="src\Window.cpp">
       <Filter>Elcarim</Filter>
     </ClCompile>
@@ -156,6 +153,15 @@
     </ClCompile>
     <ClCompile Include="src\Color4.cpp">
       <Filter>Elcarim\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Launcher.cpp">
+      <Filter>Elcarim</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ball.cpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MovementComponent.cpp">
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,6 +257,12 @@
     </ClInclude>
     <ClInclude Include="src\Color4.hpp">
       <Filter>Elcarim\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ball.hpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MovementComponent.hpp">
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
