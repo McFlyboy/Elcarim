@@ -1,4 +1,5 @@
 #include "GameScene.hpp"
+
 #include <algorithm>
 
 namespace Elcarim::Scene::Scenes {
@@ -49,6 +50,7 @@ namespace Elcarim::Scene::Scenes {
 		deleteObject(m_background);
 		deleteObject(m_niam);
 		deleteObject(m_ball);
+		m_ballMovement = nullptr;
 		deleteObject(m_niamTex);
 		deleteObject(m_bgTex);
 		deleteObject(m_square);

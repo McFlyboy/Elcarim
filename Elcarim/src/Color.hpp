@@ -9,7 +9,7 @@ namespace Elcarim::Graphics {
 			return components[index];
 		}
 
-		Color<N> capped(const Color<N>& color) {
+		Color<N> capped(const Color<N>& color) const {
 			Color<N> result;
 			for (int i = 0; i < N; i++) {
 				result[i] = std::min(std::max(color.components[i], 0.0f), 1.0f);
@@ -22,33 +22,33 @@ namespace Elcarim::Graphics {
 			}
 		}
 
-		Color<N> operator+(Color<N>&& color) { return operator+(color); }
-		Color<N> operator+(Color<N>& color) {
+		Color<N> operator+(const Color<N>&& color) const { return operator+(color); }
+		Color<N> operator+(const Color<N>& color) const {
 			Color<N> result;
 			for (int i = 0; i < N; i++) {
-				result[i] = components[i] + color[i];
+				result[i] = components[i] + color.components[i];
 			}
 			return result;
 		}
-		void operator+=(Color<N>&& color) { operator+=(color); }
-		void operator+=(Color<N>& color) {
+		void operator+=(const Color<N>&& color) { operator+=(color); }
+		void operator+=(const Color<N>& color) {
 			for (int i = 0; i < N; i++) {
-				components[i] += color[i];
+				components[i] += color.components[i];
 			}
 		}
 
-		Color<N> operator-(Color<N>&& color) { return operator-(color); }
-		Color<N> operator-(Color<N>& color) {
+		Color<N> operator-(const Color<N>&& color) const { return operator-(color); }
+		Color<N> operator-(const Color<N>& color) const {
 			Color<N> result;
 			for (int i = 0; i < N; i++) {
-				result[i] = components[i] - color[i];
+				result[i] = components[i] - color.components[i];
 			}
 			return result;
 		}
-		void operator-=(Color<N>&& color) { operator-=(color); }
-		void operator-=(Color<N>& color) {
+		void operator-=(const Color<N>&& color) { operator-=(color); }
+		void operator-=(const Color<N>& color) {
 			for (int i = 0; i < N; i++) {
-				components[i] -= color[i];
+				components[i] -= color.components[i];
 			}
 		}
 
@@ -59,7 +59,7 @@ namespace Elcarim::Graphics {
 			}
 			return result;
 		}
-		friend Color<N> operator*(const float mul, Color<N> color) {
+		friend Color<N> operator*(const float mul, Color<N>& color) {
 			Color<N> result;
 			for (int i = 0; i < N; i++) {
 				result[i] = color.components[i] * mul;
@@ -69,11 +69,6 @@ namespace Elcarim::Graphics {
 		void operator*=(const float mul) {
 			for (int i = 0; i < N; i++) {
 				components[i] *= mul;
-			}
-		}
-		friend void operator*=(const float mul, Color<N> color) {
-			for (int i = 0; i < N; i++) {
-				color.components[i] *= mul;
 			}
 		}
 
@@ -87,7 +82,7 @@ namespace Elcarim::Graphics {
 			}
 			return result;
 		}
-		friend Color<N> operator/(const float div, Color<N> color) {
+		friend Color<N> operator/(const float div, Color<N>& color) {
 			Color<N> result;
 			if (div == 0.0f) {
 				return result;
@@ -106,17 +101,6 @@ namespace Elcarim::Graphics {
 			}
 			for (int i = 0; i < N; i++) {
 				components[i] /= div;
-			}
-		}
-		friend void operator/=(const float div, Color<N> color) {
-			if (div == 0.0f) {
-				for (int i = 0; i < N; i++) {
-					color.components[i] = 0.0f;
-				}
-				return;
-			}
-			for (int i = 0; i < N; i++) {
-				color.components[i] /= div;
 			}
 		}
 	private:
