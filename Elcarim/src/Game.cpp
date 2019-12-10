@@ -4,7 +4,7 @@ namespace Elcarim {
 	const char* const Game::TITLE = "Elcarim (Project 1996)";
 
 	bool Game::start() {
-		m_errorHandler = ErrorHandler::getInstance();
+		ErrorHandler::getInstance();
 		if (!(m_window = Window::createInstance(1280, 720, TITLE, false))) {
 			return false;
 		}
@@ -76,8 +76,5 @@ namespace Elcarim {
 		m_renderer = nullptr;
 		m_keyboard = nullptr;
 		m_gamepad = nullptr;
-
-		delete m_errorHandler;
-		m_errorHandler = nullptr;
 	}
 }

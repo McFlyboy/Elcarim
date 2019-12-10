@@ -5,8 +5,6 @@
 #include <GLFW/glfw3.h>
 
 namespace Elcarim {
-	ErrorHandler* ErrorHandler::s_instance = nullptr;
-
 	ErrorHandler::ErrorHandler() {
 		glfwSetErrorCallback([](int error, const char* description) {
 			std::cerr << "Error " << error << ":\n" << description << "\n\n";
@@ -17,12 +15,9 @@ namespace Elcarim {
 	}
 	ErrorHandler::~ErrorHandler() {
 		glfwSetErrorCallback(nullptr);
-		s_instance = nullptr;
 	}
-	ErrorHandler* ErrorHandler::getInstance() {
-		if (!s_instance) {
-			s_instance = new ErrorHandler();
-		}
-		return s_instance;
+	ErrorHandler& ErrorHandler::getInstance() {
+		static ErrorHandler instance;
+		return instance;
 	}
 }

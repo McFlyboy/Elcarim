@@ -22,7 +22,7 @@ namespace Elcarim::Scene::Scenes {
 	protected:
 		virtual void update(const float deltaTime) override;
 	private:
-		Input::GameControls* m_controls = nullptr;
+		Input::GameControls m_controls;
 		Objects::Camera* m_camera = nullptr;
 		Graphics::Model* m_square = nullptr;
 		Graphics::Texture* m_niamTex = nullptr;

@@ -166,7 +166,7 @@ namespace Elcarim {
 				s_instance = new Window(width, height, title, fullscreen);
 			}
 			catch (std::exception& e) {
-				ErrorHandler::getInstance()->write(e.what());
+				ErrorHandler::getInstance().write(e.what());
 				delete s_instance;
 				s_instance = nullptr;
 			}

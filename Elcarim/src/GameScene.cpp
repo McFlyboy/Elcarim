@@ -3,21 +3,22 @@
 #include <algorithm>
 
 namespace Elcarim::Scene::Scenes {
-	GameScene::GameScene(Input::Devices::Keyboard* const keyboard, Input::Devices::Gamepad* const gamepad) {
-		m_controls = new Input::GameControls(keyboard, gamepad);
-		m_camera = new Objects::Camera();
-		m_square = Util::Models::createSquareModel();
-		m_niamTex = new Graphics::Texture("niam.png");
-		m_ballTex = new Graphics::Texture("ball.png");
-		m_bgTex = new Graphics::Texture("background.png");
-		m_niam = new Objects::Niam(Objects::Camera::getLowerEdge() + glm::vec2(0.0f, 8.0f), m_square, m_niamTex);
-		m_ball = new Objects::Ball(Objects::Camera::getCenter(), m_square, m_ballTex);
-		m_ballMovement = m_ball->getFirstComponentOfType<Elcarim::Objects::Components::MovementComponent>();
+	GameScene::GameScene(Input::Devices::Keyboard* const keyboard, Input::Devices::Gamepad* const gamepad) :
+		m_controls(Input::GameControls(keyboard, gamepad)),
+		m_camera(new Objects::Camera()),
+		m_square(Util::Models::createSquareModel()),
+		m_niamTex(new Graphics::Texture("niam.png")),
+		m_ballTex(new Graphics::Texture("ball.png")),
+		m_bgTex(new Graphics::Texture("background.png")),
+		m_niam(new Objects::Niam(Objects::Camera::getLowerEdge() + glm::vec2(0.0f, 8.0f), m_square, m_niamTex)),
+		m_ball(new Objects::Ball(Objects::Camera::getCenter(), m_square, m_ballTex)),
+		m_ballMovement(m_ball->getFirstComponentOfType<Elcarim::Objects::Components::MovementComponent>()),
+		m_background(new Objects::Background(m_square, m_bgTex))
+	{
 		m_ballMovement->setVelocity(100.0f, 100.0f);
-		m_background = new Objects::Background(m_square, m_bgTex);
 	}
 	void GameScene::update(const float deltaTime) {
-		m_niam->getTransformation().getPosition().x += m_controls->getHorizontalMovement() * 144.0f * deltaTime;
+		m_niam->getTransformation().getPosition().x += m_controls.getHorizontalMovement() * 144.0f * deltaTime;
 		m_ball->getTransformation().getPosition() += m_ballMovement->getVelocity() * deltaTime;
 		if (isObjectOutsideOfScreenX(m_niam)) {
 			float xPos = m_niam->getTransformation().getPosition().x;
@@ -55,7 +56,6 @@ namespace Elcarim::Scene::Scenes {
 		deleteObject(m_bgTex);
 		deleteObject(m_square);
 		deleteObject(m_camera);
-		deleteObject(m_controls);
 	}
 	bool GameScene::isObjectOutsideOfScreenX(Objects::GameObject* object) {
 		glm::vec2& pos = object->getTransformation().getPosition();

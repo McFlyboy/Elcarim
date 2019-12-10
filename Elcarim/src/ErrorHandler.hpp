@@ -7,10 +7,10 @@ namespace Elcarim {
 	public:
 		void write(const std::string& errorMessage);
 		~ErrorHandler();
-		static ErrorHandler* getInstance();
+		ErrorHandler(const ErrorHandler&) = delete;
+		void operator=(const ErrorHandler&) = delete;
+		static ErrorHandler& getInstance();
 	private:
-		static ErrorHandler* s_instance;
-
 		ErrorHandler();
 	};
 }

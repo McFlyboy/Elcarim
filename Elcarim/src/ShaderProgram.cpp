@@ -70,9 +70,9 @@ namespace Elcarim::Graphics::Shading {
 	}
 	void ShaderProgram::checkStatus(const unsigned int object, const unsigned int status, const std::string& errorMessage) const {
 		int success;
-		char infoLog[512];
 		glGetShaderiv(object, status, &success);
 		if (!success) {
+			char infoLog[512];
 			glGetShaderInfoLog(object, sizeof(infoLog), nullptr, infoLog);
 			throw std::runtime_error(errorMessage + "\n" + infoLog);
 		}

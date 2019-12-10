@@ -10,7 +10,7 @@ namespace Elcarim::Util {
 		stbi_set_flip_vertically_on_load(flip);
 		uint8_t* imgData = stbi_load(("assets/images/" + filename).c_str(), &width, &height, &colorComp, STBI_rgb_alpha);
 		if (!imgData) {
-			ErrorHandler::getInstance()->write("Failed to load image: assets/images/" + filename + "\n");
+			ErrorHandler::getInstance().write("Failed to load image: assets/images/" + filename + "\n");
 		}
 		return imgData;
 	}

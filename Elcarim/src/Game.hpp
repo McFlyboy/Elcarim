@@ -15,7 +15,6 @@ namespace Elcarim {
 		bool run();
 		~Game();
 	private:
-		ErrorHandler* m_errorHandler = nullptr;
 		Window* m_window = nullptr;
 		Graphics::Renderer* m_renderer = nullptr;
 		Input::Devices::Keyboard* m_keyboard = nullptr;
