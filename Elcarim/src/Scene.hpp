@@ -5,10 +5,13 @@
 #include "Renderer.hpp"
 #include "Keyboard.hpp"
 #include "Gamepad.hpp"
+#include "Camera.hpp"
 
 namespace Elcarim::Scene {
 	class Scene {
 	public:
+		static const float RELATIVE_SCENE_UNIT;
+
 		const bool isRunning() const;
 		Timing::Timer getTimer() const;
 		void start();

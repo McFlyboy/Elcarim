@@ -1,6 +1,11 @@
 #include "MovementComponent.hpp"
 
 namespace Elcarim::Objects::Components {
+	MovementComponent::MovementComponent(glm::vec2& position) : 
+		m_position(position),
+		m_velocity(glm::vec2()),
+		m_acceleration(glm::vec2())
+	{}
 	glm::vec2& MovementComponent::getVelocity() {
 		return m_velocity;
 	}
@@ -14,5 +19,9 @@ namespace Elcarim::Objects::Components {
 	void MovementComponent::setAcceleration(const float x, const float y) {
 		m_acceleration.x = x;
 		m_acceleration.y = y;
+	}
+	void MovementComponent::update(float deltaTime) {
+		m_velocity += m_acceleration * deltaTime;
+		m_position += m_velocity * deltaTime;
 	}
 }

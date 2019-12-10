@@ -8,7 +8,7 @@ namespace Elcarim::Objects {
 		auto& transformation = getTransformation();
 		transformation.getPosition() = position;
 		transformation.setScale(static_cast<float>(texture->getWidth()), static_cast<float>(texture->getHeight()));
-		addComponent(new Components::MovementComponent());
+		addComponent(new Components::MovementComponent(transformation.getPosition()));
 		addComponent(new Components::TexturedModelComponent(model, texture));
 	}
 }

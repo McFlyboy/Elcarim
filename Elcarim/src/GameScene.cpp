@@ -1,6 +1,8 @@
+#define _USE_MATH_DEFINES
 #include "GameScene.hpp"
 
 #include <algorithm>
+#include <cmath>
 
 namespace Elcarim::Scene::Scenes {
 	GameScene::GameScene(Input::Devices::Keyboard* const keyboard, Input::Devices::Gamepad* const gamepad) :
@@ -15,11 +17,14 @@ namespace Elcarim::Scene::Scenes {
 		m_ballMovement(m_ball->getFirstComponentOfType<Elcarim::Objects::Components::MovementComponent>()),
 		m_background(new Objects::Background(m_square, m_bgTex))
 	{
-		m_ballMovement->setVelocity(100.0f, 100.0f);
+		m_ball->getTransformation().setPosition(Scene::RELATIVE_SCENE_UNIT * 0.8f, Scene::RELATIVE_SCENE_UNIT * -0.2f);
+		m_ballMovement->setVelocity(Scene::RELATIVE_SCENE_UNIT * -1.4f, Scene::RELATIVE_SCENE_UNIT * 1.0f);
+		m_ballMovement->setAcceleration(0.0f, Scene::RELATIVE_SCENE_UNIT * -11.25f * 0.2f);
 	}
 	void GameScene::update(const float deltaTime) {
-		m_niam->getTransformation().getPosition().x += m_controls.getHorizontalMovement() * 144.0f * deltaTime;
-		m_ball->getTransformation().getPosition() += m_ballMovement->getVelocity() * deltaTime;
+		m_niam->getTransformation().getPosition().x += m_controls.getHorizontalMovement() * RELATIVE_SCENE_UNIT * deltaTime;
+		m_ballMovement->getAcceleration().x = -m_ballMovement->getVelocity().x * 0.1f;
+		m_ballMovement->update(deltaTime);
 		if (isObjectOutsideOfScreenX(m_niam)) {
 			float xPos = m_niam->getTransformation().getPosition().x;
 			m_niam->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_niam->getTransformation().getScale().x / 2.0f) * xPos / std::abs(xPos);
@@ -34,6 +39,7 @@ namespace Elcarim::Scene::Scenes {
 			m_ball->getTransformation().getPosition().y = (Objects::Camera::getUpperEdge().y - m_ball->getTransformation().getScale().y / 2.0f) * yPos / std::abs(yPos);
 			m_ballMovement->getVelocity().y *= -1.0f;
 		}
+		m_ball->getTransformation().getAngle() -= 360.0f * (m_ballMovement->getVelocity() * deltaTime).x / (2.0f * static_cast<float>(M_PI) * (m_ball->getTransformation().getScale().x / 2.0f)) * 0.4f;
 	}
 	void GameScene::render(Graphics::Renderer* const renderer) {
 		renderer->setCameraView(m_camera);

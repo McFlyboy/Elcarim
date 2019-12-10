@@ -4,6 +4,7 @@
 #endif
 
 #include "Game.hpp"
+#include <iostream>
 
 int main() {
 	return Elcarim::Game().run() ? 0 : 1;
