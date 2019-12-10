@@ -27,19 +27,19 @@ namespace Elcarim::Scene::Scenes {
 		m_ballMovement->update(deltaTime);
 		if (isObjectOutsideOfScreenX(m_niam)) {
 			float xPos = m_niam->getTransformation().getPosition().x;
-			m_niam->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_niam->getTransformation().getScale().x / 2.0f) * xPos / std::abs(xPos);
+			m_niam->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_niam->getTransformation().getScale().x) * xPos / std::abs(xPos);
 		}
 		if (isObjectOutsideOfScreenX(m_ball)) {
 			float xPos = m_ball->getTransformation().getPosition().x;
-			m_ball->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_ball->getTransformation().getScale().x / 2.0f) * xPos / std::abs(xPos);
+			m_ball->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_ball->getTransformation().getScale().x) * xPos / std::abs(xPos);
 			m_ballMovement->getVelocity().x *= -1.0f;
 		}
 		if (isObjectOutsideOfScreenY(m_ball)) {
 			float yPos = m_ball->getTransformation().getPosition().y;
-			m_ball->getTransformation().getPosition().y = (Objects::Camera::getUpperEdge().y - m_ball->getTransformation().getScale().y / 2.0f) * yPos / std::abs(yPos);
+			m_ball->getTransformation().getPosition().y = (Objects::Camera::getUpperEdge().y - m_ball->getTransformation().getScale().y) * yPos / std::abs(yPos);
 			m_ballMovement->getVelocity().y *= -1.0f;
 		}
-		m_ball->getTransformation().getAngle() -= 360.0f * (m_ballMovement->getVelocity() * deltaTime).x / (2.0f * static_cast<float>(M_PI) * (m_ball->getTransformation().getScale().x / 2.0f)) * 0.4f;
+		m_ball->getTransformation().getAngle() -= 360.0f * (m_ballMovement->getVelocity() * deltaTime).x / (2.0f * static_cast<float>(M_PI) * m_ball->getTransformation().getScale().x) * 0.4f;
 	}
 	void GameScene::render(Graphics::Renderer* const renderer) {
 		renderer->setCameraView(m_camera);
@@ -66,7 +66,7 @@ namespace Elcarim::Scene::Scenes {
 	bool GameScene::isObjectOutsideOfScreenX(Objects::GameObject* object) {
 		glm::vec2& pos = object->getTransformation().getPosition();
 		glm::vec2& scale = object->getTransformation().getScale();
-		if (std::abs(pos.x) + scale.x / 2.0f > Objects::Camera::getRightEdge().x) {
+		if (std::abs(pos.x) + scale.x > Objects::Camera::getRightEdge().x) {
 			return true;
 		}
 		return false;
@@ -74,7 +74,7 @@ namespace Elcarim::Scene::Scenes {
 	bool GameScene::isObjectOutsideOfScreenY(Objects::GameObject* object) {
 		glm::vec2& pos = object->getTransformation().getPosition();
 		glm::vec2& scale = object->getTransformation().getScale();
-		if (std::abs(pos.y) + scale.y / 2.0f > Objects::Camera::getUpperEdge().y) {
+		if (std::abs(pos.y) + scale.y > Objects::Camera::getUpperEdge().y) {
 			return true;
 		}
 		return false;
