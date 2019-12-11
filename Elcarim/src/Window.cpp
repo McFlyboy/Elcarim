@@ -75,12 +75,12 @@ namespace Elcarim {
 		glfwShowWindow(m_window);
 		m_focused = true;
 	}
-	void Window::setIconImages(const char* const smallx16, const char* const mediumx32, const char* const largex48) {
+	void Window::setIconImages(const char* const& smallx16, const char* const& mediumx32, const char* const& largex48) {
 		const char* const filenames[3] = { smallx16, mediumx32, largex48 };
 		std::string path = "window_icons/";
 		GLFWimage icons[3];
 		for (int i = 0; i < 3; ++i) {
-			int colorComp = 0;
+			int colorComp = 0; //dummy-variable
 			icons[i].pixels = Util::ResourceLoader::loadImage(path + filenames[i], icons[i].width, icons[i].height, colorComp, false);
 		}
 		glfwSetWindowIcon(m_window, 3, icons);

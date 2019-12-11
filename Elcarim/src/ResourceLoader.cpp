@@ -1,6 +1,6 @@
+#define STB_IMAGE_IMPLEMENTATION
 #include "ResourceLoader.hpp"
 
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 #include "ErrorHandler.hpp"

@@ -21,22 +21,25 @@ namespace Elcarim::Scene::Scenes {
 		m_ballMovement->setVelocity(Scene::RELATIVE_SCENE_UNIT * -1.4f, Scene::RELATIVE_SCENE_UNIT * 1.0f);
 		m_ballMovement->setAcceleration(0.0f, Scene::RELATIVE_SCENE_UNIT * -11.25f * 0.2f);
 	}
+	float getSign(float value) {
+		return static_cast<float>(((!(static_cast<int>(value) >> (sizeof(int) * 8 - 1))) << 1) - 1);
+	}
 	void GameScene::update(const float deltaTime) {
 		m_niam->getTransformation().getPosition().x += m_controls.getHorizontalMovement() * RELATIVE_SCENE_UNIT * deltaTime;
 		m_ballMovement->getAcceleration().x = -m_ballMovement->getVelocity().x * 0.1f;
 		m_ballMovement->update(deltaTime);
 		if (isObjectOutsideOfScreenX(m_niam)) {
 			float xPos = m_niam->getTransformation().getPosition().x;
-			m_niam->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_niam->getTransformation().getScale().x) * xPos / std::abs(xPos);
+			m_niam->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_niam->getTransformation().getScale().x) * getSign(xPos);//xPos / std::abs(xPos);
 		}
 		if (isObjectOutsideOfScreenX(m_ball)) {
 			float xPos = m_ball->getTransformation().getPosition().x;
-			m_ball->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_ball->getTransformation().getScale().x) * xPos / std::abs(xPos);
+			m_ball->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_ball->getTransformation().getScale().x) * getSign(xPos);//xPos / std::abs(xPos);
 			m_ballMovement->getVelocity().x *= -1.0f;
 		}
 		if (isObjectOutsideOfScreenY(m_ball)) {
 			float yPos = m_ball->getTransformation().getPosition().y;
-			m_ball->getTransformation().getPosition().y = (Objects::Camera::getUpperEdge().y - m_ball->getTransformation().getScale().y) * yPos / std::abs(yPos);
+			m_ball->getTransformation().getPosition().y = (Objects::Camera::getUpperEdge().y - m_ball->getTransformation().getScale().y) * getSign(yPos);//yPos / std::abs(yPos);
 			m_ballMovement->getVelocity().y *= -1.0f;
 		}
 		m_ball->getTransformation().getAngle() -= 360.0f * (m_ballMovement->getVelocity() * deltaTime).x / (2.0f * static_cast<float>(M_PI) * m_ball->getTransformation().getScale().x) * 0.4f;

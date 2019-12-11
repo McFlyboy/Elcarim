@@ -18,7 +18,7 @@ namespace Elcarim {
 		void close();
 		void center();
 		void show();
-		void setIconImages(const char* const smallx16, const char* const mediumx32, const char* const largex48);
+		void setIconImages(const char* const& smallx16, const char* const& mediumx32, const char* const& largex48);
 		const bool isFocused() const;
 		const bool isFullscreen() const;
 		void setFullscreen(const bool fullscreen);
