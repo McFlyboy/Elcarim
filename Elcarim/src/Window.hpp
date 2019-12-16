@@ -32,6 +32,7 @@ namespace Elcarim {
 		const double getDeltaTime();
 		~Window();
 		static Window* const createInstance(const int width, const int height, const char* const title, const bool fullscreen);
+		static Window* const getInstance();
 	private:
 		GLFWmonitor* m_activeMonitor = nullptr;
 		const GLFWvidmode* m_monitorVideoMode = nullptr;

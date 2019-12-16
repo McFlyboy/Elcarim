@@ -174,6 +174,9 @@ namespace Elcarim {
 		}
 		return nullptr;
 	}
+	Window* const Window::getInstance() {
+		return s_instance;
+	}
 	const double Window::InternalTimer::getTime() const {
 		return glfwGetTime();
 	}

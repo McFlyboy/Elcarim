@@ -1,8 +1,8 @@
 #pragma once
 
-#include <glm/glm.hpp>
-
 #include "Component.hpp"
+
+#include <glm/glm.hpp>
 
 namespace Elcarim::Objects::Components {
 	class MovementComponent : public Component {
