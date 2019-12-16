@@ -91,7 +91,7 @@ namespace Elcarim::Graphics {
 		texture->bind();
 		auto& transformation = object->getTransformation();
 		m_shader->set2DTransformation(transformation.getPosition(), transformation.getScale(), transformation.getAngle());
-		glDrawArrays(GL_TRIANGLES, 0, model->getVertexCount());
+		glDrawElements(GL_TRIANGLES, model->getIndexCount(), GL_UNSIGNED_INT, nullptr);
 		Texture::unbind();
 		Model::unbind();
 	}

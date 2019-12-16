@@ -4,10 +4,6 @@
 #include <algorithm>
 
 namespace Elcarim::Input::Devices {
-	//Fix for too fast key-pressing.
-	//Overrides all other state-flags
-	const uint8_t KEY_DOUBLESTATE_PRESS_AND_RELEASE = 4u;
-
 	//Change-values
 	const uint8_t KEY_STATE_CHANGED = 2u;
 	const uint8_t KEY_STATE_UNCHANGED = 1u;
@@ -21,12 +17,7 @@ namespace Elcarim::Input::Devices {
 			if (action == GLFW_REPEAT || key == GLFW_KEY_UNKNOWN) {
 				return;
 			}
-			if (keyStates[key] == (GLFW_PRESS | KEY_STATE_CHANGED)) {
-				keyStates[key] = KEY_DOUBLESTATE_PRESS_AND_RELEASE;
-			}
-			else {
-				keyStates[key] = action | KEY_STATE_CHANGED;
-			}
+			keyStates[key] = action | KEY_STATE_CHANGED;
 			if (action == GLFW_PRESS) {
 				lastKeyChanged = key;
 #ifdef _WIN32
@@ -39,7 +30,7 @@ namespace Elcarim::Input::Devices {
 				}
 #endif
 			}
-			});
+		});
 	}
 	const bool Keyboard::isKeyPressed(uint16_t key) {
 		return getKeyState(key) == (GLFW_PRESS | KEY_STATE_CHANGED);
@@ -49,13 +40,7 @@ namespace Elcarim::Input::Devices {
 	}
 	const uint8_t Keyboard::getKeyState(uint16_t key) {
 		uint8_t keyState = keyStates[key];
-		if (keyState == KEY_DOUBLESTATE_PRESS_AND_RELEASE) {
-			keyStates[key] = GLFW_RELEASE | KEY_STATE_CHANGED;
-			keyState = GLFW_PRESS | KEY_STATE_CHANGED;
-		}
-		else {
-			keyStates[key] &= KEY_STATE_UNCHANGED;
-		}
+		keyStates[key] &= KEY_STATE_UNCHANGED;
 		return keyState;
 	}
 	const uint16_t Keyboard::getLastKeyPressed() const {

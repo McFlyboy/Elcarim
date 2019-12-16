@@ -2,6 +2,7 @@
 #include "GameScene.hpp"
 
 #include <cmath>
+#include <iostream>
 
 #include "Window.hpp"
 #include "CollisionComponent.hpp"
@@ -15,6 +16,8 @@ namespace Elcarim::Scene::Scenes {
 		m_ballTex(new Graphics::Texture("ball.png")),
 		m_bgTex(new Graphics::Texture("background.png")),
 		m_niam(new Objects::Niam(Objects::Camera::getLowerEdge() + glm::vec2(0.0f, 8.0f), m_square, m_niamTex)),
+		m_niamMovement(m_niam->getFirstComponentOfType<Elcarim::Objects::Components::MovementComponent>()),
+		m_niamJumping(m_niam->getFirstComponentOfType<Elcarim::Objects::Components::JumpingComponent>()),
 		m_ball(new Objects::Ball(glm::vec2(Scene::RELATIVE_SCENE_UNIT * 0.8f * Graphics::Renderer::ASPECT_RATIO, Scene::RELATIVE_SCENE_UNIT * -0.2f), m_square, m_ballTex)),
 		m_ballMovement(m_ball->getFirstComponentOfType<Elcarim::Objects::Components::MovementComponent>()),
 		m_background(new Objects::Background(m_square, m_bgTex))
@@ -25,14 +28,33 @@ namespace Elcarim::Scene::Scenes {
 		return static_cast<float>(((!(static_cast<int>(value) >> (sizeof(int) * 8 - 1))) << 1) - 1);
 	}
 	void GameScene::update(const float deltaTime) {
-		m_niam->getTransformation().getPosition().x += m_controls.getHorizontalMovement() * RELATIVE_SCENE_UNIT * deltaTime;
-		m_ballMovement->getAcceleration() = -m_ballMovement->getVelocity() * 0.025f;
-		m_ballMovement->getAcceleration().y += Scene::RELATIVE_SCENE_UNIT * -11.25f * 0.2f;
-		m_ballMovement->update(deltaTime);
+		//Niam
+		m_niamMovement->getVelocity().x = m_controls.getHorizontalMovement() * RELATIVE_SCENE_UNIT;
+		if (!m_niamJumping->isJumping()) {
+			if (m_controls.isJumping()) {
+				m_niamJumping->setJumping(true);
+				m_niamMovement->getVelocity().y = 2.3f * RELATIVE_SCENE_UNIT;
+				m_niamMovement->getAcceleration().y = Scene::RELATIVE_SCENE_UNIT * -8.0f;
+			}
+		}
+		else {
+			if (m_niam->getTransformation().getPosition().y < Objects::Camera::getLowerEdge().y + m_niam->getTransformation().getScale().y) {
+				m_niamJumping->setJumping(false);
+				m_niamMovement->getVelocity().y = 0.0f;
+				m_niamMovement->getAcceleration().y = 0.0f;
+				m_niam->getTransformation().getPosition().y = Objects::Camera::getLowerEdge().y + m_niam->getTransformation().getScale().y;
+			}
+		}
+		m_niamMovement->update(deltaTime);
 		if (isObjectOutsideOfScreenX(m_niam)) {
 			float xPos = m_niam->getTransformation().getPosition().x;
 			m_niam->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_niam->getTransformation().getScale().x) * getSign(xPos);
 		}
+
+		//Ball
+		m_ballMovement->getAcceleration() = -m_ballMovement->getVelocity() * 0.025f;
+		m_ballMovement->getAcceleration().y += Scene::RELATIVE_SCENE_UNIT * -11.25f * 0.2f;
+		m_ballMovement->update(deltaTime);
 		if (isObjectOutsideOfScreenX(m_ball)) {
 			float xPos = m_ball->getTransformation().getPosition().x;
 			m_ball->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_ball->getTransformation().getScale().x) * getSign(xPos);
@@ -44,6 +66,8 @@ namespace Elcarim::Scene::Scenes {
 			m_ballMovement->getVelocity().y *= -0.9f;
 		}
 		m_ball->getTransformation().getAngle() -= 360.0f * (m_ballMovement->getVelocity() * deltaTime).x / (2.0f * static_cast<float>(M_PI) * m_ball->getTransformation().getScale().x) * 0.4f;
+		
+		//Niam-Ball collision
 		if (m_niam->getFirstComponentOfType<Elcarim::Objects::Components::CollisionComponent>()->isColliding(*m_ball->getFirstComponentOfType<Elcarim::Objects::Components::CollisionComponent>())) {
 			Window::getInstance()->close();
 		}

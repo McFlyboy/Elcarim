@@ -6,10 +6,6 @@
 namespace Elcarim::Input::Devices {
 	Gamepad* Gamepad::s_instance = nullptr;
 
-	//Fix for too fast button-pressing.
-	//Overrides all other state-flags
-	const uint8_t BUTTON_DOUBLESTATE_PRESS_AND_RELEASE = 4u;
-
 	//Change-values
 	const uint8_t BUTTON_STATE_CHANGED = 2u;
 	const uint8_t BUTTON_STATE_UNCHANGED = 1u;
@@ -67,13 +63,7 @@ namespace Elcarim::Input::Devices {
 	}
 	const uint8_t Gamepad::getButtonState(uint8_t button) {
 		uint8_t buttonState = m_state.buttons[button];
-		if (buttonState == BUTTON_DOUBLESTATE_PRESS_AND_RELEASE) {
-			m_state.buttons[button] = GLFW_RELEASE | BUTTON_STATE_CHANGED;
-			buttonState = GLFW_PRESS | BUTTON_STATE_CHANGED;
-		}
-		else {
-			m_state.buttons[button] &= BUTTON_STATE_UNCHANGED;
-		}
+		m_state.buttons[button] &= BUTTON_STATE_UNCHANGED;
 		return buttonState;
 	}
 	const float Gamepad::getAxisValue(uint8_t axis) {

@@ -191,6 +191,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\CollisionComponent.cpp" />
+    <ClCompile Include="src\JumpingComponent.cpp" />
     <ClCompile Include="src\MovementComponent.cpp" />
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\Color4.cpp" />
@@ -227,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CollisionComponent.hpp" />
+    <ClInclude Include="src\JumpingComponent.hpp" />
     <ClInclude Include="src\MovementComponent.hpp" />
     <ClInclude Include="src\Ball.hpp" />
     <ClInclude Include="src\Color4.hpp" />
