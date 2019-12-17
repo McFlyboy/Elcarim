@@ -13,6 +13,10 @@
 #include "GameObject.hpp"
 #include "MovementComponent.hpp"
 #include "JumpingComponent.hpp"
+#include "CollisionComponent.hpp"
+#include "HittingComponent.hpp"
+#include "BeingHitComponent.hpp"
+#include "Timer.hpp"
 
 namespace Elcarim::Scene::Scenes {
 	class GameScene : public Scene {
@@ -32,8 +36,14 @@ namespace Elcarim::Scene::Scenes {
 		Objects::Niam* m_niam = nullptr;
 		Objects::Components::MovementComponent* m_niamMovement = nullptr;
 		Objects::Components::JumpingComponent* m_niamJumping = nullptr;
+		Objects::Components::CollisionComponent* m_niamCol = nullptr;
+		Objects::Components::CollisionComponent* m_niamHitCol = nullptr;
+		Objects::Components::HittingComponent* m_niamHitting = nullptr;
+		Timing::Timer* m_hitTimer = nullptr;
 		Objects::Ball* m_ball = nullptr;
 		Objects::Components::MovementComponent* m_ballMovement = nullptr;
+		Objects::Components::CollisionComponent* m_ballCol = nullptr;
+		Objects::Components::BeingHitComponent* m_ballHit = nullptr;
 		Objects::Background* m_background = nullptr;
 
 		bool isObjectOutsideOfScreenX(Objects::GameObject* object);

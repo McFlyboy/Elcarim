@@ -190,7 +190,9 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\BeingHitComponent.cpp" />
     <ClCompile Include="src\CollisionComponent.cpp" />
+    <ClCompile Include="src\HittingComponent.cpp" />
     <ClCompile Include="src\JumpingComponent.cpp" />
     <ClCompile Include="src\MovementComponent.cpp" />
     <ClCompile Include="src\Ball.cpp" />
@@ -227,7 +229,9 @@
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BeingHitComponent.hpp" />
     <ClInclude Include="src\CollisionComponent.hpp" />
+    <ClInclude Include="src\HittingComponent.hpp" />
     <ClInclude Include="src\JumpingComponent.hpp" />
     <ClInclude Include="src\MovementComponent.hpp" />
     <ClInclude Include="src\Ball.hpp" />

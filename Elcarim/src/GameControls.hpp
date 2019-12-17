@@ -8,8 +8,10 @@ namespace Elcarim::Input {
 		GameControls(Devices::Keyboard* const keyboard, Devices::Gamepad* const gamepad);
 		const float getHorizontalMovement();
 		const bool isJumping();
+		const bool isHitting();
 	private:
 		unsigned int m_horizontalIndex = 0;
 		unsigned int m_jumpIndex = 0;
+		unsigned int m_hitIndex = 0;
 	};
 }

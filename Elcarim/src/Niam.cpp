@@ -4,6 +4,7 @@
 #include "MovementComponent.hpp"
 #include "JumpingComponent.hpp"
 #include "CollisionComponent.hpp"
+#include "HittingComponent.hpp"
 
 namespace Elcarim::Objects {
 	Niam::Niam(const glm::vec2& position, Graphics::Model* const model, Graphics::Texture* const texture) {
@@ -14,7 +15,11 @@ namespace Elcarim::Objects {
 		addComponent(new Components::MovementComponent(transformation.getPosition()));
 		auto cc = new Components::CollisionComponent(transformation.getPosition());
 		cc->setRadius(transformation.getScale().x * 0.75f);
-		addComponent(new Components::JumpingComponent());
 		addComponent(cc);
+		auto hitCC = new Components::CollisionComponent(transformation.getPosition());
+		hitCC->setRadius(transformation.getScale().x * 1.5f);
+		addComponent(hitCC);
+		addComponent(new Components::JumpingComponent());
+		addComponent(new Components::HittingComponent());
 	}
 }

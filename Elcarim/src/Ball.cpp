@@ -3,6 +3,7 @@
 #include "TexturedModelComponent.hpp"
 #include "MovementComponent.hpp"
 #include "CollisionComponent.hpp"
+#include "BeingHitComponent.hpp"
 
 namespace Elcarim::Objects {
 	Ball::Ball(const glm::vec2& position, Graphics::Model* const model, Graphics::Texture* const texture) {
@@ -14,5 +15,6 @@ namespace Elcarim::Objects {
 		auto cc = new Components::CollisionComponent(transformation.getPosition());
 		cc->setRadius(transformation.getScale().x);
 		addComponent(cc);
+		addComponent(new Components::BeingHitComponent());
 	}
 }

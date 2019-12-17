@@ -169,6 +169,12 @@
     <ClCompile Include="src\JumpingComponent.cpp">
       <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\HittingComponent.cpp">
+      <Filter>Elcarim</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BeingHitComponent.cpp">
+      <Filter>Elcarim</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -275,6 +281,12 @@
     </ClInclude>
     <ClInclude Include="src\JumpingComponent.hpp">
       <Filter>Elcarim\Objects\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HittingComponent.hpp">
+      <Filter>Elcarim</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BeingHitComponent.hpp">
+      <Filter>Elcarim</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
