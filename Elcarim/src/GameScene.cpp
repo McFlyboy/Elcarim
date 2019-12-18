@@ -26,14 +26,17 @@ namespace Elcarim::Scene::Scenes {
 		m_ballHit(m_ball->getFirstComponentOfType<Objects::Components::BeingHitComponent>()),
 		m_background(new Objects::Background(m_square, m_bgTex))
 	{
-		m_ballMovement->setVelocity(Scene::RELATIVE_SCENE_UNIT * -1.4f, Scene::RELATIVE_SCENE_UNIT * 1.0f);
+		m_ballMovement->setVelocity(Scene::RELATIVE_SCENE_UNIT * -1.4f, Scene::RELATIVE_SCENE_UNIT);
 		std::vector<Objects::Components::CollisionComponent*> niamColList;
 		m_niam->getAllComponentsOfType<Objects::Components::CollisionComponent>(niamColList);
 		m_niamCol = niamColList[0];
 		m_niamHitCol = niamColList[1];
 	}
-	const float getSign(const float value) {
-		return static_cast<float>(((!(static_cast<int>(value) >> (sizeof(int) * 8 - 1))) << 1) - 1);
+	const float getSign(float value) {
+		*(unsigned int*)&value &= 0x80000000u;
+		*(unsigned int*)&value |= 0x3f800000u;
+		return value;
+		//return static_cast<float>(((!(static_cast<int>(value) >> (sizeof(int) * 8 - 1))) << 1) - 1);
 	}
 	void GameScene::update(const float deltaTime) {
 		//Niam
