@@ -22,10 +22,10 @@ namespace Elcarim::Scene::Scenes {
 	class GameScene : public Scene {
 	public:
 		GameScene(Input::Devices::Keyboard* const keyboard, Input::Devices::Gamepad* const gamepad);
-		virtual void render(Graphics::Renderer* const renderer) override;
-		virtual ~GameScene() override;
+		void render(Graphics::Renderer* const renderer) override;
+		~GameScene() override;
 	protected:
-		virtual void update(const float deltaTime) override;
+		void update(const float deltaTime) override;
 	private:
 		Input::GameControls m_controls;
 		Objects::Camera* m_camera = nullptr;
@@ -39,7 +39,7 @@ namespace Elcarim::Scene::Scenes {
 		Objects::Components::CollisionComponent* m_niamCol = nullptr;
 		Objects::Components::CollisionComponent* m_niamHitCol = nullptr;
 		Objects::Components::HittingComponent* m_niamHitting = nullptr;
-		Timing::Timer* m_hitTimer = nullptr;
+		Timing::Timer m_hitTimer;
 		Objects::Ball* m_ball = nullptr;
 		Objects::Components::MovementComponent* m_ballMovement = nullptr;
 		Objects::Components::CollisionComponent* m_ballCol = nullptr;
