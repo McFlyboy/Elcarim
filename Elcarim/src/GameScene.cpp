@@ -16,24 +16,28 @@ namespace Elcarim::Scene::Scenes {
 		m_ballTex(new Graphics::Texture("ball.png")),
 		m_bgTex(new Graphics::Texture("background.png")),
 		m_niam(new Objects::Niam(Objects::Camera::getLowerEdge() + glm::vec2(0.0f, 8.0f), m_square, m_niamTex)),
-		m_niamMovement(m_niam->getFirstComponentOfType<Elcarim::Objects::Components::MovementComponent>()),
-		m_niamJumping(m_niam->getFirstComponentOfType<Elcarim::Objects::Components::JumpingComponent>()),
-		m_niamHitting(m_niam->getFirstComponentOfType<Elcarim::Objects::Components::HittingComponent>()),
-		m_hitTimer(new Timing::Timer(getTimer())),
+		m_niamMovement(m_niam->getFirstComponentOfType<Objects::Components::MovementComponent>()),
+		m_niamJumping(m_niam->getFirstComponentOfType<Objects::Components::JumpingComponent>()),
+		m_niamHitting(m_niam->getFirstComponentOfType<Objects::Components::HittingComponent>()),
+		m_hitTimer(Timing::Timer(getTimer())),
 		m_ball(new Objects::Ball(glm::vec2(Scene::RELATIVE_SCENE_UNIT * 0.8f * Graphics::Renderer::ASPECT_RATIO, Scene::RELATIVE_SCENE_UNIT * -0.2f), m_square, m_ballTex)),
-		m_ballMovement(m_ball->getFirstComponentOfType<Elcarim::Objects::Components::MovementComponent>()),
+		m_ballMovement(m_ball->getFirstComponentOfType<Objects::Components::MovementComponent>()),
 		m_ballCol(m_ball->getFirstComponentOfType<Objects::Components::CollisionComponent>()),
 		m_ballHit(m_ball->getFirstComponentOfType<Objects::Components::BeingHitComponent>()),
 		m_background(new Objects::Background(m_square, m_bgTex))
 	{
-		m_ballMovement->setVelocity(Scene::RELATIVE_SCENE_UNIT * -1.4f, Scene::RELATIVE_SCENE_UNIT * 1.0f);
+		m_ballMovement->setVelocity(Scene::RELATIVE_SCENE_UNIT * -1.4f, Scene::RELATIVE_SCENE_UNIT);
 		std::vector<Objects::Components::CollisionComponent*> niamColList;
 		m_niam->getAllComponentsOfType<Objects::Components::CollisionComponent>(niamColList);
 		m_niamCol = niamColList[0];
 		m_niamHitCol = niamColList[1];
 	}
-	const float getSign(const float value) {
-		return static_cast<float>(((!(static_cast<int>(value) >> (sizeof(int) * 8 - 1))) << 1) - 1);
+	const float getSign(float value) {
+		unsigned int& uintValue = *reinterpret_cast<unsigned int*>(&value);
+		uintValue &= 0x80000000u;
+		uintValue |= 0x3f800000u;
+		return value;
+		//return static_cast<float>(((!(static_cast<int>(value) >> (sizeof(int) * 8 - 1))) << 1) - 1);
 	}
 	void GameScene::update(const float deltaTime) {
 		//Niam
@@ -65,10 +69,10 @@ namespace Elcarim::Scene::Scenes {
 		}
 		if (m_controls.isHitting()) {
 			m_niamHitting->setHitting(true);
-			m_hitTimer->start();
+			m_hitTimer.start();
 		}
-		if (m_hitTimer->getTime() >= 1.0) {
-			m_hitTimer->stop();
+		if (m_hitTimer.getTime() >= 1.0) {
+			m_hitTimer.stop();
 			m_niamHitting->setHitting(false);
 		}
 
