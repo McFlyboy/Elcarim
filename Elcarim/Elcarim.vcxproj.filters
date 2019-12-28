@@ -170,10 +170,10 @@
       <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\HittingComponent.cpp">
-      <Filter>Elcarim</Filter>
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\BeingHitComponent.cpp">
-      <Filter>Elcarim</Filter>
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,10 +283,10 @@
       <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\HittingComponent.hpp">
-      <Filter>Elcarim</Filter>
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\BeingHitComponent.hpp">
-      <Filter>Elcarim</Filter>
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
