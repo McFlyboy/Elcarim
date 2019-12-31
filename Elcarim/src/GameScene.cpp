@@ -3,8 +3,8 @@
 
 #include <cmath>
 #include <vector>
-#include <iostream>
 
+#include "Math.hpp"
 #include "Window.hpp"
 
 namespace Elcarim::Scene::Scenes {
@@ -32,13 +32,6 @@ namespace Elcarim::Scene::Scenes {
 		m_niamCol = niamColList[0];
 		m_niamHitCol = niamColList[1];
 	}
-	const float getSign(float value) {
-		unsigned int& uintValue = *reinterpret_cast<unsigned int*>(&value);
-		uintValue &= 0x80000000u;
-		uintValue |= 0x3f800000u;
-		return value;
-		//return static_cast<float>(((!(static_cast<int>(value) >> (sizeof(int) * 8 - 1))) << 1) - 1);
-	}
 	void GameScene::update(const float deltaTime) {
 		//Niam
 		m_niamMovement->getVelocity().x = m_controls.getHorizontalMovement() * RELATIVE_SCENE_UNIT;
@@ -65,8 +58,9 @@ namespace Elcarim::Scene::Scenes {
 		m_niamMovement->update(deltaTime);
 		if (isObjectOutsideOfScreenX(m_niam)) {
 			float xPos = m_niam->getTransformation().getPosition().x;
-			m_niam->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_niam->getTransformation().getScale().x) * getSign(xPos);
+			m_niam->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_niam->getTransformation().getScale().x) * Util::Math::getSign(xPos);
 		}
+		m_niamHitting->updateHitDirection();
 		if (m_controls.isHitting()) {
 			m_niamHitting->setHitting(true);
 			m_hitTimer.start();
@@ -82,12 +76,12 @@ namespace Elcarim::Scene::Scenes {
 		m_ballMovement->update(deltaTime);
 		if (isObjectOutsideOfScreenX(m_ball)) {
 			float xPos = m_ball->getTransformation().getPosition().x;
-			m_ball->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_ball->getTransformation().getScale().x) * getSign(xPos);
+			m_ball->getTransformation().getPosition().x = (Objects::Camera::getRightEdge().x - m_ball->getTransformation().getScale().x) * Util::Math::getSign(xPos);
 			m_ballMovement->getVelocity().x *= -0.9f;
 		}
 		if (isObjectOutsideOfScreenY(m_ball)) {
 			float yPos = m_ball->getTransformation().getPosition().y;
-			m_ball->getTransformation().getPosition().y = (Objects::Camera::getUpperEdge().y - m_ball->getTransformation().getScale().y) * getSign(yPos);
+			m_ball->getTransformation().getPosition().y = (Objects::Camera::getUpperEdge().y - m_ball->getTransformation().getScale().y) * Util::Math::getSign(yPos);
 			m_ballMovement->getVelocity().y *= -0.9f;
 		}
 		m_ball->getTransformation().getAngle() -= 360.0f * (m_ballMovement->getVelocity() * deltaTime).x / (2.0f * static_cast<float>(M_PI) * m_ball->getTransformation().getScale().x) * 0.4f;
@@ -102,7 +96,7 @@ namespace Elcarim::Scene::Scenes {
 			if (m_niamHitCol->isColliding(*m_ballCol)) {
 				if (!m_ballHit->isBeingHit()) {
 					m_ballHit->setBeingHit(true);
-					m_ballMovement->getVelocity() = glm::normalize(glm::vec2(getSign(m_niamMovement->getVelocity().x), 2.0f)) * 440.0f;
+					m_ballMovement->getVelocity() = m_niamHitting->getHitDirection();
 				}
 			}
 			else {

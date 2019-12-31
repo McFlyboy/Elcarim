@@ -12,7 +12,8 @@ namespace Elcarim::Objects {
 		transformation.getPosition() = position;
 		transformation.setScale(static_cast<float>(texture->getWidth()) / 2.0f, static_cast<float>(texture->getHeight()) / 2.0f);
 		addComponent(new Components::TexturedModelComponent(model, texture));
-		addComponent(new Components::MovementComponent(transformation.getPosition()));
+		auto movement = new Components::MovementComponent(transformation.getPosition());
+		addComponent(movement);
 		auto cc = new Components::CollisionComponent(transformation.getPosition());
 		cc->setRadius(transformation.getScale().x * 0.75f);
 		addComponent(cc);
@@ -20,6 +21,6 @@ namespace Elcarim::Objects {
 		hitCC->setRadius(transformation.getScale().x * 1.5f);
 		addComponent(hitCC);
 		addComponent(new Components::JumpingComponent());
-		addComponent(new Components::HittingComponent());
+		addComponent(new Components::HittingComponent(movement->getVelocity().x));
 	}
 }

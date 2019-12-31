@@ -175,6 +175,9 @@
     <ClCompile Include="src\BeingHitComponent.cpp">
       <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\Math.cpp">
+      <Filter>Elcarim\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -287,6 +290,9 @@
     </ClInclude>
     <ClInclude Include="src\BeingHitComponent.hpp">
       <Filter>Elcarim\Objects\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math.hpp">
+      <Filter>Elcarim\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
