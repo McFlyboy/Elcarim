@@ -2,6 +2,8 @@
 
 #include "Scene.hpp"
 
+#include <vector>
+
 #include "GameControls.hpp"
 #include "Camera.hpp"
 #include "Model.hpp"
@@ -9,6 +11,7 @@
 #include "Texture.hpp"
 #include "Niam.hpp"
 #include "Ball.hpp"
+#include "Shot.hpp"
 #include "Background.hpp"
 #include "GameObject.hpp"
 #include "MovementComponent.hpp"
@@ -32,6 +35,7 @@ namespace Elcarim::Scene::Scenes {
 		Graphics::Model* m_square = nullptr;
 		Graphics::Texture* m_niamTex = nullptr;
 		Graphics::Texture* m_ballTex = nullptr;
+		Graphics::Texture* m_shotTex = nullptr;
 		Graphics::Texture* m_bgTex = nullptr;
 		Objects::Niam* m_niam = nullptr;
 		Objects::Components::MovementComponent* m_niamMovement = nullptr;
@@ -44,9 +48,12 @@ namespace Elcarim::Scene::Scenes {
 		Objects::Components::MovementComponent* m_ballMovement = nullptr;
 		Objects::Components::CollisionComponent* m_ballCol = nullptr;
 		Objects::Components::BeingHitComponent* m_ballHit = nullptr;
+		std::vector<Objects::Shot*> m_shots = std::vector<Objects::Shot*>();
 		Objects::Background* m_background = nullptr;
 
 		bool isObjectOutsideOfScreenX(Objects::GameObject* object);
 		bool isObjectOutsideOfScreenY(Objects::GameObject* object);
+		bool isObjectFullyOutsideOfScreenX(Objects::GameObject* object);
+		bool isObjectFullyOutsideOfScreenY(Objects::GameObject* object);
 	};
 }

@@ -178,6 +178,9 @@
     <ClCompile Include="src\Math.cpp">
       <Filter>Elcarim\Util</Filter>
     </ClCompile>
+    <ClCompile Include="src\Shot.cpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp">
@@ -294,6 +297,9 @@
     <ClInclude Include="src\Math.hpp">
       <Filter>Elcarim\Util</Filter>
     </ClInclude>
+    <ClInclude Include="src\Shot.hpp">
+      <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\textures\niam.png">
@@ -319,6 +325,12 @@
     </Image>
     <Image Include="assets\images\executable_icons\icon_48x48.ico">
       <Filter>Resource Files\images\executable_icons</Filter>
+    </Image>
+    <Image Include="assets\images\textures\ball.png">
+      <Filter>Resource Files\images\textures</Filter>
+    </Image>
+    <Image Include="assets\images\textures\shot.png">
+      <Filter>Resource Files\images\textures</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

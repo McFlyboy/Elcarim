@@ -2,7 +2,6 @@
 #include "GameScene.hpp"
 
 #include <cmath>
-#include <vector>
 
 #include "Math.hpp"
 #include "Window.hpp"
@@ -14,6 +13,7 @@ namespace Elcarim::Scene::Scenes {
 		m_square(Util::Models::createSquareModel()),
 		m_niamTex(new Graphics::Texture("niam.png")),
 		m_ballTex(new Graphics::Texture("ball.png")),
+		m_shotTex(new Graphics::Texture("shot.png")),
 		m_bgTex(new Graphics::Texture("background.png")),
 		m_niam(new Objects::Niam(Objects::Camera::getLowerEdge() + glm::vec2(0.0f, 8.0f), m_square, m_niamTex)),
 		m_niamMovement(m_niam->getFirstComponentOfType<Objects::Components::MovementComponent>()),
@@ -31,6 +31,11 @@ namespace Elcarim::Scene::Scenes {
 		m_niam->getAllComponentsOfType<Objects::Components::CollisionComponent>(niamColList);
 		m_niamCol = niamColList[0];
 		m_niamHitCol = niamColList[1];
+	}
+	template<typename T>
+	void deleteObject(T& t) {
+		delete t;
+		t = nullptr;
 	}
 	void GameScene::update(const float deltaTime) {
 		//Niam
@@ -68,6 +73,24 @@ namespace Elcarim::Scene::Scenes {
 		if (m_hitTimer.getTime() >= 1.0) {
 			m_hitTimer.stop();
 			m_niamHitting->setHitting(false);
+		}
+
+		//Shots
+		if (m_controls.isShooting()) {
+			Objects::Shot* shot = new Objects::Shot(m_niam->getTransformation().getPosition() + glm::vec2(0.0f, m_niam->getTransformation().getScale().y * 2.0f), m_square, m_shotTex);
+			auto shotMovement = shot->getFirstComponentOfType<Objects::Components::MovementComponent>();
+			shotMovement->setVelocity(0.0f, 3.0f * RELATIVE_SCENE_UNIT);
+			m_shots.push_back(shot);
+		}
+		for (unsigned int i = 0u; i < m_shots.size(); ++i) {
+			auto& shot = m_shots[i];
+			auto shotMovement = shot->getFirstComponentOfType<Objects::Components::MovementComponent>();
+			shotMovement->update(deltaTime);
+			if (isObjectFullyOutsideOfScreenY(shot)) {
+				deleteObject(shot);
+				m_shots.erase(m_shots.begin() + i);
+				--i;
+			}
 		}
 
 		//Ball
@@ -109,19 +132,22 @@ namespace Elcarim::Scene::Scenes {
 
 		renderer->render(m_background);
 		renderer->render(m_niam);
+		for (Objects::Shot* shot : m_shots) {
+			renderer->render(shot);
+		}
 		renderer->render(m_ball);
-	}
-	template<typename T>
-	void deleteObject(T& t) {
-		delete t;
-		t = nullptr;
 	}
 	GameScene::~GameScene() {
 		deleteObject(m_background);
 		deleteObject(m_niam);
 		deleteObject(m_ball);
 		m_ballMovement = nullptr;
+		for (Objects::Shot*& shot : m_shots) {
+			deleteObject(shot);
+		}
 		deleteObject(m_niamTex);
+		deleteObject(m_ballTex);
+		deleteObject(m_shotTex);
 		deleteObject(m_bgTex);
 		deleteObject(m_square);
 		deleteObject(m_camera);
@@ -138,6 +164,22 @@ namespace Elcarim::Scene::Scenes {
 		glm::vec2& pos = object->getTransformation().getPosition();
 		glm::vec2& scale = object->getTransformation().getScale();
 		if (std::abs(pos.y) + scale.y > Objects::Camera::getUpperEdge().y) {
+			return true;
+		}
+		return false;
+	}
+	bool GameScene::isObjectFullyOutsideOfScreenX(Objects::GameObject* object) {
+		glm::vec2& pos = object->getTransformation().getPosition();
+		glm::vec2& scale = object->getTransformation().getScale();
+		if (std::abs(pos.x) - scale.x > Objects::Camera::getRightEdge().x) {
+			return true;
+		}
+		return false;
+	}
+	bool GameScene::isObjectFullyOutsideOfScreenY(Objects::GameObject* object) {
+		glm::vec2& pos = object->getTransformation().getPosition();
+		glm::vec2& scale = object->getTransformation().getScale();
+		if (std::abs(pos.y) - scale.y > Objects::Camera::getUpperEdge().y) {
 			return true;
 		}
 		return false;

@@ -15,7 +15,7 @@ namespace Elcarim::Objects {
 		template<typename T>
 		T* const getFirstComponentOfType() const {
 			for (Components::Component* component : m_components) {
-				if (T * t = dynamic_cast<T*>(component)) {
+				if (T* t = dynamic_cast<T*>(component)) {
 					return t;
 				}
 			}
@@ -24,7 +24,7 @@ namespace Elcarim::Objects {
 		template<typename T>
 		void const getAllComponentsOfType(std::vector<T*>& components) const {
 			for (Components::Component* component : m_components) {
-				if (T * t = dynamic_cast<T*>(component)) {
+				if (T* t = dynamic_cast<T*>(component)) {
 					components.push_back(t);
 				}
 			}
