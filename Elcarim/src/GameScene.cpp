@@ -1,9 +1,8 @@
-#define _USE_MATH_DEFINES
+#include "Math.hpp"
 #include "GameScene.hpp"
 
 #include <cmath>
 
-#include "Math.hpp"
 #include "Window.hpp"
 
 namespace Elcarim::Scene::Scenes {
@@ -22,13 +21,13 @@ namespace Elcarim::Scene::Scenes {
 		m_hitTimer(Timing::Timer(getTimer())),
 		m_ball(new Objects::Ball(glm::vec2(Scene::RELATIVE_SCENE_UNIT * 0.8f * Graphics::Renderer::ASPECT_RATIO, Scene::RELATIVE_SCENE_UNIT * -0.2f), m_square, m_ballTex)),
 		m_ballMovement(m_ball->getFirstComponentOfType<Objects::Components::MovementComponent>()),
-		m_ballCol(m_ball->getFirstComponentOfType<Objects::Components::CollisionComponent>()),
+		m_ballCol(m_ball->getFirstComponentOfType<Objects::Components::ColliderComponent>()),
 		m_ballHit(m_ball->getFirstComponentOfType<Objects::Components::BeingHitComponent>()),
 		m_background(new Objects::Background(m_square, m_bgTex))
 	{
 		m_ballMovement->setVelocity(Scene::RELATIVE_SCENE_UNIT * -1.4f, Scene::RELATIVE_SCENE_UNIT);
-		std::vector<Objects::Components::CollisionComponent*> niamColList;
-		m_niam->getAllComponentsOfType<Objects::Components::CollisionComponent>(niamColList);
+		std::vector<Objects::Components::ColliderComponent*> niamColList;
+		m_niam->getAllComponentsOfType<Objects::Components::ColliderComponent>(niamColList);
 		m_niamCol = niamColList[0];
 		m_niamHitCol = niamColList[1];
 	}
@@ -79,7 +78,7 @@ namespace Elcarim::Scene::Scenes {
 		if (m_controls.isShooting()) {
 			Objects::Shot* shot = new Objects::Shot(m_niam->getTransformation().getPosition() + glm::vec2(0.0f, m_niam->getTransformation().getScale().y * 2.0f), m_square, m_shotTex);
 			auto shotMovement = shot->getFirstComponentOfType<Objects::Components::MovementComponent>();
-			shotMovement->setVelocity(0.0f, 3.0f * RELATIVE_SCENE_UNIT);
+			shotMovement->setVelocity(0.0f, 500.0f);
 			m_shots.push_back(shot);
 		}
 		for (unsigned int i = 0u; i < m_shots.size(); ++i) {
@@ -109,6 +108,43 @@ namespace Elcarim::Scene::Scenes {
 		}
 		m_ball->getTransformation().getAngle() -= 360.0f * (m_ballMovement->getVelocity() * deltaTime).x / (2.0f * static_cast<float>(M_PI) * m_ball->getTransformation().getScale().x) * 0.4f;
 		
+		//Shot-Ball collision
+		for (unsigned int i = 0u; i < m_shots.size(); ++i) {
+			auto cc = m_shots[i]->getFirstComponentOfType<Objects::Components::ColliderComponent>();
+			if (cc->isColliding(*m_ballCol)) {
+				float xHitPos = cc->getCenter().x - m_ballCol->getCenter().x;
+				glm::vec2 dir = glm::vec2();
+				if (xHitPos < 0.0f && xHitPos >= m_ballCol->getRadius() * -sinf(Util::Math::rad(30.0f))) {
+					dir.y = 1.0f;
+				}
+				else if (xHitPos < -sinf(Util::Math::rad(30.0f)) && xHitPos >= m_ballCol->getRadius() * -sinf(Util::Math::rad(60.0f))) {
+					dir.x = cosf(Util::Math::rad(60.0f));
+					dir.y = sinf(Util::Math::rad(60.0f));
+				}
+				else if (xHitPos < -sinf(Util::Math::rad(60.0f))) {
+					dir.x = cosf(Util::Math::rad(30.0f));
+					dir.y = sinf(Util::Math::rad(30.0f));
+				}
+
+				else if (xHitPos >= 0.0f && xHitPos < m_ballCol->getRadius() * sinf(Util::Math::rad(30.0f))) {
+					dir.y = 1.0f;
+				}
+				else if (xHitPos >= -sinf(Util::Math::rad(30.0f)) && xHitPos < m_ballCol->getRadius() * sinf(Util::Math::rad(60.0f))) {
+					dir.x = cosf(Util::Math::rad(120.0f));
+					dir.y = sinf(Util::Math::rad(120.0f));
+				}
+				else if (xHitPos >= -sinf(Util::Math::rad(60.0f))) {
+					dir.x = cosf(Util::Math::rad(150.0f));
+					dir.y = sinf(Util::Math::rad(150.0f));
+				}
+				m_ballMovement->getVelocity() += dir * 300.0f;
+				deleteObject(m_shots[i]);
+				m_shots.erase(m_shots.begin() + i);
+				--i;
+				break;
+			}
+		}
+
 		//Niam-Ball collision
 		if (!m_niamHitting->isHitting()) {
 			if (m_niamCol->isColliding(*m_ballCol)) {

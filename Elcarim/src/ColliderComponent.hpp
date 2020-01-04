@@ -5,13 +5,13 @@
 #include <glm/glm.hpp>
 
 namespace Elcarim::Objects::Components {
-	class CollisionComponent : public Component {
+	class ColliderComponent : public Component {
 	public:
-		CollisionComponent(glm::vec2& center);
+		ColliderComponent(glm::vec2& center);
 		glm::vec2& getCenter();
 		float getRadius() const;
 		void setRadius(float radius);
-		bool isColliding(CollisionComponent& cc);
+		bool isColliding(ColliderComponent& cc);
 	private:
 		glm::vec2& m_center;
 		float m_radius;

@@ -163,9 +163,6 @@
     <ClCompile Include="src\MovementComponent.cpp">
       <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\CollisionComponent.cpp">
-      <Filter>Elcarim\Objects\Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\JumpingComponent.cpp">
       <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
@@ -180,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="src\Shot.cpp">
       <Filter>Elcarim\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ColliderComponent.cpp">
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -282,9 +282,6 @@
     <ClInclude Include="src\MovementComponent.hpp">
       <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\CollisionComponent.hpp">
-      <Filter>Elcarim\Objects\Components</Filter>
-    </ClInclude>
     <ClInclude Include="src\JumpingComponent.hpp">
       <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
@@ -299,6 +296,9 @@
     </ClInclude>
     <ClInclude Include="src\Shot.hpp">
       <Filter>Elcarim\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ColliderComponent.hpp">
+      <Filter>Elcarim\Objects\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

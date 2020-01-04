@@ -191,7 +191,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\BeingHitComponent.cpp" />
-    <ClCompile Include="src\CollisionComponent.cpp" />
+    <ClCompile Include="src\ColliderComponent.cpp" />
     <ClCompile Include="src\HittingComponent.cpp" />
     <ClCompile Include="src\JumpingComponent.cpp" />
     <ClCompile Include="src\Math.cpp" />
@@ -232,7 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BeingHitComponent.hpp" />
-    <ClInclude Include="src\CollisionComponent.hpp" />
+    <ClInclude Include="src\ColliderComponent.hpp" />
     <ClInclude Include="src\HittingComponent.hpp" />
     <ClInclude Include="src\JumpingComponent.hpp" />
     <ClInclude Include="src\Math.hpp" />

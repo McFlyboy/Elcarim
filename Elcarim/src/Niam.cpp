@@ -3,7 +3,7 @@
 #include "TexturedModelComponent.hpp"
 #include "MovementComponent.hpp"
 #include "JumpingComponent.hpp"
-#include "CollisionComponent.hpp"
+#include "ColliderComponent.hpp"
 #include "HittingComponent.hpp"
 
 namespace Elcarim::Objects {
@@ -14,10 +14,10 @@ namespace Elcarim::Objects {
 		addComponent(new Components::TexturedModelComponent(model, texture));
 		auto movement = new Components::MovementComponent(transformation.getPosition());
 		addComponent(movement);
-		auto cc = new Components::CollisionComponent(transformation.getPosition());
+		auto cc = new Components::ColliderComponent(transformation.getPosition());
 		cc->setRadius(transformation.getScale().x * 0.75f);
 		addComponent(cc);
-		auto hitCC = new Components::CollisionComponent(transformation.getPosition());
+		auto hitCC = new Components::ColliderComponent(transformation.getPosition());
 		hitCC->setRadius(transformation.getScale().x * 1.5f);
 		addComponent(hitCC);
 		addComponent(new Components::JumpingComponent());
