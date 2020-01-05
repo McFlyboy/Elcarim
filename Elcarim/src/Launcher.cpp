@@ -7,5 +7,9 @@
 #include <iostream>
 
 int main() {
-	return Elcarim::Game().run() ? 0 : 1;
+	Elcarim::Game* game = new Elcarim::Game();
+	int quitStatus = game->run() ? 0 : 1;
+	delete game;
+	game = nullptr;
+	return quitStatus;
 }

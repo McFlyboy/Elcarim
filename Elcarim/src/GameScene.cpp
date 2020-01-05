@@ -114,26 +114,23 @@ namespace Elcarim::Scene::Scenes {
 			if (cc->isColliding(*m_ballCol)) {
 				float xHitPos = cc->getCenter().x - m_ballCol->getCenter().x;
 				glm::vec2 dir = glm::vec2();
-				if (xHitPos < 0.0f && xHitPos >= m_ballCol->getRadius() * -sinf(Util::Math::rad(30.0f))) {
+				if (xHitPos < m_ballCol->getRadius() * sinf(Util::Math::rad(18.0f)) && xHitPos >= m_ballCol->getRadius() * -sinf(Util::Math::rad(18.0f))) {
 					dir.y = 1.0f;
 				}
-				else if (xHitPos < -sinf(Util::Math::rad(30.0f)) && xHitPos >= m_ballCol->getRadius() * -sinf(Util::Math::rad(60.0f))) {
+				else if (xHitPos < -sinf(Util::Math::rad(18.0f)) && xHitPos >= m_ballCol->getRadius() * -sinf(Util::Math::rad(54.0f))) {
 					dir.x = cosf(Util::Math::rad(60.0f));
 					dir.y = sinf(Util::Math::rad(60.0f));
 				}
-				else if (xHitPos < -sinf(Util::Math::rad(60.0f))) {
+				else if (xHitPos < -sinf(Util::Math::rad(54.0f))) {
 					dir.x = cosf(Util::Math::rad(30.0f));
 					dir.y = sinf(Util::Math::rad(30.0f));
 				}
 
-				else if (xHitPos >= 0.0f && xHitPos < m_ballCol->getRadius() * sinf(Util::Math::rad(30.0f))) {
-					dir.y = 1.0f;
-				}
-				else if (xHitPos >= -sinf(Util::Math::rad(30.0f)) && xHitPos < m_ballCol->getRadius() * sinf(Util::Math::rad(60.0f))) {
+				else if (xHitPos >= -sinf(Util::Math::rad(18.0f)) && xHitPos < m_ballCol->getRadius() * sinf(Util::Math::rad(54.0f))) {
 					dir.x = cosf(Util::Math::rad(120.0f));
 					dir.y = sinf(Util::Math::rad(120.0f));
 				}
-				else if (xHitPos >= -sinf(Util::Math::rad(60.0f))) {
+				else if (xHitPos >= -sinf(Util::Math::rad(54.0f))) {
 					dir.x = cosf(Util::Math::rad(150.0f));
 					dir.y = sinf(Util::Math::rad(150.0f));
 				}
