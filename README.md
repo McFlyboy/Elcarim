@@ -11,5 +11,5 @@ When audio is implemented later it will either be through OpenAL or OpenAL Soft.
 
 ## Old version
 This project is a re-creation of a project I did in
-Java a back in 2016-2018 called [Project 1996](https://github.com/McFlyboy/Project-1996). That version is still playable and can
+Java back in 2016-2018 called [Project 1996](https://github.com/McFlyboy/Project-1996). That version is still playable and can
 be found here: https://mcflyboy.itch.io/project1996 (Windows only)
