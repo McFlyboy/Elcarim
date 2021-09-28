@@ -339,5 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-# External source files
-Elcarim/src/external/
+/out/build/
