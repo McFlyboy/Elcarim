@@ -42,7 +42,7 @@ echo.
 echo ----- GLAD -----
 .\vcpkg\vcpkg install glad[gl-api-32]:x64-windows
 echo.
-echo echo ----- STB -----
+echo ----- STB -----
 .\vcpkg\vcpkg install stb:x64-windows
 echo.
 pause
