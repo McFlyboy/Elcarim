@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <cstdlib>
+#include <cstring>
 
 namespace Elcarim::Input::Devices {
 	Gamepad* Gamepad::s_instance = nullptr;
