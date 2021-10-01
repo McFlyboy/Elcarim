@@ -8,31 +8,31 @@ namespace Elcarim::Objects {
 		static const float PROJECTION_RESOLUTION_WIDTH;
 		static const float PROJECTION_RESOLUTION_HEIGHT;
 
-		static constexpr glm::vec2 getCenter() {
+		static const glm::vec2 getCenter() {
 			return glm::vec2();
 		}
-		static constexpr glm::vec2 getUpperLeftCorner() {
+		static const glm::vec2 getUpperLeftCorner() {
 			return glm::vec2(-PROJECTION_RESOLUTION_WIDTH, PROJECTION_RESOLUTION_HEIGHT) / 2.0f;
 		}
-		static constexpr glm::vec2 getLowerLeftCorner() {
+		static const glm::vec2 getLowerLeftCorner() {
 			return glm::vec2(-PROJECTION_RESOLUTION_WIDTH, -PROJECTION_RESOLUTION_HEIGHT) / 2.0f;
 		}
-		static constexpr glm::vec2 getUpperRightCorner() {
+		static const glm::vec2 getUpperRightCorner() {
 			return glm::vec2(PROJECTION_RESOLUTION_WIDTH, PROJECTION_RESOLUTION_HEIGHT) / 2.0f;
 		}
-		static constexpr glm::vec2 getLowerRightCorner() {
+		static const glm::vec2 getLowerRightCorner() {
 			return glm::vec2(PROJECTION_RESOLUTION_WIDTH, -PROJECTION_RESOLUTION_HEIGHT) / 2.0f;
 		}
-		static constexpr glm::vec2 getUpperEdge() {
+		static const glm::vec2 getUpperEdge() {
 			return glm::vec2(0.0f, PROJECTION_RESOLUTION_HEIGHT) / 2.0f;
 		}
-		static constexpr glm::vec2 getLowerEdge() {
+		static const glm::vec2 getLowerEdge() {
 			return glm::vec2(0.0f, -PROJECTION_RESOLUTION_HEIGHT) / 2.0f;
 		}
-		static constexpr glm::vec2 getLeftEdge() {
+		static const glm::vec2 getLeftEdge() {
 			return glm::vec2(-PROJECTION_RESOLUTION_WIDTH, 0.0f) / 2.0f;
 		}
-		static constexpr glm::vec2 getRightEdge() {
+		static const glm::vec2 getRightEdge() {
 			return glm::vec2(PROJECTION_RESOLUTION_WIDTH, 0.0f) / 2.0f;
 		}
 	};
